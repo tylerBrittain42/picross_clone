@@ -12,12 +12,16 @@ protected:
 	float r;
 	float g;
 	float b;
+	
 
 public:
+char claimStatus;
 	Tile();
 	Tile(float, float, float, float, float r=1, float g=0, float b=0);
 
 	void draw(float z=0) const;
+	void drawX() const;
+	void drawC() const;
 
 	void setY(float y);
 	float getY() const;
@@ -26,6 +30,8 @@ public:
 
 
 	bool contains(float, float) const;
+
+	void onClick(float mx, float my);
 };
 
 #endif

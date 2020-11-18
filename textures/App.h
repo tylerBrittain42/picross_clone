@@ -6,6 +6,7 @@
 #include "Rect.h"
 #include "Circle.h"
 #include "TexRect.h"
+#include "Tile.h"
 
 class App: public GlutApp {
 

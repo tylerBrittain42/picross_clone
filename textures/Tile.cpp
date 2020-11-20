@@ -84,10 +84,10 @@ void Tile::drawC() const{
 
 	glBegin(GL_POLYGON);
 
-	glVertex2f((x + std::abs(x*0.05)), (y - std::abs(y*0.05)));
-	glVertex2f((x+w - std::abs(x*0.05)), (y - std::abs(y*0.05)));
-	glVertex2f((x+w - std::abs(x*0.05)), ((y-h) + std::abs(y*0.05)));
-	glVertex2f((x + std::abs(x*0.05)), (y-h) + std::abs(y*0.05));
+	glVertex2f((x + std::abs(w*0.05)), (y - std::abs(h*0.05)));
+	glVertex2f((x+w - std::abs(w*0.05)), (y - std::abs(h*0.05)));
+	glVertex2f((x+w - std::abs(w*0.05)), ((y-h) + std::abs(h*0.05)));
+	glVertex2f((x + std::abs(w*0.05)), (y-h) + std::abs(h*0.05));
 	glEnd();
 	
 }

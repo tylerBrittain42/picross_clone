@@ -5,7 +5,6 @@
 
 
 FbFboard::FbFboard(){
-    std::cout << "board created" << std::endl;
 
     
     
@@ -16,10 +15,10 @@ FbFboard::FbFboard(){
 
         for(int j = 0; j < 5; j++){
             fbf.push_back(new Tile(cW,cH,0.25));
-            cW = cW + 0.25;
+            cW = cW + 0.26;
         }
         cW = -1;
-        cH = cH - 0.25;
+        cH = cH - 0.26;
     }
 }
 

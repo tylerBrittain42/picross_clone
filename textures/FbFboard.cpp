@@ -48,8 +48,6 @@ void FbFboard::draw() const{
     
 }
 
-
-
 void FbFboard::leftMouseDown(float mx, float my){
 
     for(auto i = fbf.begin(); i != fbf.end(); i++){
@@ -61,7 +59,6 @@ void FbFboard::leftMouseDown(float mx, float my){
 
 
 }
-
 
 void FbFboard::rightMouseDown(float mx, float my){
 

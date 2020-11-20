@@ -6,10 +6,11 @@
 #include "Rect.h"
 #include "Circle.h"
 #include "TexRect.h"
+#include "Tile.h"
 
 class App: public GlutApp {
 
-std::vector<Shape*> shapes;
+std::vector<Tile*> shapes;
 
 public:
     
@@ -18,6 +19,11 @@ public:
     void draw() const;
     
     void keyDown(unsigned char key, float x, float y);
+
+    void leftMouseDown(float mx, float my);
+
+
+    void rightMouseDown(float mx, float my);
     
     ~App();
 };

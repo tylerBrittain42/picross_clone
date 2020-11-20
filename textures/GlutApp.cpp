@@ -197,6 +197,7 @@ void GlutApp::glutMouseCB(int b, int s, int x, int y){
         if (s == 0){
             // Down
             singleton->leftMouseDown(mx, my);
+            
         }
         else if (s == 1){
             // Up

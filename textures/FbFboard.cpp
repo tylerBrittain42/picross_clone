@@ -7,42 +7,41 @@
 FbFboard::FbFboard(){
 
     
-    
-    float cW = -1;
-    float cH = 1;
+    sideLength = 0.25;
+    curX = -1;
+    curY = 1;
 
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(cW,cH,0.25));
-            cW = cW + 0.26;
+            fbf.push_back(new Tile(curX,curY,sideLength));
+            curX = curX + (sideLength + 0.01);
         }
-        cW = -1;
-        cH = cH - 0.26;
+        curX = -1;
+        curY = curY - (sideLength + 0.01);
     }
 }
 
-FbFboard::FbFboard(float x, float y){
+FbFboard::FbFboard(float x, float y, float sideLength){
     
-    float cW = x;
-    float cH = y;
+    this->sideLength = sideLength;
+    curX = x;
+    curY = y;
 
-    // for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 5; i++){
 
-    //     for(int j = 0; j < 5; j++){
-    //         fbf.push_back(new Tile(cW,cH));
-    //         cW = cW + 0.25;
-    //     }
-    //     cW = x;
-    //     cH = cH - 0.25;
-    // }
-    fbf.push_back(new Tile(-0.25,0.25,0.5));
+        for(int j = 0; j < 5; j++){
+            fbf.push_back(new Tile(curX,curY,sideLength));
+            curX = curX + (sideLength + 0.01);
+        }
+        curX = x;
+        curY = curY - (sideLength + 0.01);
+    }
 
 }
 
 
 void FbFboard::draw() const{
-    std::cout << "board draw triggered" << std::endl;
     for(auto i = fbf.begin(); i != fbf.end(); i++){
         (*i)->draw();
     }    
@@ -60,14 +59,12 @@ void FbFboard::leftMouseDown(float mx, float my){
             (*i)->SetClaimedBy('c');
     }
 
-    std::cout << "Left click in board" << std::endl;
 
 }
 
 
 void FbFboard::rightMouseDown(float mx, float my){
 
-    std::cout << "Right click in board" << std::endl;
     for(auto i = fbf.begin(); i != fbf.end(); i++){
         if ((*i)->contains(mx,my) && (*i)->getClaimedBy() == 'x')
             (*i)->SetClaimedBy('e');

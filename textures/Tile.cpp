@@ -46,7 +46,6 @@ void Tile::draw(float z) const {
 	glVertex2f(x, y-h);
 	glEnd();
 
-	std::cout << claimedBy << std::endl;
 	if (claimedBy == 'c'){
 		drawC();
 	}

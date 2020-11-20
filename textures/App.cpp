@@ -11,7 +11,7 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new Rect());
     //shapes.push_back(new Circle());
     shapes.push_back(new Tile(2,2,0.01));
-    board = new FbFboard();
+    board = new FbFboard(-1,1,0.4);
     
 
 } 
@@ -24,7 +24,7 @@ void App::draw() const {
 
 void App::keyDown(unsigned char key, float x, float y){
     if (key == ' '){
-        std::cout << "space hit " << shapes[0]->getClaimedBy() << std::endl;
+        
         shapes[0]->SetClaimedBy('c');
         
     }
@@ -37,7 +37,7 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
 
-    std::cout << "Left click" << std::endl;
+    
     if (shapes[0]->contains(mx,my) && shapes[0]->getClaimedBy() == 'c')
         shapes[0]->SetClaimedBy('e');
     else if (shapes[0]->contains(mx,my))
@@ -49,7 +49,7 @@ void App::leftMouseDown(float mx, float my) {
 void App::rightMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
 
-    std::cout << "Right click" << std::endl;
+    
     if (shapes[0]->contains(mx,my) && shapes[0]->getClaimedBy() == 'x')
         shapes[0]->SetClaimedBy('e');
     else if (shapes[0]->contains(mx,my))

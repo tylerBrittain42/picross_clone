@@ -5,11 +5,16 @@
 
 class FbFboard {
 public:
+
+    float sideLength;
+    float curX;
+    float curY;
+
     std::vector<Tile*> fbf;
 
     FbFboard();
 
-    FbFboard(float x, float y);
+    FbFboard(float x, float y, float sideLength);
 
     void draw() const;
 

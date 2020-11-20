@@ -12,13 +12,13 @@ protected:
 	float r;
 	float g;
 	float b;
+	char claimedBy;
 	
 
 public:
-char claimedBy;
+
 	Tile();
-	Tile(float, float, float, float, float r=1, float g=0, float b=0);
-	Tile(float x, float y);
+	Tile(float x, float y, float side);
 
 
 	void draw(float z=0) const;
@@ -35,7 +35,8 @@ char claimedBy;
 
 	bool contains(float, float) const;
 
-	void onClick(float mx, float my);
+	~Tile();
+
 };
 
 #endif

@@ -15,7 +15,7 @@ FbFboard::FbFboard(){
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(cW,cH));
+            fbf.push_back(new Tile(cW,cH,0.25));
             cW = cW + 0.25;
         }
         cW = -1;
@@ -25,6 +25,20 @@ FbFboard::FbFboard(){
 
 FbFboard::FbFboard(float x, float y){
     
+    float cW = x;
+    float cH = y;
+
+    // for(int i = 0; i < 5; i++){
+
+    //     for(int j = 0; j < 5; j++){
+    //         fbf.push_back(new Tile(cW,cH));
+    //         cW = cW + 0.25;
+    //     }
+    //     cW = x;
+    //     cH = cH - 0.25;
+    // }
+    fbf.push_back(new Tile(-0.25,0.25,0.5));
+
 }
 
 

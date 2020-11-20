@@ -10,8 +10,8 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
     //shapes.push_back(new Rect());
     //shapes.push_back(new Circle());
-    shapes.push_back(new Tile(2,2));
-    board = new FbFboard;
+    shapes.push_back(new Tile(2,2,0.01));
+    board = new FbFboard(-0.5,0.5);
     
 
 } 

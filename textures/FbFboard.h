@@ -9,14 +9,15 @@ public:
 
     FbFboard();
 
+    FbFboard(float x, float y);
+
     void draw() const;
 
-    // void keyDown(unsigned char key, float x, float y);
 
-    // void leftMouseDown(float mx, float my);
+    void leftMouseDown(float mx, float my);
 
 
-    // void rightMouseDown(float mx, float my);
+    void rightMouseDown(float mx, float my);
 
     ~FbFboard();
 };

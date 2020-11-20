@@ -27,8 +27,8 @@ Tile::Tile(float x, float y, float w, float h, float r, float g, float b){
 Tile::Tile(float x, float y){
 	this->x = x;
 	this->y = y;
-	w = 0.5;
-	h = 0.5;
+	w = 0.25;
+	h = 0.25;
 	r = 1;
 	g = 0;
 	b = 0;
@@ -85,10 +85,10 @@ void Tile::drawC() const{
 
 	glBegin(GL_POLYGON);
 
-	glVertex2f(x + 0.05, y - 0.05);
-	glVertex2f(x+w - 0.05, y - 0.05);
-	glVertex2f(x+w - 0.05, y-h + 0.05);
-	glVertex2f(x + 0.05, y-h + 0.05);
+	glVertex2f(x + 0.005, y - 0.005);
+	glVertex2f(x+w - 0.005, y - 0.005);
+	glVertex2f(x+w - 0.005, y-h + 0.005);
+	glVertex2f(x + 0.005, y-h + 0.005);
 	glEnd();
 	
 }

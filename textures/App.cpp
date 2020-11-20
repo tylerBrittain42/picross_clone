@@ -10,7 +10,7 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
     //shapes.push_back(new Rect());
     //shapes.push_back(new Circle());
-    shapes.push_back(new Tile(-1,1));
+    shapes.push_back(new Tile(2,2));
     board = new FbFboard;
     
 
@@ -42,7 +42,7 @@ void App::leftMouseDown(float mx, float my) {
         shapes[0]->SetClaimedBy('e');
     else if (shapes[0]->contains(mx,my))
         shapes[0]->SetClaimedBy('c');
-
+    board->leftMouseDown(mx,my);
     redraw();
 }
 
@@ -54,6 +54,7 @@ void App::rightMouseDown(float mx, float my) {
         shapes[0]->SetClaimedBy('e');
     else if (shapes[0]->contains(mx,my))
         shapes[0]->SetClaimedBy('x');
+    board->rightMouseDown(mx,my);
     
     redraw();
 }

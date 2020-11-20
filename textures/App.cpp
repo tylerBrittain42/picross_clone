@@ -11,12 +11,15 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new Rect());
     //shapes.push_back(new Circle());
     shapes.push_back(new Tile(-1,1));
+    board = new FbFboard;
+    
+
 } 
 
 void App::draw() const {
-    for(auto i = shapes.begin(); i != shapes.end(); i++){
-        (*i)->draw();
-    }
+    //board->draw();
+    shapes[0]->draw();
+    board->draw();
 }
 
 void App::keyDown(unsigned char key, float x, float y){

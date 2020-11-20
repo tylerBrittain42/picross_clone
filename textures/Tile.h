@@ -15,7 +15,7 @@ protected:
 	
 
 public:
-char claimStatus;
+char claimedBy;
 	Tile();
 	Tile(float, float, float, float, float r=1, float g=0, float b=0);
 
@@ -27,6 +27,8 @@ char claimStatus;
 	float getY() const;
 	float getX() const;
 	void setX(float x);
+	char getClaimedBy() const;
+	void SetClaimedBy(char claimedBy);
 
 
 	bool contains(float, float) const;

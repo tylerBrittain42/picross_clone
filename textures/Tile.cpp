@@ -10,7 +10,7 @@ Tile::Tile(){
 	r = 1;
 	g = 0;
 	b = 0;
-	claimStatus = 'e';
+	claimedBy = 'e';
 }
 
 Tile::Tile(float x, float y, float w, float h, float r, float g, float b){
@@ -21,7 +21,7 @@ Tile::Tile(float x, float y, float w, float h, float r, float g, float b){
 	this->r = r;
 	this->g = g;
 	this->b = b;
-	claimStatus = 'e';
+	claimedBy = 'e';
 }
 
 void Tile::draw(float z) const {
@@ -36,13 +36,13 @@ void Tile::draw(float z) const {
 	glVertex2f(x, y-h);
 	glEnd();
 
-	std::cout << claimStatus << std::endl;
-	if (claimStatus == 'c'){
+	std::cout << claimedBy << std::endl;
+	if (claimedBy == 'c'){
 
 		std::cout << "triggered" << std::endl;
 		drawC();
 	}
-	else if (claimStatus == 'x'){
+	else if (claimedBy == 'x'){
 
 		std::cout << "triggered" << std::endl;
 		drawX();
@@ -98,6 +98,18 @@ float Tile::getY() const {
 float Tile::getX() const {
 	return x;
 }
+
+
+char Tile::getClaimedBy() const {
+	return claimedBy;
+
+}
+void Tile::SetClaimedBy(char claimedBy){
+	this->claimedBy = claimedBy;
+}
+
+
+
 
 bool Tile::contains(float x, float y) const{
 	return x >= this->x && x <= this->x + w && y <= this->y && y >= this->y - h;

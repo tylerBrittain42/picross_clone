@@ -21,8 +21,8 @@ void App::draw() const {
 
 void App::keyDown(unsigned char key, float x, float y){
     if (key == ' '){
-        std::cout << "space hit " << shapes[0]->claimStatus << std::endl;
-        shapes[0]->claimStatus = 'c';
+        std::cout << "space hit " << shapes[0]->getClaimedBy() << std::endl;
+        shapes[0]->SetClaimedBy('c');
         
     }
 
@@ -34,11 +34,27 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
 
-    std::cout << "Clicke" << std::endl;
-    if (shapes[0]->contains(mx,my))
-        std::cout << "tile clicked" << std::endl;
+    std::cout << "Left click" << std::endl;
+    if (shapes[0]->contains(mx,my) && shapes[0]->getClaimedBy() == 'c')
+        shapes[0]->SetClaimedBy('e');
+    else if (shapes[0]->contains(mx,my))
+        shapes[0]->SetClaimedBy('c');
+
     redraw();
 }
+
+void App::rightMouseDown(float mx, float my) {
+	// Convert from Window to Scene coordinates
+
+    std::cout << "Right click" << std::endl;
+    if (shapes[0]->contains(mx,my) && shapes[0]->getClaimedBy() == 'x')
+        shapes[0]->SetClaimedBy('e');
+    else if (shapes[0]->contains(mx,my))
+        shapes[0]->SetClaimedBy('x');
+    
+    redraw();
+}
+
 
 App::~App(){   
     for(auto i = shapes.begin(); i != shapes.end(); i++){

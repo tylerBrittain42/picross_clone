@@ -24,6 +24,17 @@ Tile::Tile(float x, float y, float w, float h, float r, float g, float b){
 	claimedBy = 'e';
 }
 
+Tile::Tile(float x, float y){
+	this->x = x;
+	this->y = y;
+	w = 0.5;
+	h = 0.5;
+	r = 1;
+	g = 0;
+	b = 0;
+	claimedBy = 'e';
+}
+
 void Tile::draw(float z) const {
 	
 	glColor3f(r, g, b);

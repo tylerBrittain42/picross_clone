@@ -10,7 +10,7 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
     //shapes.push_back(new Rect());
     //shapes.push_back(new Circle());
-    shapes.push_back(new Tile());
+    shapes.push_back(new Tile(-1,1));
 } 
 
 void App::draw() const {

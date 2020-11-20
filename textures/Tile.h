@@ -18,6 +18,8 @@ public:
 char claimedBy;
 	Tile();
 	Tile(float, float, float, float, float r=1, float g=0, float b=0);
+	Tile(float x, float y);
+
 
 	void draw(float z=0) const;
 	void drawX() const;

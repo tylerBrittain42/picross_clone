@@ -28,9 +28,9 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
     //---------------------------------------------------
      //This is for testing an answer key
-    char answerKey[5][5] = {{'e','c','e','c','b'},
+    char answerKey[5][5] = {{'e','c','e','c','e'},
                             {'e','c','e','c','e'},
-                            {'e','e','e','e','e'},
+                            {'e','c','e','e','e'},
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}};
 
@@ -65,7 +65,8 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
     //Horizontal
     curX = x;
-    curY = (y + sideLength*3) + 0.05;
+    //curY = (y + sideLength*3) + 0.05;
+    curY = (y + sideLength) + 0.05;
     //i controls row; j controls column
     int k = 1;
     for(int i = 0; i < 3; i++){
@@ -78,7 +79,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
             
         }
         curX = x;
-        curY = curY - (sideLength + 0.01);
+        curY = curY + (sideLength + 0.01);
     }
 
     //Vertical
@@ -131,6 +132,7 @@ std::vector<int> FbFboard::generateHoriz(char key[5][5]){
 std::vector<int> FbFboard::generateVert(char key[5][5]){
        
     std::vector<int> gen;
+    gen.push_back(9);
     int count = 0;
     for(int j = 0; j < 5; j++) {
         for(int i = 0; i < 5; i++){
@@ -149,9 +151,14 @@ std::vector<int> FbFboard::generateVert(char key[5][5]){
         gen.push_back(9);
         count = 0;
     }
+    gen.pop_back();
 
     //std::reverse(gen.begin(),gen.end());
     std::cout << "vert test" << std::endl;
+
+
+    std::reverse(gen.begin(),gen.end());
+
     for(auto i = gen.begin(); i != gen.end(); i++){
         std::cout << *i << ' ';
     }
@@ -199,6 +206,12 @@ void FbFboard::rightMouseDown(float mx, float my){
 
 FbFboard::~FbFboard(){
     for(auto i = fbf.begin(); i != fbf.end(); i++){
+        delete *i;
+    }
+    for(auto i = vertHints.begin(); i != vertHints.end(); i++){
+        delete *i;
+    }
+    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
         delete *i;
     }
 }

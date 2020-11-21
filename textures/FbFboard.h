@@ -3,6 +3,7 @@
 #include "Tile.h"
 #include "Hint.h"
 #include <vector>
+#include <algorithm>
 
 class FbFboard {
 public:
@@ -10,6 +11,7 @@ public:
     float sideLength;
     float curX;
     float curY;
+    float currHint;
 
     std::vector<Tile*> fbf;
     std::vector<Hint*> vertHints;

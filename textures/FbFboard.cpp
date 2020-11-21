@@ -25,10 +25,30 @@ FbFboard::FbFboard(){
 }
 
 FbFboard::FbFboard(float x, float y, float sideLength){
+
+    //---------------------------------------------------
+     //This is for testing an answer key
+    char answerKey[5][5] = {{'e','c','e','c','b'},
+                            {'e','c','e','c','e'},
+                            {'e','e','e','e','e'},
+                            {'c','e','e','e','c'}, 
+                            {'e','c','c','c','e'}};
+
+    std::vector<int> vertCountt;
+    std::vector<int> horzCountt;
+
+    horzCountt = generateHoriz(answerKey);
+    vertCountt = generateVert(answerKey);
+    //---------------------------------------------------
+
+    std::cout << "past gen" << std::endl;
+
+
     
     this->sideLength = sideLength;
     curX = x;
     curY = y;
+    currHint = 0;
 
     for(int i = 0; i < 5; i++){
 
@@ -40,15 +60,22 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curY = curY - (sideLength + 0.01);
     }
 
+        std::cout << "past tile creation" << std::endl;
+
+
     //Horizontal
     curX = x;
     curY = (y + sideLength*3) + 0.05;
     //i controls row; j controls column
+    int k = 1;
     for(int i = 0; i < 3; i++){
 
         for(int j = 0; j < 5; j++){
-            vertHints.push_back(new Hint(curX,curY,sideLength, "1"));
+            vertHints.push_back(new Hint(curX,curY,sideLength, std::to_string(k)));
             curX = curX + (sideLength + 0.01);
+            k++;
+            
+            
         }
         curX = x;
         curY = curY - (sideLength + 0.01);
@@ -69,29 +96,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     }
 
 
-    //---------------------------------------------------
-     //This is for testing an answer key
-    char answerKey[5][5] = {{'e','c','e','c','b'},
-                            {'e','c','e','c','e'},
-                            {'e','e','e','e','e'},
-                            {'c','e','e','e','c'}, 
-                            {'e','c','c','c','e'}};
-    for(int i = 0; i < 5; i++) {
-        for(int j = 0; j < 5; j++){
-            std::cout << answerKey[i][j];
-        }
-        std::cout << std::endl;
-    }
-    
-    std::cout << std::endl << std::endl;
-
-    std::vector<int> vertCountt;
-    std::vector<int> horzCountt;
-
-    horzCountt = generateHoriz(answerKey);
-    vertCountt = generateVert(answerKey);
-    
-    
 
 
 }
@@ -146,11 +150,12 @@ std::vector<int> FbFboard::generateVert(char key[5][5]){
         count = 0;
     }
 
+    //std::reverse(gen.begin(),gen.end());
     std::cout << "vert test" << std::endl;
     for(auto i = gen.begin(); i != gen.end(); i++){
         std::cout << *i << ' ';
     }
-    
+
     return(gen);
 
 }

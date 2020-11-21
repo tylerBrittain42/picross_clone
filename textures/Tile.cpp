@@ -1,6 +1,14 @@
 #include "Tile.h"
 #include "GlutApp.h"
 #include <iostream>
+#include <cmath> 
+
+/*Tile represents a single picross tile.
+ *claimedBY values indicate the choice that the user has made regarding the tile
+ *e = empty
+ *c = claimed
+ *x = avoided
+*/
 
 Tile::Tile(){
 	x = 0;
@@ -13,28 +21,19 @@ Tile::Tile(){
 	claimedBy = 'e';
 }
 
-Tile::Tile(float x, float y, float w, float h, float r, float g, float b){
+//Since tiles are square, the height and width should always be the same value
+Tile::Tile(float x, float y, float side){
 	this->x = x;
 	this->y = y;
-	this->w = w;
-	this->h = h;
-	this->r = r;
-	this->g = g;
-	this->b = b;
-	claimedBy = 'e';
-}
-
-Tile::Tile(float x, float y){
-	this->x = x;
-	this->y = y;
-	w = 0.5;
-	h = 0.5;
+	w = side;
+	h = side;
 	r = 1;
 	g = 0;
 	b = 0;
 	claimedBy = 'e';
 }
 
+//Draws the tile as well as the claimed decision
 void Tile::draw(float z) const {
 	
 	glColor3f(r, g, b);
@@ -47,21 +46,18 @@ void Tile::draw(float z) const {
 	glVertex2f(x, y-h);
 	glEnd();
 
-	std::cout << claimedBy << std::endl;
 	if (claimedBy == 'c'){
-
-		std::cout << "triggered" << std::endl;
 		drawC();
 	}
 	else if (claimedBy == 'x'){
-
-		std::cout << "triggered" << std::endl;
 		drawX();
 	}
+	
 
 
 }
 
+//Draws an X
 void Tile::drawX() const{
 	glColor3f(1, 1, 1);
 
@@ -79,16 +75,18 @@ void Tile::drawX() const{
 
 }
 
+//Fills in 95% of a claimed tile
+//Note: using ratios to scale 95% with size of tile
 void Tile::drawC() const{
 	
 	glColor3f(1,1,1);
 
 	glBegin(GL_POLYGON);
 
-	glVertex2f(x + 0.05, y - 0.05);
-	glVertex2f(x+w - 0.05, y - 0.05);
-	glVertex2f(x+w - 0.05, y-h + 0.05);
-	glVertex2f(x + 0.05, y-h + 0.05);
+	glVertex2f((x + std::abs(w*0.05)), (y - std::abs(h*0.05)));
+	glVertex2f((x+w - std::abs(w*0.05)), (y - std::abs(h*0.05)));
+	glVertex2f((x+w - std::abs(w*0.05)), ((y-h) + std::abs(h*0.05)));
+	glVertex2f((x + std::abs(w*0.05)), (y-h) + std::abs(h*0.05));
 	glEnd();
 	
 }
@@ -126,6 +124,6 @@ bool Tile::contains(float x, float y) const{
 	return x >= this->x && x <= this->x + w && y <= this->y && y >= this->y - h;
 }
 
-void Tile::onClick(float mx, float my){
+Tile::~Tile(){
 
-};
+}

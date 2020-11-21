@@ -7,12 +7,15 @@
 #include "Circle.h"
 #include "TexRect.h"
 #include "Tile.h"
+#include "FbFboard.h"
 
 class App: public GlutApp {
 
 std::vector<Tile*> shapes;
 
 public:
+
+    FbFboard* board;
     
     App(int argc, char** argv, int width, int height, const char* title);
     

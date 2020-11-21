@@ -64,7 +64,8 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
 
     //Horizontal
-    curX = x;
+    //curX = x;
+    curX = x + (4 *(sideLength+0.01));
     //curY = (y + sideLength*3) + 0.05;
     curY = (y + sideLength) + 0.05;
     //i controls row; j controls column
@@ -73,12 +74,12 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
         for(int j = 0; j < 5; j++){
             vertHints.push_back(new Hint(curX,curY,sideLength, std::to_string(k)));
-            curX = curX + (sideLength + 0.01);
+            curX = curX - (sideLength + 0.01);
             k++;
             
             
         }
-        curX = x;
+        curX = x + (4 *(sideLength+0.01));
         curY = curY + (sideLength + 0.01);
     }
 

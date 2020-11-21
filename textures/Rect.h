@@ -16,6 +16,7 @@ protected:
 public:
 	Rect();
 	Rect(float, float, float, float, float r=1, float g=0, float b=0);
+	Rect(float x, float y, float side);
 
 	void draw(float z=0) const;
 

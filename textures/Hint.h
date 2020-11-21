@@ -6,10 +6,10 @@
 
 class Hint: public Rect{
 protected:
-    std::string hintText;
+    //std::string hintText;
 
 public:
-
+std::string hintText;
     Hint();
     Hint(float x, float y, float side, std::string hintText);
  

@@ -11,7 +11,7 @@ public:
     float sideLength;
     float curX;
     float curY;
-    float currHint;
+    int currHint;
 
     std::vector<Tile*> fbf;
     std::vector<Hint*> vertHints;

@@ -30,7 +30,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
      //This is for testing an answer key
     char answerKey[5][5] = {{'e','c','e','c','e'},
                             {'e','c','e','c','e'},
-                            {'e','c','e','e','e'},
+                            {'e','b','e','e','e'},
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}};
 
@@ -82,6 +82,32 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curX = x + (4 *(sideLength+0.01));
         curY = curY + (sideLength + 0.01);
     }
+
+//-----------------------------------------------------
+    int cur = 0;
+    for(int j = 0; j < 5; j ++){
+        for(int i = 0; i < 15; i++){
+            if(i%5 == j){
+                std::cout << std::endl << vertHints[i]->hintText << " " << vertCountt[i];
+                if(vertCountt[cur] != 9){
+                    std::cout << " " << vertCountt[cur];
+                    vertHints[i]->hintText = std::to_string(vertCountt[cur]);
+                    cur++;
+                }
+                else
+                {
+                    std::cout << " 0";
+                    vertHints[i]->hintText = "";
+                    vertHints[i]->r = 0;
+                    vertHints[i]->g = 0;
+                    vertHints[i]->b = 0;
+                }
+                
+            }
+        }
+        cur++;
+    }
+
 
     //Vertical
     curX = (x - sideLength*3) - 0.05;

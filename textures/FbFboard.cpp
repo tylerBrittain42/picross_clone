@@ -20,6 +20,8 @@ FbFboard::FbFboard(){
         curX = -1;
         curY = curY - (sideLength + 0.01);
     }
+
+
 }
 
 FbFboard::FbFboard(float x, float y, float sideLength){
@@ -38,14 +40,48 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curY = curY - (sideLength + 0.01);
     }
 
+    //Horizontal
+    curX = x;
+    curY = (y + sideLength*3) + 0.05;
+    //i controls row; j controls column
+    for(int i = 0; i < 3; i++){
+
+        for(int j = 0; j < 5; j++){
+            vertHints.push_back(new Hint(curX,curY,sideLength, "ayo"));
+            curX = curX + (sideLength + 0.01);
+        }
+        curX = x;
+        curY = curY - (sideLength + 0.01);
+    }
+
+    //Vertical
+    curX = (x - sideLength*3) - 0.05;
+    curY = y;
+    //i controls row; j controls column
+    for(int i = 0; i < 5; i++){
+
+        for(int j = 0; j < 3; j++){
+            horzHints.push_back(new Hint(curX,curY,sideLength, "ayo"));
+            curX = curX + (sideLength + 0.01);
+        }
+        curX = (x - sideLength*3) - 0.05;
+        curY = curY - (sideLength + 0.01);
+    }
+
 }
 
 
 void FbFboard::draw() const{
     for(auto i = fbf.begin(); i != fbf.end(); i++){
         (*i)->draw();
+    }
+    for(auto i = vertHints.begin(); i != vertHints.end(); i++){
+        (*i)->draw();
     }    
-    
+    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+        (*i)->draw();
+    } 
+
 }
 
 void FbFboard::leftMouseDown(float mx, float my){

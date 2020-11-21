@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Tile.h"
+#include "Hint.h"
 #include <vector>
 
 class FbFboard {
@@ -11,6 +12,8 @@ public:
     float curY;
 
     std::vector<Tile*> fbf;
+    std::vector<Hint*> vertHints;
+    std::vector<Hint*> horzHints;
 
     FbFboard();
 

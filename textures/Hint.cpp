@@ -11,13 +11,11 @@ Hint::Hint():Rect(0,0,0.5){
 }
 
 Hint::Hint(float x, float y, float side, std::string hintText):Rect(x,y,side){
-    std::cout << "constructor with hint " << hintText << "triggered" << std::endl;
     this->hintText = hintText;
 
 }
 
 void Hint::draw() const{
-    std::cout << "Hint draw called";
     Rect::draw();
     renderText(x+(0.5*w),y-(h*0.5),GLUT_BITMAP_TIMES_ROMAN_24, 1,1,1);
     

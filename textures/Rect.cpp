@@ -35,7 +35,6 @@ Rect::Rect(float x, float y, float side){
 
 
 void Rect::draw(float z) const {
-	std::cout << "rect draw called" << std::endl;
 	glColor3f(r, g, b);
 
 	glBegin(GL_POLYGON);

@@ -13,7 +13,8 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     shapes.push_back(new Tile(2,2,0.01));
     board = new FbFboard(-0,0,0.15);
     //hintTest = new Hint(-1,1,0.15,"ayo");
-    
+
+   
 
 } 
 

@@ -68,7 +68,93 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curY = curY - (sideLength + 0.01);
     }
 
+
+    //---------------------------------------------------
+     //This is for testing an answer key
+    char answerKey[5][5] = {{'e','c','e','c','b'},
+                            {'e','c','e','c','e'},
+                            {'e','e','e','e','e'},
+                            {'c','e','e','e','c'}, 
+                            {'e','c','c','c','e'}};
+    for(int i = 0; i < 5; i++) {
+        for(int j = 0; j < 5; j++){
+            std::cout << answerKey[i][j];
+        }
+        std::cout << std::endl;
+    }
+    
+    std::cout << std::endl << std::endl;
+
+    std::vector<int> vertCountt;
+    std::vector<int> horzCountt;
+
+    horzCountt = generateHoriz(answerKey);
+    vertCountt = generateVert(answerKey);
+    
+    
+
+
 }
+
+std::vector<int> FbFboard::generateHoriz(char key[5][5]){
+       
+    std::vector<int> gen;
+    int count = 0;
+    for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < 5; i++){
+            if (key[j][i] == 'c')
+                count++;
+            else{
+                
+                if(count != 0)
+                    gen.push_back(count);
+
+                count = 0;
+            }   
+        }
+        if(count != 0)
+            gen.push_back(count);
+        gen.push_back(9);
+        count = 0;
+    }
+
+    
+    
+    return(gen);
+
+}
+
+std::vector<int> FbFboard::generateVert(char key[5][5]){
+       
+    std::vector<int> gen;
+    int count = 0;
+    for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < 5; i++){
+            if (key[i][j] == 'c')
+                count++;
+            else{
+                
+                if(count != 0)
+                    gen.push_back(count);
+
+                count = 0;
+            }   
+        }
+        if(count != 0)
+            gen.push_back(count);
+        gen.push_back(9);
+        count = 0;
+    }
+
+    std::cout << "vert test" << std::endl;
+    for(auto i = gen.begin(); i != gen.end(); i++){
+        std::cout << *i << ' ';
+    }
+    
+    return(gen);
+
+}
+
 
 
 void FbFboard::draw() const{

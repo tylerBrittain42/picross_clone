@@ -17,6 +17,8 @@ std::vector<Tile*> shapes;
 
 public:
 
+    // std::vector<int> vertHints;
+    // std::vector<int>horzHints;
     FbFboard* board;
     Hint* hintTest;
     

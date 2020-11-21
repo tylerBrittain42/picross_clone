@@ -6,7 +6,7 @@
 
 class FbFboard {
 public:
-
+    char answerKey[5][5];
     float sideLength;
     float curX;
     float curY;
@@ -18,6 +18,10 @@ public:
     FbFboard();
 
     FbFboard(float x, float y, float sideLength);
+    
+    std::vector<int> generateHoriz(char key[5][5]); 
+
+    std::vector<int> generateVert(char key[5][5]); 
 
     void draw() const;
 

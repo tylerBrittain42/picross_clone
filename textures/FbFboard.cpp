@@ -47,7 +47,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     for(int i = 0; i < 3; i++){
 
         for(int j = 0; j < 5; j++){
-            vertHints.push_back(new Hint(curX,curY,sideLength, "ayo"));
+            vertHints.push_back(new Hint(curX,curY,sideLength, "1"));
             curX = curX + (sideLength + 0.01);
         }
         curX = x;
@@ -61,7 +61,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 3; j++){
-            horzHints.push_back(new Hint(curX,curY,sideLength, "ayo"));
+            horzHints.push_back(new Hint(curX,curY,sideLength, "2"));
             curX = curX + (sideLength + 0.01);
         }
         curX = (x - sideLength*3) - 0.05;

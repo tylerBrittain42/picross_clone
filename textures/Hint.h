@@ -15,6 +15,17 @@ public:
  
     void draw() const;
 
+    void renderText(
+    float x, 
+    float y, 
+    void* font, 
+    float r, 
+    float g, 
+    float b) const;
+
+
+    
+
     ~Hint();
 
 

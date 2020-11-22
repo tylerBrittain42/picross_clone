@@ -41,8 +41,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     vertCountt = generateVert(answerKey);
     //---------------------------------------------------
 
-    std::cout << "past gen" << std::endl;
-
 
     
     this->sideLength = sideLength;
@@ -59,8 +57,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curX = x;
         curY = curY - (sideLength + 0.01);
     }
-
-        std::cout << "past tile creation" << std::endl;
 
 
     //Horizontal
@@ -88,15 +84,12 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     for(int j = 0; j < 5; j ++){
         for(int i = 0; i < 15; i++){
             if(i%5 == j){
-                std::cout << std::endl << vertHints[i]->hintText << " " << vertCountt[i];
                 if(vertCountt[cur] != 9){
-                    std::cout << " " << vertCountt[cur];
                     vertHints[i]->hintText = std::to_string(vertCountt[cur]);
                     cur++;
                 }
                 else
                 {
-                    std::cout << " 0";
                     vertHints[i]->hintText = "";
                     vertHints[i]->r = 0;
                     vertHints[i]->g = 0;
@@ -108,7 +101,8 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         cur++;
     }
 
-
+//---------------------------------------------------
+//attempting left
     //Vertical
     curX = (x - sideLength*3) - 0.05;
     curY = y;
@@ -123,6 +117,29 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curY = curY - (sideLength + 0.01);
     }
 
+    cur = 0;
+    for(int j = 0; j < 5; j ++){
+        for(int i = 0; i < 15; i++){
+            if(i%5 == j){
+                std::cout << std::endl << horzHints[i]->hintText << " " << horzHints[i];
+                if(horzCountt[cur] != 9){
+                    std::cout << " " << horzCountt[cur];
+                    horzHints[i]->hintText = std::to_string(horzCountt[cur]);
+                    cur++;
+                }
+                else
+                {
+                    std::cout << " 0";
+                    horzHints[i]->hintText = "";
+                    horzHints[i]->r = 0;
+                    horzHints[i]->g = 0;
+                    horzHints[i]->b = 0;
+                }
+                
+            }
+        }
+        cur++;
+    }
 
 
 

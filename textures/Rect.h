@@ -9,7 +9,7 @@ protected:
 	float y;
 	float w;
 	float h;
-	FIX
+	//FIX
 	// float r;
 	// float g;
 	// float b;

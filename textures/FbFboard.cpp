@@ -118,117 +118,143 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     curY = y;
     //i controls row; j controls column
     int countt = 0;
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 5; i++){
 
-        for(int j = 0; j < 5; j++){
-            horzHints.push_back(new Hint(curX,curY,sideLength, std::to_string(countt)));
-            curY = curY - (sideLength + 0.01);
+        for(int j = 0; j < 3; j++){
+            //if(countt%3 == 0)
+            horzHints.push_back(new Hint(curX,curY,sideLength, ""));//std::to_string(countt)));
+            //else
+            //{      horzHints.push_back(new Hint(curX,curY,sideLength, ("a")));}
+            
+            curX = curX + (sideLength + 0.01);
             countt++;
         }
-        curX = curX + (sideLength + 0.01);
-        curY = y;
+        curY = curY - (sideLength + 0.01);
+        curX = (x - sideLength*3) - 0.05;;
     }
-
-    /*REF
-    for(int i = 0; i < 5; i++){
-
-            for(int j = 0; j < 3; j++){
-                horzHints.push_back(new Hint(curX,curY,sideLength, std::to_string(countt)));
-                curX = curX + (sideLength + 0.01);
-                countt++;
-            }
-            curX = (x - sideLength*3) - 0.05;
-            curY = curY - (sideLength + 0.01);
-        }
-    */
 
     cur = 0;
-    for(int j = 0; j < 5; j ++){
-        for(int i = 14; i >=0 ; i--){
-            if(i%5 == j){
-                
-                if(horzCountt[cur] != 9){
-                    
-                    horzHints[i]->hintText = std::to_string(horzCountt[cur]);
-                    cur++;
-                }
-                else
-                {
-
-                    horzHints[i]->hintText = "";
-                    horzHints[i]->r = 0;
-                    horzHints[i]->g = 0;
-                    horzHints[i]->b = 0;
-                }
-                
-            }
-        }
-        cur++;
-    }
-    std::string temp;
-    std::cout << "TEST" << std::endl;
     
-    for(int mod = 0; mod < 5; mod++){
-        std::cout << mod << std::endl;
-        for(int i = 0; i < 10; i++){
-            if(i%5 == mod && (horzHints[i]->hintText != "9") && ((horzHints[i+5]->hintText) == "1") || (horzHints[i+5]->hintText == "2") || (horzHints[i+5]->hintText == "3")){
-                temp = horzHints[i]->hintText;
-                horzHints[i]->hintText = horzHints[i+5]->hintText;
-                horzHints[i+5]->hintText = temp;
+    //adding in hint vals---------------------------
+    for(int i = 0; i < 14; i=i+3){
 
-            }
+       for(int j = 0; j < 3; j++){
+           std::cout << i;
+           if(horzCountt[cur] != 9){
+               horzHints[i+j]->hintText = std::to_string(horzCountt[cur]);
+               cur++;
+           }
 
+       }
+        while(horzHints[i+2]->hintText == "" && (horzHints[i+1]->hintText != "" || horzHints[i]->hintText != "")){
+            horzHints[i+2]->hintText = horzHints[i+1]->hintText;
+            horzHints[i+1]->hintText = horzHints[i]->hintText;
+            horzHints[i]->hintText = "";
 
         }
+
+       std::cout<<std::endl;
+       cur++;
+
     }
-//if we call it twice everything works for some reason
-    for(int mod = 0; mod < 5; mod++){
-        for(int j = 14; j >= 5; j--){
-            if(j % 5 == mod){
-                //std::cout << (j) << " ";
-                if (horzHints[j]->hintText == "" && horzHints[j-5]->hintText != ""){
-                                    std::cout<< j << " " << (j-5)<< ": " << horzHints[j]->hintText << " " << horzHints[j-5]->hintText << std::endl;
+   
+    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+        if( (*i)->hintText == ""){
+            (*i)->r = 0;
+            (*i)->g = 0;
+            (*i)->b = 0;
+        }
+    }
+
+
+
+//     
+
+//     cur = 0;
+//     for(int j = 0; j < 5; j ++){
+//         for(int i = 14; i >=0 ; i--){
+//             if(i%5 == j){
+                
+//                 if(horzCountt[cur] != 9){
+                    
+//                     horzHints[i]->hintText = std::to_string(horzCountt[cur]);
+//                     cur++;
+//                 }
+//                 else
+//                 {
+
+//                     horzHints[i]->hintText = "";
+//                     horzHints[i]->r = 0;
+//                     horzHints[i]->g = 0;
+//                     horzHints[i]->b = 0;
+//                 }
+                
+//             }
+//         }
+//         cur++;
+//     }
+//     std::string temp;
+    
+//     for(int mod = 0; mod < 5; mod++){
+//         for(int i = 0; i < 10; i++){
+//             if(i%5 == mod && (horzHints[i]->hintText != "9") && ((horzHints[i+5]->hintText) == "1") || (horzHints[i+5]->hintText == "2") || (horzHints[i+5]->hintText == "3")){
+//                 temp = horzHints[i]->hintText;
+//                 horzHints[i]->hintText = horzHints[i+5]->hintText;
+//                 horzHints[i+5]->hintText = temp;
+
+//             }
+
+
+//         }
+//     }
+// //if we call it twice everything works for some reason
+//     for(int mod = 0; mod < 5; mod++){
+//         for(int j = 14; j >= 5; j--){
+//             if(j % 5 == mod){
+//                 //std::cout << (j) << " ";
+//                 if (horzHints[j]->hintText == "" && horzHints[j-5]->hintText != ""){
+//                                     //std::cout<< j << " " << (j-5)<< ": " << horzHints[j]->hintText << " " << horzHints[j-5]->hintText << std::endl;
 
                     
-                    temp = horzHints[j]->hintText;
-                    horzHints[j]->hintText = horzHints[j-5]->hintText;
-                    horzHints[j-5]->hintText = "";
-                }
-            }
-        }
-        //std::cout << std::endl;
-    }
+//                     temp = horzHints[j]->hintText;
+//                     horzHints[j]->hintText = horzHints[j-5]->hintText;
+//                     horzHints[j-5]->hintText = "";
+//                 }
+//             }
+//         }
+//         //std::cout << std::endl;
+//     }
 
 
-    /*
-    for(int mod = 0; mod < 5; mod++){
-        for(int j = 14; j >= 5; j--){
-            if(j % 5 == mod){
-                //std::cout << (j) << " ";
-                if (horzHints[j]->hintText == "" && horzHints[j-5]->hintText != ""){
-                std::cout<< j << " " << (j-5)<< ": " << horzHints[j]->hintText << " " << horzHints[j-5]->hintText << std::endl;
+//     /*
+//     for(int mod = 0; mod < 5; mod++){
+//         for(int j = 14; j >= 5; j--){
+//             if(j % 5 == mod){
+//                 //std::cout << (j) << " ";
+//                 if (horzHints[j]->hintText == "" && horzHints[j-5]->hintText != ""){
+//                 std::cout<< j << " " << (j-5)<< ": " << horzHints[j]->hintText << " " << horzHints[j-5]->hintText << std::endl;
 
                     
-                    temp = horzHints[j]->hintText;
-                    horzHints[j]->hintText = horzHints[j-5]->hintText;
-                    horzHints[j-5]->hintText = "";
-                }
-            }
-        }
-        //std::cout << std::endl;
-    }
-    */
+//                     temp = horzHints[j]->hintText;
+//                     horzHints[j]->hintText = horzHints[j-5]->hintText;
+//                     horzHints[j-5]->hintText = "";
+//                 }
+//             }
+//         }
+//         //std::cout << std::endl;
+//     }
+//     */
 
 
-    cur = 0;
-    std::cout << std::endl << std::endl;
-    for(int i = 0; i < 5; i++){
-        for(int j = 0; j < 3; j++){
-            std::cout << horzHints[cur]->hintText ;
-            cur++;
-        }
-        std::cout << std::endl;
-    }
+//     cur = 0;
+//     //std::cout << std::endl << std::endl;
+//     for(int i = 0; i < 5; i++){
+//         for(int j = 0; j < 3; j++){
+//             //std::cout << horzHints[cur]->hintText ;
+//             cur++;
+//         }
+//         //std::cout << std::endl;
+//     }
 
 
 
@@ -261,12 +287,6 @@ std::vector<int> FbFboard::generateHoriz(char key[5][5]){
     int end = 0;
     std:: cout << "testing indexs" << std::endl;
 
-bool swapped = false;
-std::cout << "horz" << std::endl;
-    for(auto i = gen.begin(); i != gen.end(); i++){
-        std::cout << *i << ' ';
-    }
-    std::cout << std::endl;
 
     
 

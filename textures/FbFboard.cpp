@@ -107,39 +107,41 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     curX = (x - sideLength*3) - 0.05;
     curY = y;
     //i controls row; j controls column
+    int countt = 0;
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 3; j++){
-            horzHints.push_back(new Hint(curX,curY,sideLength, "2"));
+            horzHints.push_back(new Hint(curX,curY,sideLength, std::to_string(countt)));
             curX = curX + (sideLength + 0.01);
+            countt++;
         }
         curX = (x - sideLength*3) - 0.05;
         curY = curY - (sideLength + 0.01);
     }
 
-    cur = 0;
-    for(int j = 0; j < 5; j ++){
-        for(int i = 0; i < 15; i++){
-            if(i%5 == j){
-                std::cout << std::endl << horzHints[i]->hintText << " " << horzHints[i];
-                if(horzCountt[cur] != 9){
-                    std::cout << " " << horzCountt[cur];
-                    horzHints[i]->hintText = std::to_string(horzCountt[cur]);
-                    cur++;
-                }
-                else
-                {
-                    std::cout << " 0";
-                    horzHints[i]->hintText = "";
-                    horzHints[i]->r = 0;
-                    horzHints[i]->g = 0;
-                    horzHints[i]->b = 0;
-                }
+    // cur = 0;
+    // for(int j = 0; j < 5; j ++){
+    //     for(int i = 0; i < 15; i++){
+    //         if(i%5 == j){
+    //             std::cout << std::endl << horzHints[i]->hintText << " " << horzHints[i];
+    //             if(horzCountt[cur] != 9){
+    //                 std::cout << " " << horzCountt[cur];
+    //                 horzHints[i]->hintText = std::to_string(horzCountt[cur]);
+    //                 cur++;
+    //             }
+    //             else
+    //             {
+    //                 std::cout << " 0";
+    //                 horzHints[i]->hintText = "";
+    //                 horzHints[i]->r = 0;
+    //                 horzHints[i]->g = 0;
+    //                 horzHints[i]->b = 0;
+    //             }
                 
-            }
-        }
-        cur++;
-    }
+    //         }
+    //     }
+    //     cur++;
+    // }
 
 
 

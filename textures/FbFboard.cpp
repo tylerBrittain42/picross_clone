@@ -267,11 +267,11 @@ std::vector<int> FbFboard::generateVert(char key[5][5]){
 
 
     std::reverse(gen.begin(),gen.end());
-
+/*
     std::cout << "vert" << std::endl;
     for(auto i = gen.begin(); i != gen.end(); i++){
         std::cout << *i << ' ';
-    }
+    } */
 
     return(gen);
 

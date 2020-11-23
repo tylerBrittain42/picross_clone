@@ -1,5 +1,6 @@
 #include "FbFboard.h"
 #include <iostream>
+#include <string>
 
 
 
@@ -29,19 +30,19 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     //---------------------------------------------------
      //This is for testing an answer key
 
-/* OG 
-    char answerKey[5][5] = {{'e','c','e','c','e'},
-                            {'e','c','e','c','e'},
+
+    char answerKey[5][5] = {{'e','c','e','c','c'},
+                            {'c','c','e','c','e'},
                             {'e','b','e','e','e'},
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}};
-                            */
+                            
 
-    char answerKey[5][5] = {{'c','c','e','c','e'},
-                            {'e','c','e','c','e'},
-                            {'e','b','e','e','e'},
-                            {'c','e','c','c','c'}, 
-                            {'e','c','c','c','e'}};
+    // char answerKey[5][5] = {{'c','e','c','c','e'},
+    //                         {'e','c','e','c','e'},
+    //                         {'c','e','c','c','e'},
+    //                         {'e','c','e','c','e'}, 
+    //                         {'c','e','c','c','e'}};
 
     std::vector<int> vertCountt;
     std::vector<int> horzCountt;
@@ -164,7 +165,59 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         }
         cur++;
     }
+    std::string temp;
+    std::cout << "TEST" << std::endl;
+    
+    for(int mod = 0; mod < 5; mod++){
+        std::cout << mod << std::endl;
+        for(int i = 0; i < 10; i++){
+            if(i%5 == mod && (horzHints[i]->hintText != "9") && ((horzHints[i+5]->hintText) == "1") || (horzHints[i+5]->hintText == "2") || (horzHints[i+5]->hintText == "3")){
+                temp = horzHints[i]->hintText;
+                horzHints[i]->hintText = horzHints[i+5]->hintText;
+                horzHints[i+5]->hintText = temp;
 
+            }
+
+
+        }
+    }
+//if we call it twice everything works for some reason
+    for(int mod = 0; mod < 5; mod++){
+        for(int j = 14; j >= 5; j--){
+            if(j % 5 == mod){
+                //std::cout << (j) << " ";
+                if (horzHints[j]->hintText == "" && horzHints[j-5]->hintText != ""){
+                                    std::cout<< j << " " << (j-5)<< ": " << horzHints[j]->hintText << " " << horzHints[j-5]->hintText << std::endl;
+
+                    
+                    temp = horzHints[j]->hintText;
+                    horzHints[j]->hintText = horzHints[j-5]->hintText;
+                    horzHints[j-5]->hintText = "";
+                }
+            }
+        }
+        //std::cout << std::endl;
+    }
+
+
+    /*
+    for(int mod = 0; mod < 5; mod++){
+        for(int j = 14; j >= 5; j--){
+            if(j % 5 == mod){
+                //std::cout << (j) << " ";
+                if (horzHints[j]->hintText == "" && horzHints[j-5]->hintText != ""){
+                std::cout<< j << " " << (j-5)<< ": " << horzHints[j]->hintText << " " << horzHints[j-5]->hintText << std::endl;
+
+                    
+                    temp = horzHints[j]->hintText;
+                    horzHints[j]->hintText = horzHints[j-5]->hintText;
+                    horzHints[j-5]->hintText = "";
+                }
+            }
+        }
+        //std::cout << std::endl;
+    }
+    */
 
 
     cur = 0;
@@ -207,31 +260,21 @@ std::vector<int> FbFboard::generateHoriz(char key[5][5]){
     int start = 0;
     int end = 0;
     std:: cout << "testing indexs" << std::endl;
-    for(int i = 0; i < 15; i ++){
-        if(gen[i] == 9){
-            start = i;
-            std::cout << i << " ";
-            for(int j = i+1; j < 15; j++){
-                if(gen[j] == 9){
-                    end = j;
-                    std::reverse(gen.begin() + i,gen.begin() + (j-2));
-                    std::cout << j << std::endl;
 
-                    break;
-                }
-            }
-        }
+bool swapped = false;
+std::cout << "horz" << std::endl;
+    for(auto i = gen.begin(); i != gen.end(); i++){
+        std::cout << *i << ' ';
     }
-    std::cout << std::endl << std::endl;
+    std::cout << std::endl;
+
     
 
     std::cout << "horz" << std::endl;
     for(auto i = gen.begin(); i != gen.end(); i++){
         std::cout << *i << ' ';
     }
-    std::cout << std::endl;
-    
-    
+
 
 
     return(gen);

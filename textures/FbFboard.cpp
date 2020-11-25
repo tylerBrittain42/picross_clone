@@ -100,10 +100,11 @@ FbFboard::FbFboard(float x, float y, float sideLength){
                 }
                 else
                 {
+                    //COME BACK AND REMOVE HTIS
                     vertHints[i]->hintText = "";
-                    vertHints[i]->r = 0;
-                    vertHints[i]->g = 0;
-                    vertHints[i]->b = 0;
+                    // vertHints[i]->r = 0;
+                    // vertHints[i]->g = 0;
+                    // vertHints[i]->b = 0;
                 }
                 
             }
@@ -160,9 +161,11 @@ FbFboard::FbFboard(float x, float y, float sideLength){
    
     for(auto i = horzHints.begin(); i != horzHints.end(); i++){
         if( (*i)->hintText == ""){
-            (*i)->r = 0;
-            (*i)->g = 0;
-            (*i)->b = 0;
+            //COME BACK AND REMOVE THIS
+
+            // (*i)->r = 0;
+            // (*i)->g = 0;
+            // (*i)->b = 0;
         }
     }
 

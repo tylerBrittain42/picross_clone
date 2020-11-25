@@ -25,6 +25,8 @@ public:
 
     std::vector<int> generateVert(char key[5][5]); 
 
+    bool isWin() ;
+
     void draw() const;
 
 

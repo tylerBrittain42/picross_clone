@@ -105,7 +105,6 @@ void Button::renderText(
         int w = glutBitmapWidth(font, text[i]);
         offset += ((float)w / widthh)*2;
     }
-    cout << "render called" << endl;
 }
 
 

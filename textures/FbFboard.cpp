@@ -37,8 +37,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}};
                             
-
-    // char answerKey[5][5] = {{'c','e','c','c','e'},
+    // char answerKey[5][5] = {{'c','e','c','c','e'},make
     //                         {'e','c','e','c','e'},
     //                         {'c','e','c','c','e'},
     //                         {'e','c','e','c','e'}, 
@@ -341,6 +340,27 @@ std::vector<int> FbFboard::generateVert(char key[5][5]){
 
 }
 
+bool FbFboard::isWin() {
+    std::cout<<"iswin called"<<std::endl;
+    int curTile = 0;
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            printf("key: %c",  answerKey[i][j]); 
+            std::cout << "cur: "<< fbf[curTile]->getClaimedBy()<<std::endl;
+            if(answerKey[i][j] == 'c' && fbf[curTile]->getClaimedBy() != 'c'){
+                printf("%c", answerKey[i][j]);
+                
+                return(true);
+                
+             }
+            curTile++;
+        }
+        std::cout << std::endl;
+    }
+    return false;
+
+
+}
 
 
 void FbFboard::draw() const{
@@ -353,6 +373,8 @@ void FbFboard::draw() const{
     for(auto i = horzHints.begin(); i != horzHints.end(); i++){
         (*i)->draw();
     } 
+    
+    
 
 }
 
@@ -365,6 +387,11 @@ void FbFboard::leftMouseDown(float mx, float my){
             (*i)->SetClaimedBy('c');
     }
 
+    if(isWin()){
+        std::cout << "WIN" << std::endl;
+    }
+    else
+        std::cout<<"not yet" << std::endl;
 
 }
 

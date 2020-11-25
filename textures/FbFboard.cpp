@@ -82,7 +82,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
             vertHints.push_back(new Hint(curX,curY,sideLength, std::to_string(k)));
             curX = curX - (sideLength + 0.01);
             k++;
-            std::cout << "TOP curX: " << curX << " side: " << sideLength <<  " cur+side: " << (curX+sideLength) << std::endl;
+            std::cout << "currY: " << sideLength <<" " <<std::endl;
             
             
         }
@@ -125,7 +125,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         for(int j = 0; j < 3; j++){
             //if(countt%3 == 0)
             horzHints.push_back(new Hint(curX,curY,sideLength, ""));//std::to_string(countt)));
-            std::cout << "LEFT curX: " << curX << " side: " << sideLength <<  " cur+side: " << (curX+sideLength) << std::endl;
             //else
             //{      horzHints.push_back(new Hint(curX,curY,sideLength, ("a")));}
             

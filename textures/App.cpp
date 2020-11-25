@@ -12,6 +12,11 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new Circle());
     shapes.push_back(new Tile(2,2,0.01));
     board = new FbFboard(-0,0,0.15);
+    gameName = new Button(-0.25,(1-0.075),0.5,0.15,"Picross");
+    subName = new Button(-0.25,(1-0.075-0.15),0.5,0.15/2,1,1,0,"subName");
+    helpBox = new Rect(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,(0.15 + 0.05/3)*3,1,0,0);
+    controls = new Button(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.25,0,0,1,"Controls");
+    instructions = new Button(-1 + (0.15 + 0.05/3)*0.5,(1 - (0.15 + 0.05/3)*1.5)*0.75, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.75,0,0,1,"instructions");
     //hintTest = new Hint(-1,1,0.15,"ayo");
 
    
@@ -20,7 +25,13 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
 
 void App::draw() const {
     //board->draw();
-    shapes[0]->draw();
+    gameName->draw();
+    subName->draw();
+    helpBox->draw();
+    controls->draw();
+    instructions->draw();
+
+    //shapes[0]->draw();
     board->draw();
     //hintTest->draw();
 }

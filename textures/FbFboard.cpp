@@ -140,7 +140,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     for(int i = 0; i < 14; i=i+3){
 
        for(int j = 0; j < 3; j++){
-           std::cout << i;
            if(horzCountt[cur] != 9){
                horzHints[i+j]->hintText = std::to_string(horzCountt[cur]);
                cur++;
@@ -154,7 +153,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
         }
 
-       std::cout<<std::endl;
        cur++;
 
     }
@@ -288,15 +286,14 @@ std::vector<int> FbFboard::generateHoriz(char key[5][5]){
     //td::reverse(gen.begin(),gen.end());
     int start = 0;
     int end = 0;
-    std:: cout << "testing indexs" << std::endl;
 
 
     
 
-    std::cout << "horz" << std::endl;
-    for(auto i = gen.begin(); i != gen.end(); i++){
-        std::cout << *i << ' ';
-    }
+    // std::cout << "horz" << std::endl;
+    // for(auto i = gen.begin(); i != gen.end(); i++){
+    //     std::cout << *i << ' ';
+    // }
 
 
 

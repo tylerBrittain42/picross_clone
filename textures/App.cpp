@@ -11,8 +11,10 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new Rect());
     //shapes.push_back(new Circle());
     shapes.push_back(new Tile(2,2,0.01));
-    board = new FbFboard(-0.5,0.5,0.15);
-    
+    board = new FbFboard(-0,0,0.15);
+    //hintTest = new Hint(-1,1,0.15,"ayo");
+
+   
 
 } 
 
@@ -20,6 +22,7 @@ void App::draw() const {
     //board->draw();
     shapes[0]->draw();
     board->draw();
+    //hintTest->draw();
 }
 
 void App::keyDown(unsigned char key, float x, float y){

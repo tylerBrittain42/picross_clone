@@ -1,5 +1,6 @@
 #include "Rect.h"
 #include "GlutApp.h"
+#include <iostream>
 
 Rect::Rect(){
 	x = 0;
@@ -19,7 +20,19 @@ Rect::Rect(float x, float y, float w, float h, float r, float g, float b){
 	this->r = r;
 	this->g = g;
 	this->b = b;
+	std::cout <<"rect efault cont called"<< std::endl;
 }
+
+Rect::Rect(float x, float y, float side){
+	this->x = x;
+	this->y = y;
+	this->w = side;
+	this->h = side;
+	this->r = 0;
+	this->g = 0;
+	this->b = 1;
+}
+
 
 void Rect::draw(float z) const {
 	glColor3f(r, g, b);

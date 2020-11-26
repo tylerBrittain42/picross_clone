@@ -9,6 +9,9 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     // Pushing different kinds of Shape in the collection
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
     playerBoard = new FbFboard(-0,0,0.15);
+    hintBoard = new Help();
+   
+    
     //gameName = new Button(-0.25,(1-0.075),0.5,0.15,"Picross");
     //subName = new Button(-0.25,(1-0.075-0.15),0.5,0.15/2,1,1,0,"subName");
     //helpBox = new Rect(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,(0.15 + 0.05/3)*3,1,0,0);
@@ -29,8 +32,11 @@ void App::draw() const {
     //instructions->draw();
 
     //shapes[0]->draw();
-    playerBoard->draw();
+    //playerBoard->draw();
     //hintTest->draw();
+
+    hintBoard->draw();
+
 }
 
 void App::keyDown(unsigned char key, float x, float y){
@@ -53,7 +59,7 @@ void App::leftMouseDown(float mx, float my) {
     //     shapes[0]->SetClaimedBy('e');
     // else if (shapes[0]->contains(mx,my))
     //     shapes[0]->SetClaimedBy('c');
-    playerBoard->leftMouseDown(mx,my);
+    //playerBoard->leftMouseDown(mx,my);
     redraw();
 }
 
@@ -76,6 +82,7 @@ App::~App(){
     // for(auto i = shapes.begin(); i != shapes.end(); i++){
     //     delete *i;
     // }
-    delete playerBoard;
+    //delete playerBoard;
+    delete hintBoard;
     std::cout << "Exiting..." << std::endl;
 }

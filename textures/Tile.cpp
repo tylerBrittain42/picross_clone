@@ -1,6 +1,5 @@
 #include "Tile.h"
 #include "GlutApp.h"
-#include <iostream>
 #include <cmath> 
 
 /*Tile represents a single picross tile.

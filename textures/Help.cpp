@@ -73,7 +73,49 @@ Help::Help(){
 
 
 
-    //HORIZ------------------------------
+    //HORIZ-----------------------------------------------------------------------------------------------
+    curX = (x - sideLength*3) - 0.05;
+    curY = y;
+    //i controls row; j controls column
+    int countt = 0;
+    for(int i = 0; i < 5; i++){
+
+        for(int j = 0; j < 3; j++){
+            //if(countt%3 == 0)
+            horzHints.push_back(new Hint(curX,curY,sideLength, ""));//std::to_string(countt)));
+            //else
+            //{      horzHints.push_back(new Hint(curX,curY,sideLength, ("a")));}
+            
+            curX = curX + (sideLength + 0.01);
+            countt++;
+        }
+        curY = curY - (sideLength + 0.01);
+        curX = (x - sideLength*3) - 0.05;;
+    }
+
+    cur = 0;
+    
+    //adding in hint vals---------------------------
+    for(int i = 0; i < 14; i=i+3){
+
+       for(int j = 0; j < 3; j++){
+           if(horzCountt[cur] != 9){
+               horzHints[i+j]->getHintText() = std::to_string(horzCountt[cur]);
+               cur++;
+           }
+
+       }
+        while(horzHints[i+2]->getHintText() == "" && (horzHints[i+1]->getHintText() != "" || horzHints[i]->getHintText() != "")){
+            horzHints[i+2]->getHintText() = horzHints[i+1]->getHintText();
+            horzHints[i+1]->getHintText() = horzHints[i]->getHintText();
+            horzHints[i]->getHintText() = "";
+
+        }
+
+       cur++;
+
+    }
+
 
     
 };
@@ -184,10 +226,12 @@ bool Help::checkWin(std::vector<Tile*> fbf){
 
 
 void Help::draw() const{
-    std::cout << "draw help called " << std::endl;
     for(auto i = vertHints.begin(); i != vertHints.end(); i++){
         (*i)->draw();
-    }  
+    }
+    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+        (*i)->draw();
+    }    
 }
 
 Help::~Help(){

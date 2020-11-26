@@ -107,7 +107,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
 //---------------------------------------------------
 //attempting left
-    //Vertical
+    //horz
     curX = (x - sideLength*3) - 0.05;
     curY = y;
     //i controls row; j controls column

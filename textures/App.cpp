@@ -32,9 +32,9 @@ void App::draw() const {
     //instructions->draw();
 
     //shapes[0]->draw();
-    //playerBoard->draw();
     //hintTest->draw();
 
+    playerBoard->draw();
     hintBoard->draw();
 
 }
@@ -59,7 +59,7 @@ void App::leftMouseDown(float mx, float my) {
     //     shapes[0]->SetClaimedBy('e');
     // else if (shapes[0]->contains(mx,my))
     //     shapes[0]->SetClaimedBy('c');
-    //playerBoard->leftMouseDown(mx,my);
+    playerBoard->leftMouseDown(mx,my);
     redraw();
 }
 

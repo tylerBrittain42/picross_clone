@@ -15,16 +15,10 @@ public:
 
     std::vector<char*> keyVec;
     std::vector<Tile*> fbf;
-    std::vector<Hint*> vertHints;
-    std::vector<Hint*> horzHints;
 
     FbFboard();
 
     FbFboard(float x, float y, float sideLength);
-    
-    std::vector<int> generateHoriz(char key[5][5]); 
-
-    std::vector<int> generateVert(char key[5][5]); 
 
     bool isWin() ;
 

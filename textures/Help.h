@@ -15,12 +15,6 @@ private:
     std::vector<int> vertCountt;
     std::vector<int> horzCountt;
 
-
-    
-
-
-
-
 public:
 
     Help();
@@ -35,10 +29,5 @@ public:
     void draw()const;
 
     ~Help();
-
-
-
-
-
 
 };

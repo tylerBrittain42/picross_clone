@@ -30,7 +30,6 @@ Help::Help(){
 
     //vertical-----------------------
     float curX = x + (4 *(sideLength+0.01));
-    //curY = (y + sideLength*3) + 0.05;
     float curY = (y + sideLength) + 0.05/3;
     //i controls row; j controls column
     int k = 1;
@@ -53,16 +52,15 @@ Help::Help(){
         for(int i = 0; i < 15; i++){
             if(i%5 == j){
                 if(vertCountt[cur] != 9){
-                    vertHints[i]->getHintText() = std::to_string(vertCountt[cur]);
+                    vertHints[i]->setHintText(std::to_string(vertCountt[cur]));
                     cur++;
                 }
                 else
                 {
-                    //COME BACK AND REMOVE HTIS
-                    vertHints[i]->getHintText() = "";
-                    // vertHints[i]->r = 0;
-                    // vertHints[i]->g = 0;
-                    // vertHints[i]->b = 0;
+                    vertHints[i]->setHintText("");
+                     vertHints[i]->r = 0;
+                     vertHints[i]->g = 0;
+                     vertHints[i]->b = 0;
                 }
                 
             }
@@ -80,10 +78,7 @@ Help::Help(){
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 3; j++){
-            //if(countt%3 == 0)
-            horzHints.push_back(new Hint(curX,curY,sideLength, ""));//std::to_string(countt)));
-            //else
-            //{      horzHints.push_back(new Hint(curX,curY,sideLength, ("a")));}
+            horzHints.push_back(new Hint(curX,curY,sideLength, ""));
             
             curX = curX + (sideLength + 0.01);
             countt++;
@@ -99,9 +94,7 @@ Help::Help(){
 
        for(int j = 0; j < 3; j++){
            if(horzCountt[cur] != 9){
-               std::cout << horzCountt[cur] <<  " ";
-               horzHints[i+j]->setHintText() = std::to_string(horzCountt[cur]);
-               std::cout <<std::endl << " hint text: " << horzHints[i+j]->getHintText() <<std::endl;
+               horzHints[i+j]->setHintText(std::to_string(horzCountt[cur]));
                cur++;
            }
 
@@ -110,14 +103,23 @@ Help::Help(){
                std::cout << std::endl;
 
         while(horzHints[i+2]->getHintText() == "" && (horzHints[i+1]->getHintText() != "" || horzHints[i]->getHintText() != "")){
-            horzHints[i+2]->getHintText() = horzHints[i+1]->getHintText();
-            horzHints[i+1]->getHintText() = horzHints[i]->getHintText();
-            horzHints[i]->getHintText() = "";
+            horzHints[i+2]->setHintText(horzHints[i+1]->getHintText());
+            horzHints[i+1]->setHintText(horzHints[i]->getHintText());
+            horzHints[i]->setHintText("");
 
         }
 
        cur++;
 
+    }
+
+    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+        if( (*i)->getHintText() == ""){
+
+            (*i)->r = 0;
+            (*i)->g = 0;
+            (*i)->b = 0;
+        }
     }
 
 
@@ -151,15 +153,10 @@ std::vector<int> Help::generateHoriz(char key[5][5]){
         count = 0;
     }
 
-    //td::reverse(gen.begin(),gen.end());
     int start = 0;
     int end = 0;
 
 
-    // std::cout << "horz" << std::endl;
-    // for(auto i = gen.begin(); i != gen.end(); i++){
-    //     std::cout << *i << ' ';
-    // }
 
 
 
@@ -191,16 +188,12 @@ std::vector<int> Help::generateVert(char key[5][5]){
     }
     gen.pop_back();
 
-    //std::reverse(gen.begin(),gen.end());
-    //std::cout << "vert test" << std::endl;
+
 
 
     std::reverse(gen.begin(),gen.end());
 
-    // std::cout << "vert" << std::endl;
-    // for(auto i = gen.begin(); i != gen.end(); i++){
-    //     std::cout << *i << ' ';
-    // } 
+
 
     return(gen);
 
@@ -213,17 +206,12 @@ bool Help::checkWin(std::vector<Tile*> fbf){
 
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
-            //printf("key: %c",  answerKey[i][j]); 
-            //std::cout << "cur: "<< fbf[curTile]->getClaimedBy()<<std::endl;
             if(key[i][j] == 'c' && fbf[curTile]->getClaimedBy() != 'c'){
                 
                 return(false);
-                
              }
             curTile++;
-        }
-        //std::cout << std::endl;
-    }
+        }    }
     return true;
 
 };
@@ -231,7 +219,7 @@ bool Help::checkWin(std::vector<Tile*> fbf){
 
 void Help::draw() const{
     for(auto i = vertHints.begin(); i != vertHints.end(); i++){
-        //(*i)->draw();
+        (*i)->draw();
     }
     for(auto i = horzHints.begin(); i != horzHints.end(); i++){
         (*i)->draw();
@@ -246,10 +234,6 @@ Help::~Help(){
     for(auto i = horzHints.begin(); i != horzHints.end(); i++){
         delete *i;
     }
-
-
-
-
 };
 
 

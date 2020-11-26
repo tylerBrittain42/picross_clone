@@ -29,18 +29,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}};
 
-
-                            
-    // char answerKey[5][5] = {{'c','e','c','c','e'},make
-    //                         {'e','c','e','c','e'},
-    //                         {'c','e','c','c','e'},
-    //                         {'e','c','e','c','e'}, 
-    //                         {'c','e','c','c','e'}};
-
-
-    //---------------------------------------------------
-
-
     
     this->sideLength = sideLength;
     curX = x;
@@ -79,7 +67,7 @@ bool FbFboard::isWin() {
     int curTile = 0;
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
-            if(answerKey[i][j] == 'c' && fbf[curTile]->getClaimedBy() != 'c'){
+            if((answerKey[i][j] == 'c' && fbf[curTile]->getClaimedBy() != 'c') || (answerKey[i][j] == 'e' && fbf[curTile]->getClaimedBy() == 'c')){
                 return(false);
              }
             curTile++;

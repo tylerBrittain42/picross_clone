@@ -7,8 +7,8 @@
 
 
 
-std::vector<Hint*> vertHints;
-std::vector<Hint*> horzHints;
+std::vector<Hint*> topHints;
+std::vector<Hint*> leftHints;
 
 
 Help::Help(){
@@ -20,15 +20,15 @@ Help::Help(){
                       {'c','e','e','e','c'}, 
                       {'e','c','c','c','e'}};
 
-    horzCountt = generateHoriz(key);
-    vertCountt = generateVert(key);
+    leftCountt = generateLeft(key);
+    topCountt = generateTop(key);
 
     //PLACEHOLDER VALS
     float sideLength = 0.15;
     float x = 0;
     float y = 0;
 
-    //vertical-----------------------
+    //topical-----------------------
     float curX = x + (4 *(sideLength+0.01));
     float curY = (y + sideLength) + 0.05/3;
     //i controls row; j controls column
@@ -36,7 +36,7 @@ Help::Help(){
     for(int i = 0; i < 3; i++){
 
         for(int j = 0; j < 5; j++){
-            vertHints.push_back(new Hint(curX,curY,sideLength, std::to_string(k)));
+            topHints.push_back(new Hint(curX,curY,sideLength, std::to_string(k)));
             curX = curX - (sideLength + 0.01);
             k++;
             
@@ -51,16 +51,16 @@ Help::Help(){
     for(int j = 0; j < 5; j ++){
         for(int i = 0; i < 15; i++){
             if(i%5 == j){
-                if(vertCountt[cur] != 9){
-                    vertHints[i]->setHintText(std::to_string(vertCountt[cur]));
+                if(topCountt[cur] != 9){
+                    topHints[i]->setHintText(std::to_string(topCountt[cur]));
                     cur++;
                 }
                 else
                 {
-                    vertHints[i]->setHintText("");
-                     vertHints[i]->r = 0;
-                     vertHints[i]->g = 0;
-                     vertHints[i]->b = 0;
+                    topHints[i]->setHintText("");
+                     topHints[i]->r = 0;
+                     topHints[i]->g = 0;
+                     topHints[i]->b = 0;
                 }
                 
             }
@@ -70,7 +70,7 @@ Help::Help(){
 
 
 
-    //HORIZ-----------------------------------------------------------------------------------------------
+    //LEFT-----------------------------------------------------------------------------------------------
     curX = (x - sideLength*3) - 0.05;
     curY = y;
     //i controls row; j controls column
@@ -78,7 +78,7 @@ Help::Help(){
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 3; j++){
-            horzHints.push_back(new Hint(curX,curY,sideLength, ""));
+            leftHints.push_back(new Hint(curX,curY,sideLength, ""));
             
             curX = curX + (sideLength + 0.01);
             countt++;
@@ -93,8 +93,8 @@ Help::Help(){
     for(int i = 0; i < 14; i=i+3){
 
        for(int j = 0; j < 3; j++){
-           if(horzCountt[cur] != 9){
-               horzHints[i+j]->setHintText(std::to_string(horzCountt[cur]));
+           if(leftCountt[cur] != 9){
+               leftHints[i+j]->setHintText(std::to_string(leftCountt[cur]));
                cur++;
            }
 
@@ -102,10 +102,10 @@ Help::Help(){
        }
                std::cout << std::endl;
 
-        while(horzHints[i+2]->getHintText() == "" && (horzHints[i+1]->getHintText() != "" || horzHints[i]->getHintText() != "")){
-            horzHints[i+2]->setHintText(horzHints[i+1]->getHintText());
-            horzHints[i+1]->setHintText(horzHints[i]->getHintText());
-            horzHints[i]->setHintText("");
+        while(leftHints[i+2]->getHintText() == "" && (leftHints[i+1]->getHintText() != "" || leftHints[i]->getHintText() != "")){
+            leftHints[i+2]->setHintText(leftHints[i+1]->getHintText());
+            leftHints[i+1]->setHintText(leftHints[i]->getHintText());
+            leftHints[i]->setHintText("");
 
         }
 
@@ -113,7 +113,7 @@ Help::Help(){
 
     }
 
-    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
         if( (*i)->getHintText() == ""){
 
             (*i)->r = 0;
@@ -131,7 +131,7 @@ Help::Help(char key[5][5]){
 };
 
 
-std::vector<int> Help::generateHoriz(char key[5][5]){
+std::vector<int> Help::generateLeft(char key[5][5]){
     
     std::vector<int> gen;
     int count = 0;
@@ -165,7 +165,7 @@ std::vector<int> Help::generateHoriz(char key[5][5]){
 
 
 
-std::vector<int> Help::generateVert(char key[5][5]){
+std::vector<int> Help::generateTop(char key[5][5]){
     std::vector<int> gen;
     gen.push_back(9);
     int count = 0;
@@ -218,20 +218,20 @@ bool Help::checkWin(std::vector<Tile*> fbf){
 
 
 void Help::draw() const{
-    for(auto i = vertHints.begin(); i != vertHints.end(); i++){
+    for(auto i = topHints.begin(); i != topHints.end(); i++){
         (*i)->draw();
     }
-    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
         (*i)->draw();
     }    
 }
 
 Help::~Help(){
     
-    for(auto i = vertHints.begin(); i != vertHints.end(); i++){
+    for(auto i = topHints.begin(); i != topHints.end(); i++){
         delete *i;
     }
-    for(auto i = horzHints.begin(); i != horzHints.end(); i++){
+    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
         delete *i;
     }
 };

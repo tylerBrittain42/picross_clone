@@ -10,10 +10,10 @@ private:
     
     char key[5][5];
     
-    std::vector<Hint*> vertHints;
-    std::vector<Hint*> horzHints;
-    std::vector<int> vertCountt;
-    std::vector<int> horzCountt;
+    std::vector<Hint*> topHints;
+    std::vector<Hint*> leftHints;
+    std::vector<int> topCountt;
+    std::vector<int> leftCountt;
 
 public:
 
@@ -21,8 +21,8 @@ public:
     Help(char key[5][5]);
 
 
-    std::vector<int> generateHoriz(char key[5][5]); 
-    std::vector<int> generateVert(char key[5][5]);
+    std::vector<int> generateLeft(char key[5][5]); 
+    std::vector<int> generateTop(char key[5][5]);
 
     bool checkWin(std::vector<Tile*> fbf);
 

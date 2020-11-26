@@ -13,6 +13,7 @@ public:
     float curY;
     int currHint;
 
+    std::vector<char*> keyVec;
     std::vector<Tile*> fbf;
     std::vector<Hint*> vertHints;
     std::vector<Hint*> horzHints;

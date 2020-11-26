@@ -11,6 +11,7 @@
 #include "Hint.h"
 #include "Button.h"
 #include "Help.h"
+#include "Display.h"
 
 class App: public GlutApp {
 
@@ -23,13 +24,7 @@ public:
     // std::vector<int>horzHints;
     FbFboard* playerBoard;
     Help* hintBoard;
-    Hint* hintTest;
-    Button* controls;
-    Button* instructions;
-    Button* gameName;
-    Button* subName;
-    Button* subTitle;
-    Rect* helpBox;
+    Display* display;
 
     App(int argc, char** argv, int width, int height, const char* title);
     

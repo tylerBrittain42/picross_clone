@@ -20,7 +20,7 @@ public:
 
     // std::vector<int> vertHints;
     // std::vector<int>horzHints;
-    FbFboard* board;
+    FbFboard* playerBoard;
     Hint* hintTest;
     Button* controls;
     Button* instructions;

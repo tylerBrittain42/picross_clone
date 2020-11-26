@@ -88,13 +88,13 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         for(int i = 0; i < 15; i++){
             if(i%5 == j){
                 if(vertCountt[cur] != 9){
-                    vertHints[i]->hintText = std::to_string(vertCountt[cur]);
+                    vertHints[i]->getHintText() = std::to_string(vertCountt[cur]);
                     cur++;
                 }
                 else
                 {
                     //COME BACK AND REMOVE HTIS
-                    vertHints[i]->hintText = "";
+                    vertHints[i]->getHintText() = "";
                     // vertHints[i]->r = 0;
                     // vertHints[i]->g = 0;
                     // vertHints[i]->b = 0;
@@ -134,15 +134,15 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 
        for(int j = 0; j < 3; j++){
            if(horzCountt[cur] != 9){
-               horzHints[i+j]->hintText = std::to_string(horzCountt[cur]);
+               horzHints[i+j]->getHintText() = std::to_string(horzCountt[cur]);
                cur++;
            }
 
        }
-        while(horzHints[i+2]->hintText == "" && (horzHints[i+1]->hintText != "" || horzHints[i]->hintText != "")){
-            horzHints[i+2]->hintText = horzHints[i+1]->hintText;
-            horzHints[i+1]->hintText = horzHints[i]->hintText;
-            horzHints[i]->hintText = "";
+        while(horzHints[i+2]->getHintText() == "" && (horzHints[i+1]->getHintText() != "" || horzHints[i]->getHintText() != "")){
+            horzHints[i+2]->getHintText() = horzHints[i+1]->getHintText();
+            horzHints[i+1]->getHintText() = horzHints[i]->getHintText();
+            horzHints[i]->getHintText() = "";
 
         }
 
@@ -151,7 +151,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     }
    
     for(auto i = horzHints.begin(); i != horzHints.end(); i++){
-        if( (*i)->hintText == ""){
+        if( (*i)->getHintText() == ""){
             //COME BACK AND REMOVE THIS
 
             // (*i)->r = 0;

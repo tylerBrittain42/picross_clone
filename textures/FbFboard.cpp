@@ -12,15 +12,7 @@ FbFboard::FbFboard(){
     curX = -1;
     curY = 1;
 
-    for(int i = 0; i < 5; i++){
 
-        for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(curX,curY,sideLength));
-            curX = curX + (sideLength + 0.01);
-        }
-        curX = -1;
-        curY = curY - (sideLength + 0.01);
-    }
 
 
 }
@@ -36,9 +28,10 @@ FbFboard::FbFboard(float x, float y, float sideLength){
                             {'e','b','e','e','e'},
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}};
-                            
 
-    // char answerKey[5][5] = {{'c','e','c','c','e'},
+
+                            
+    // char answerKey[5][5] = {{'c','e','c','c','e'},make
     //                         {'e','c','e','c','e'},
     //                         {'c','e','c','c','e'},
     //                         {'e','c','e','c','e'}, 
@@ -73,7 +66,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
     //curX = x;
     curX = x + (4 *(sideLength+0.01));
     //curY = (y + sideLength*3) + 0.05;
-    curY = (y + sideLength) + 0.05;
+    curY = (y + sideLength) + 0.05/3;
     //i controls row; j controls column
     int k = 1;
     for(int i = 0; i < 3; i++){
@@ -262,6 +255,7 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 }
 
 std::vector<int> FbFboard::generateHoriz(char key[5][5]){
+    
        
     std::vector<int> gen;
     int count = 0;
@@ -340,6 +334,56 @@ std::vector<int> FbFboard::generateVert(char key[5][5]){
 
 }
 
+bool FbFboard::isWin() {
+
+    //printing both boards
+
+    //Player Board
+    std::cout << "PLAYER BOARD" << std::endl;
+    for (int i = 0; i <= 15; i = i + 5){
+        for(int j = 0; j < 5; j++){
+            std::cout << fbf[i+j]->getClaimedBy() << " ";
+
+        }
+        std::cout << std::endl;
+    }
+    char answerKey[5][5] = {{'e','c','e','c','c'},
+                            {'c','c','e','c','e'},
+                            {'e','b','e','e','e'},
+                            {'c','e','e','e','c'}, 
+                            {'e','c','c','c','e'}};
+
+    //answer key
+    std::cout << std::endl << "Answer key" << std::endl;
+    std::cout << "answer" << answerKey[0][0] <<  std::endl;
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            std::cout << answerKey[i][j] << " ";
+        }
+        std::cout<< std::endl;
+    }
+    std::cout << std::endl;
+
+
+    //std::cout<<"iswin called"<<std::endl;
+    int curTile = 0;
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            //printf("key: %c",  answerKey[i][j]); 
+            //std::cout << "cur: "<< fbf[curTile]->getClaimedBy()<<std::endl;
+            if(answerKey[i][j] == 'c' && fbf[curTile]->getClaimedBy() != 'c'){
+                
+                return(false);
+                
+             }
+            curTile++;
+        }
+        //std::cout << std::endl;
+    }
+    return true;
+
+
+}
 
 
 void FbFboard::draw() const{
@@ -352,6 +396,8 @@ void FbFboard::draw() const{
     for(auto i = horzHints.begin(); i != horzHints.end(); i++){
         (*i)->draw();
     } 
+    
+    
 
 }
 
@@ -364,6 +410,11 @@ void FbFboard::leftMouseDown(float mx, float my){
             (*i)->SetClaimedBy('c');
     }
 
+    if(isWin()){
+        std::cout << "WIN" << std::endl;
+    }
+    else
+        std::cout<<"not yet" << std::endl;
 
 }
 

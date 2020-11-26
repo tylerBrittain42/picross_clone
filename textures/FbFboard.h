@@ -13,6 +13,7 @@ public:
     float curY;
     int currHint;
 
+    std::vector<char*> keyVec;
     std::vector<Tile*> fbf;
     std::vector<Hint*> vertHints;
     std::vector<Hint*> horzHints;
@@ -24,6 +25,8 @@ public:
     std::vector<int> generateHoriz(char key[5][5]); 
 
     std::vector<int> generateVert(char key[5][5]); 
+
+    bool isWin() ;
 
     void draw() const;
 

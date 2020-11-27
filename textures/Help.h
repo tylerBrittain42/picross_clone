@@ -31,6 +31,9 @@ public:
     std::vector<int> generateLeft(char key[5][5]); 
     std::vector<int> generateTop(char key[5][5]);
 
+    void setTopHint();
+    void setLeftHint();
+
     void draw()const;
 
     ~Help();

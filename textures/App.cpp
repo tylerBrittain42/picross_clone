@@ -20,18 +20,12 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     display = new Display();
     
     
-    //hintTest = new Hint(-1,1,0.15,"ayo");
 
    
 
 } 
 
 void App::draw() const {
-    //playerBoard->draw();
-    
-
-    //shapes[0]->draw();
-    //hintTest->draw();
 
     playerBoard->draw();
     hintBoard->draw();
@@ -62,10 +56,7 @@ void App::rightMouseDown(float mx, float my) {
 
 
 App::~App(){   
-    //Ref for deleting vec
-    // for(auto i = shapes.begin(); i != shapes.end(); i++){
-    //     delete *i;
-    // }
+
     delete playerBoard;
     delete hintBoard;
     delete display;

@@ -10,6 +10,8 @@
 #include "FbFboard.h"
 #include "Hint.h"
 #include "Button.h"
+#include "Help.h"
+#include "Display.h"
 
 class App: public GlutApp {
 
@@ -20,14 +22,9 @@ public:
 
     // std::vector<int> vertHints;
     // std::vector<int>horzHints;
-    FbFboard* board;
-    Hint* hintTest;
-    Button* controls;
-    Button* instructions;
-    Button* gameName;
-    Button* subName;
-    Button* subTitle;
-    Rect* helpBox;
+    FbFboard* playerBoard;
+    Help* hintBoard;
+    Display* display;
 
     App(int argc, char** argv, int width, int height, const char* title);
     

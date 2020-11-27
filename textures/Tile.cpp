@@ -1,6 +1,5 @@
 #include "Tile.h"
 #include "GlutApp.h"
-#include <iostream>
 #include <cmath> 
 
 /*Tile represents a single picross tile.
@@ -8,25 +7,25 @@
  *e = empty
  *c = claimed
  *x = avoided
+ *
+ *Since tiles are squares, height and width are both represensented by a single length value called l
 */
 
+//Default contructor 
 Tile::Tile(){
 	x = 0;
 	y = 0;
-	w = 0.5;
-	h = 0.5;
+	l = 0.5;
 	r = 1;
 	g = 0;
 	b = 0;
 	claimedBy = 'e';
 }
 
-//Since tiles are square, the height and width should always be the same value
-Tile::Tile(float x, float y, float side){
+Tile::Tile(float x, float y, float l){
 	this->x = x;
 	this->y = y;
-	w = side;
-	h = side;
+	this->l = l;
 	r = 1;
 	g = 0;
 	b = 0;
@@ -41,9 +40,9 @@ void Tile::draw(float z) const {
 	glBegin(GL_POLYGON);
 
 	glVertex2f(x, y);
-	glVertex2f(x+w, y);
-	glVertex2f(x+w, y-h);
-	glVertex2f(x, y-h);
+	glVertex2f(x+l, y);
+	glVertex2f(x+l, y-l);
+	glVertex2f(x, y-l);
 	glEnd();
 
 	if (claimedBy == 'c'){
@@ -57,36 +56,35 @@ void Tile::draw(float z) const {
 
 }
 
-//Draws an X
+//Draws an X over the tile
 void Tile::drawX() const{
 	glColor3f(1, 1, 1);
 
 	glPointSize(10);
 	glBegin(GL_LINES);
 	glVertex2f(x,y);
-	glVertex2f(x+w,y-h);
+	glVertex2f(x+l,y-l);
 	glEnd();
 
 	glPointSize(10);
 	glBegin(GL_LINES);
-	glVertex2f(x+w,y);
-	glVertex2f(x,y-h);
+	glVertex2f(x+l,y);
+	glVertex2f(x,y-l);
 	glEnd();
 
 }
 
 //Fills in 95% of a claimed tile
-//Note: using ratios to scale 95% with size of tile
 void Tile::drawC() const{
 	
 	glColor3f(1,1,1);
 
 	glBegin(GL_POLYGON);
 
-	glVertex2f((x + std::abs(w*0.05)), (y - std::abs(h*0.05)));
-	glVertex2f((x+w - std::abs(w*0.05)), (y - std::abs(h*0.05)));
-	glVertex2f((x+w - std::abs(w*0.05)), ((y-h) + std::abs(h*0.05)));
-	glVertex2f((x + std::abs(w*0.05)), (y-h) + std::abs(h*0.05));
+	glVertex2f((x + std::abs(l*0.05)), (y - std::abs(l*0.05)));
+	glVertex2f((x+l - std::abs(l*0.05)), (y - std::abs(l*0.05)));
+	glVertex2f((x+l - std::abs(l*0.05)), ((y-l) + std::abs(l*0.05)));
+	glVertex2f((x + std::abs(l*0.05)), (y-l) + std::abs(l*0.05));
 	glEnd();
 	
 }
@@ -96,12 +94,12 @@ void Tile::setY(float y){
 	this-> y = y;
 }
 
-void Tile::setX(float x){
-	this-> x = x;
-}
-
 float Tile::getY() const {
 	return y;
+}
+
+void Tile::setX(float x){
+	this-> x = x;
 }
 
 float Tile::getX() const {
@@ -118,10 +116,8 @@ void Tile::SetClaimedBy(char claimedBy){
 }
 
 
-
-
 bool Tile::contains(float x, float y) const{
-	return x >= this->x && x <= this->x + w && y <= this->y && y >= this->y - h;
+	return x >= this->x && x <= this->x + l && y <= this->y && y >= this->y - l;
 }
 
 Tile::~Tile(){

@@ -3,22 +3,19 @@
 #include <iostream>
 
 
-
+//Default constructor
 Hint::Hint():Rect(0,0,0.5){
     std::cout << "default constructor triggered" << std::endl;
-
-    
 }
 
 Hint::Hint(float x, float y, float side, std::string hintText):Rect(x,y,side){
     this->hintText = hintText;
-
 }
 
+//draws out a hint tile
 void Hint::draw() const{
     Rect::draw();
     renderText(x+(0.5*w),y-(h*0.5),GLUT_BITMAP_TIMES_ROMAN_24, 1,1,1);
-    
 }
 
 //renders text
@@ -39,6 +36,14 @@ void Hint::renderText(
         int w = glutBitmapWidth(font, hintText[i]);
         offset += ((float)w / 640)*2;
     }
+}
+
+std::string Hint::getHintText() const{
+    return hintText;
+}
+
+void Hint::setHintText(std::string hintText) {
+    this->hintText = hintText;
 }
 
 

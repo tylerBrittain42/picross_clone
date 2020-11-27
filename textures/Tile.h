@@ -1,14 +1,14 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include "Shape.h"
+//#include "Rect.h"
 
-class Tile: public Shape{
-protected:
+class Tile{
+private:
 	float x;
 	float y;
 	float w;
-	float h;
+	float l;
 	float r;
 	float g;
 	float b;
@@ -27,8 +27,8 @@ public:
 
 	void setY(float y);
 	float getY() const;
-	float getX() const;
 	void setX(float x);
+	float getX() const;
 	char getClaimedBy() const;
 	void SetClaimedBy(char claimedBy);
 

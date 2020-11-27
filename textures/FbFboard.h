@@ -18,7 +18,7 @@ public:
 
     FbFboard();
 
-    FbFboard(float x, float y, float sideLength);
+    FbFboard(char answerKey[5][5],float x, float y, float sideLength);
 
     bool isWin() ;
 

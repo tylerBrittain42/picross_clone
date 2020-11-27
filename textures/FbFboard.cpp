@@ -17,17 +17,13 @@ FbFboard::FbFboard(){
 
 }
 
-FbFboard::FbFboard(float x, float y, float sideLength){
+FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
 
-    //---------------------------------------------------
-     //This is for testing an answer key
-
-
-    char answerKey[5][5] = {{'e','c','e','c','c'},
-                            {'c','c','e','c','e'},
-                            {'e','b','e','e','e'},
-                            {'c','e','e','e','c'}, 
-                            {'e','c','c','c','e'}};
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            this->answerKey[i][j] = answerKey[i][j];
+        }
+    }
 
     
     this->sideLength = sideLength;
@@ -44,10 +40,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
         curX = x;
         curY = curY - (sideLength + 0.01);
     }
-
-
-    
-
 
 }
 

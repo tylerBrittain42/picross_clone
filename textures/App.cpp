@@ -15,7 +15,7 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
 
     // Pushing different kinds of Shape in the collection
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
-    playerBoard = new FbFboard(-0,0,0.15);
+    playerBoard = new FbFboard(answerKey,-0,0,0.15);
     hintBoard = new Help(answerKey,0.15,0,0);
     display = new Display();
     

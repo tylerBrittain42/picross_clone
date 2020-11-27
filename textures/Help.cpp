@@ -24,13 +24,13 @@ Help::Help(){
     topCountt = generateTop(key);
 
     //PLACEHOLDER VALS
-    float sideLength = 0.15;
-    float x = 0;
-    float y = 0;
+    sideLength = 0.15;
+    x = 0;
+    y = 0;
 
     //topical-----------------------
-    float curX = x + (4 *(sideLength+0.01));
-    float curY = (y + sideLength) + 0.05/3;
+    curX = x + (4 *(sideLength+0.01));
+    curY = (y + sideLength) + 0.05/3;
     //i controls row; j controls column
     int k = 1;
     for(int i = 0; i < 3; i++){
@@ -126,8 +126,118 @@ Help::Help(){
     
 };
 
-Help::Help(char key[5][5]){
-    //come back
+Help::Help(char key[5][5], float sideLength, float x, float y){
+    
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            this->key[i][j] = key[i][j];
+        }
+    }
+
+    leftCountt = generateLeft(key);
+    topCountt = generateTop(key);
+
+    //PLACEHOLDER VALS
+    sideLength;
+    x = 0;
+    y = 0;
+
+    //topical-----------------------
+    curX = x + (4 *(sideLength+0.01));
+    curY = (y + sideLength) + 0.05/3;
+    //i controls row; j controls column
+    int k = 1;
+    for(int i = 0; i < 3; i++){
+
+        for(int j = 0; j < 5; j++){
+            topHints.push_back(new Hint(curX,curY,sideLength, std::to_string(k)));
+            curX = curX - (sideLength + 0.01);
+            k++;
+            
+            
+        }
+        curX = x + (4 *(sideLength+0.01));
+        curY = curY + (sideLength + 0.01);
+    }
+
+//-----------------------------------------------------
+    int cur = 0;
+    for(int j = 0; j < 5; j ++){
+        for(int i = 0; i < 15; i++){
+            if(i%5 == j){
+                if(topCountt[cur] != 9){
+                    topHints[i]->setHintText(std::to_string(topCountt[cur]));
+                    cur++;
+                }
+                else
+                {
+                    topHints[i]->setHintText("");
+                     topHints[i]->r = 0;
+                     topHints[i]->g = 0;
+                     topHints[i]->b = 0;
+                }
+                
+            }
+        }
+        cur++;
+    }
+
+
+
+    //LEFT-----------------------------------------------------------------------------------------------
+    curX = (x - sideLength*3) - 0.05;
+    curY = y;
+    //i controls row; j controls column
+    int countt = 0;
+    for(int i = 0; i < 5; i++){
+
+        for(int j = 0; j < 3; j++){
+            leftHints.push_back(new Hint(curX,curY,sideLength, ""));
+            
+            curX = curX + (sideLength + 0.01);
+            countt++;
+        }
+        curY = curY - (sideLength + 0.01);
+        curX = (x - sideLength*3) - 0.05;;
+    }
+
+    cur = 0;
+    
+    //adding in hint vals---------------------------
+    for(int i = 0; i < 14; i=i+3){
+
+       for(int j = 0; j < 3; j++){
+           if(leftCountt[cur] != 9){
+               leftHints[i+j]->setHintText(std::to_string(leftCountt[cur]));
+               cur++;
+           }
+
+
+       }
+               std::cout << std::endl;
+
+        while(leftHints[i+2]->getHintText() == "" && (leftHints[i+1]->getHintText() != "" || leftHints[i]->getHintText() != "")){
+            leftHints[i+2]->setHintText(leftHints[i+1]->getHintText());
+            leftHints[i+1]->setHintText(leftHints[i]->getHintText());
+            leftHints[i]->setHintText("");
+
+        }
+
+       cur++;
+
+    }
+
+    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
+        if( (*i)->getHintText() == ""){
+
+            (*i)->r = 0;
+            (*i)->g = 0;
+            (*i)->b = 0;
+        }
+    }
+
+
+    
 };
 
 
@@ -199,22 +309,6 @@ std::vector<int> Help::generateTop(char key[5][5]){
 
 };
 
-
-bool Help::checkWin(std::vector<Tile*> fbf){
-    
-    int curTile = 0;
-
-    for(int i = 0; i < 5; i++){
-        for(int j = 0; j < 5; j++){
-            if(key[i][j] == 'c' && fbf[curTile]->getClaimedBy() != 'c'){
-                
-                return(false);
-             }
-            curTile++;
-        }    }
-    return true;
-
-};
 
 
 void Help::draw() const{

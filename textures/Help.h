@@ -9,6 +9,13 @@ class Help{
 private:
     
     char key[5][5];
+
+    float sideLength;
+    float x;
+    float y;
+
+    float curX;
+    float curY;
     
     std::vector<Hint*> topHints;
     std::vector<Hint*> leftHints;
@@ -18,13 +25,11 @@ private:
 public:
 
     Help();
-    Help(char key[5][5]);
+    Help(char key[5][5], float sideLength, float x, float y);
 
 
     std::vector<int> generateLeft(char key[5][5]); 
     std::vector<int> generateTop(char key[5][5]);
-
-    bool checkWin(std::vector<Tile*> fbf);
 
     void draw()const;
 

@@ -56,8 +56,6 @@ FbFboard::FbFboard(float x, float y, float sideLength){
 bool FbFboard::isWin() {
 
     //printing both boards
-
-
     char answerKey[5][5] = {{'e','c','e','c','c'},
                             {'c','c','e','c','e'},
                             {'e','b','e','e','e'},

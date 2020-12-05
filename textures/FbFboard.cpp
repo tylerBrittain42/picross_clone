@@ -44,7 +44,7 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
     for(int i = 0; i < 5; i++){
 
         for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(curX,curY,sideLength));
+            fbf.push_back(new Tile(curX,curY,sideLength,1,0,0));
             curX = curX + (sideLength + 0.01);
         }
         curX = x;

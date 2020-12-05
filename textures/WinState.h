@@ -21,6 +21,10 @@ public:
 
     void draw() const;
 
+    bool exitClicked(float x, float y);
+
+    bool restartClicked(float mx, float my);
+
     void leftMouseDown(float mx, float my);
 
     ~WinState();

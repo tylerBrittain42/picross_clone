@@ -26,6 +26,8 @@ public:
 
     FbFboard(char answerKey[5][5],float x, float y, float sideLength);
 
+    void reset();
+
     bool isWin() ;
 
     void draw() const;

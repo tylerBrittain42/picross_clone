@@ -31,10 +31,30 @@ void WinState::draw() const{
     }
 }
 
+
+bool WinState::exitClicked(float mx, float my){
+
+    if(buttons.at(1)->isClicked(mx,my))
+        return(true);
+    return(false);
+
+}
+
+bool WinState::restartClicked(float mx, float my){
+
+    if(buttons.at(0)->isClicked(mx,my))
+        return(true);
+    return(false);
+
+}
+
+
+
 void WinState::leftMouseDown(float mx, float my){
 
     if(buttons.at(0)->isClicked(mx,my)){
         std::cout << "play again clicked" << std::endl;
+        
     }
     
     else if(buttons.at(1)->isClicked(mx,my)){

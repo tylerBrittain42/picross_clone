@@ -33,8 +33,8 @@ void App::draw() const {
 
     playerBoard->draw();
     hintBoard->draw();
-    if(false){
-    //if(playerBoard->isWin() != true){
+    //if(false){
+    if(playerBoard->isWin() != true){
         display->draw();
     }
     else{
@@ -56,9 +56,12 @@ void App::leftMouseDown(float mx, float my) {
         playerBoard->leftMouseDown(mx,my);
     }
 
-    else{
-        hasWon->leftMouseDown(mx,my);
-    }
+    else if(hasWon->exitClicked(mx,my))
+        exit(0);
+    
+    else if(hasWon->restartClicked(mx,my))
+        playerBoard->reset();
+
     redraw();
 }
 

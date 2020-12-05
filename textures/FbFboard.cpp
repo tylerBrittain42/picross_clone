@@ -55,6 +55,13 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
 
 }
 
+void FbFboard::reset(){
+    
+    for(auto i = fbf.begin(); i != fbf.end(); i++){
+        (*i)->SetClaimedBy('e');
+    }
+    
+}
 
 
 bool FbFboard::isWin() {

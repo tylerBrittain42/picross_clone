@@ -97,8 +97,46 @@ void Button::renderText(
     float g = 1, 
     float b = 1
 ){
+    
     glColor3f(r, g, b);
     float offset = 0;
+    for (int i = 0; i < text.length(); i++) {
+        glRasterPos2f(x+offset, y);
+        glutBitmapCharacter(font, text[i]);
+        int w = glutBitmapWidth(font, text[i]);
+        offset += ((float)w / widthh)*2;
+    }
+}
+
+
+
+void Button::renderCenterText(
+    string text, 
+    float x, 
+    float y, 
+    void* font = GLUT_BITMAP_HELVETICA_18, 
+    float r = 0, 
+    float g = 1, 
+    float b = 1
+){
+    
+    glColor3f(r, g, b);
+    float offset2 = 0;
+    int textWidth;
+    float buff = 0;
+
+    for (int i = 0; i < text.length(); i++) {
+        int textWidth = glutBitmapWidth(font, text[i]);
+        offset2 += ((float)textWidth / widthh)*2;
+    }
+    buff = (w - offset2)/2;
+    std::cout << buff << std::endl;
+
+
+    //glColor3f(r, g, b);
+    float offset = 0;
+    offset = buff+offset;
+
     for (int i = 0; i < text.length(); i++) {
         glRasterPos2f(x+offset, y);
         glutBitmapCharacter(font, text[i]);
@@ -159,7 +197,7 @@ void Button::draw(){
 
     glEnd();
 
-    renderText(text,x ,y-0.1, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
+    renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
 
 
 

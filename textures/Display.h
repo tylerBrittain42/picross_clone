@@ -5,6 +5,19 @@
 class Display {
 
 private:
+    float titleX;
+    float titleY;
+    float titleW;
+    float titleH;
+
+    float helpBoxX;
+    float helpBoxY;
+    float helpBoxW;
+    float helpBoxH;
+
+
+
+
     Button* controls;
     Button* instructions;
     Button* gameName;

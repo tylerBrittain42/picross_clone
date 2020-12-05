@@ -23,8 +23,8 @@ SideBar::SideBar(){
     tG = 1;
     tB = 0;
 
-    helpBox = new Rect(x,y, w,h,1,0,0);
-    divide = new Rect(x,y*075,w,h*0.75,0,1,0);
+    helpBox = new Rect(x,y+0.075, w,h,1,0,0);
+    divide = new Rect(x,y*0.875+0.075,w,h*0.125,0,0,1);
 
    
 
@@ -55,11 +55,11 @@ void SideBar::draw() const{
     
     //controls->draw();
     //instructions->draw();
-    //helpBox->draw();
+    helpBox->draw();
     divide->draw();
     renderCenterText("Controls",x ,y, GLUT_BITMAP_TIMES_ROMAN_24, tR,tG,tB);
-    renderText("mark-right click",x ,y*0.75, GLUT_BITMAP_TIMES_ROMAN_24, tR,tG,tB);
-    renderText("flag-left click",x ,y*0.75-0.1, GLUT_BITMAP_TIMES_ROMAN_24, tR,tG,tB);
+    renderText("mark-right click",x+0.01 ,y*0.75+0.05, GLUT_BITMAP_HELVETICA_18, tR,tG,tB);
+    renderText("flag-left click",x+0.01 ,y*0.75-0.1+0.05, GLUT_BITMAP_HELVETICA_18, tR,tG,tB);
 
     
 }

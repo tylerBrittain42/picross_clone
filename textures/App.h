@@ -4,7 +4,7 @@
 #include <vector>
 #include "GlutApp.h"
 #include "Rect.h"
-#include "Circle.h"
+//#include "Circle.h"
 #include "TexRect.h"
 #include "Tile.h"
 #include "FbFboard.h"

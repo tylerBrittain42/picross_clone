@@ -19,12 +19,16 @@ std::vector<Tile*> shapes;
 
 
 public:
+    bool a;
 
     // std::vector<int> vertHints;
     // std::vector<int>horzHints;
     FbFboard* playerBoard;
     Help* hintBoard;
     Display* display;
+    TexRect* winScreen;
+
+    int interval;
 
     App(int argc, char** argv, int width, int height, const char* title);
     
@@ -37,6 +41,8 @@ public:
     void rightMouseDown(float mx, float my);
 
     void idle();
+
+    void timer(int id);
     
     ~App();
 };

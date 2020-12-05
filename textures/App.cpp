@@ -2,9 +2,12 @@
 #include "App.h"
 
 
-
+static App* singleton;
 
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
+
+    a = true;
+    interval = 2;
 
     char answerKey[5][5] = {{'e','c','e','c','c'},
                             {'c','c','e','c','e'},
@@ -18,7 +21,9 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     playerBoard = new FbFboard(answerKey,-0,0,0.15);
     hintBoard = new Help(answerKey,0.15,0,0);
     display = new Display();
-    
+    winScreen = new TexRect("victoryText.png",-1,1,2,2);
+
+    timer(5);
     
 
    
@@ -26,11 +31,14 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
 } 
 
 void App::draw() const {
+    if(a)
+        winScreen->draw();
 
+    /*
     playerBoard->draw();
     hintBoard->draw();
     display->draw();
-    
+    */
 
 }
 
@@ -43,6 +51,7 @@ void App::keyDown(unsigned char key, float x, float y){
 
 void App::leftMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
+    
     playerBoard->leftMouseDown(mx,my);
     redraw();
 }
@@ -55,8 +64,15 @@ void App::rightMouseDown(float mx, float my) {
 }
 
 void App::idle(){
+    a = !a;
+    redraw();
     if(playerBoard->isWin())
         std::cout << "winneeee " << std::endl;
+}
+
+void App::timer(int id){
+    redraw();
+    glutTimerFunc(1,timer,1);
 }
 
 

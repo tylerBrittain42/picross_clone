@@ -1,6 +1,5 @@
 #include "Rect.h"
 #include "GlutApp.h"
-#include <iostream>
 
 Rect::Rect(){
 	x = 0;
@@ -20,7 +19,6 @@ Rect::Rect(float x, float y, float w, float h, float r, float g, float b){
 	this->r = r;
 	this->g = g;
 	this->b = b;
-	std::cout <<"rect efault cont called"<< std::endl;
 }
 
 Rect::Rect(float x, float y, float side){

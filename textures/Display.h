@@ -1,16 +1,22 @@
 #pragma once
 #include "Button.h"
 #include "Rect.h"
+#include "SideBar.h"
 
 class Display {
 
 private:
-    Button* controls;
-    Button* instructions;
+    float titleX;
+    float titleY;
+    float titleW;
+    float titleH;
+
+
+
+
+    SideBar* leftBar;
     Button* gameName;
     Button* subName;
-    Button* subTitle;
-    Rect* helpBox;
 
 public:
     Display();

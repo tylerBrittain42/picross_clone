@@ -7,6 +7,12 @@
 
 class FbFboard {
 public:
+
+    float x;
+    float y; 
+    float w;
+    float h;
+
     char answerKey[5][5];
     float sideLength;
     float curX;
@@ -20,10 +26,13 @@ public:
 
     FbFboard(char answerKey[5][5],float x, float y, float sideLength);
 
+    void reset();
+
     bool isWin() ;
 
     void draw() const;
 
+    bool isClicked(float x, float y);
 
     void leftMouseDown(float mx, float my);
 

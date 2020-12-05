@@ -9,6 +9,13 @@ FbFboard::FbFboard(){
 
     
     sideLength = 0.25;
+
+    x = 0;
+    y = 0;
+    w = 0.79;
+    h = 0.79;
+
+
     curX = -1;
     curY = 1;
 
@@ -18,6 +25,9 @@ FbFboard::FbFboard(){
 }
 
 FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
+
+    w = 0.79;
+    h = 0.79;
 
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
@@ -39,10 +49,19 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
         }
         curX = x;
         curY = curY - (sideLength + 0.01);
+        std::cout << "cury + side: " << (curY) <<std::endl;
+
     }
 
 }
 
+void FbFboard::reset(){
+    
+    for(auto i = fbf.begin(); i != fbf.end(); i++){
+        (*i)->SetClaimedBy('e');
+    }
+    
+}
 
 
 bool FbFboard::isWin() {
@@ -75,6 +94,13 @@ void FbFboard::draw() const{
     }
 }
 
+
+bool FbFboard::isClicked(float x, float y){
+	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
+}
+
+
+
 void FbFboard::leftMouseDown(float mx, float my){
 
     for(auto i = fbf.begin(); i != fbf.end(); i++){
@@ -83,12 +109,6 @@ void FbFboard::leftMouseDown(float mx, float my){
         else if ((*i)->contains(mx,my))
             (*i)->SetClaimedBy('c');
     }
-
-    if(isWin()){
-        std::cout << "WIN" << std::endl;
-    }
-    else
-        std::cout<<"not yet" << std::endl;
 
 }
 

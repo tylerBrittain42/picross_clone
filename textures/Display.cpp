@@ -3,36 +3,37 @@
 
 
 
-Button* controls;
-Button* instructions;
-Button* gameName;
-Button* subName;
-Button* subTitle;
+
 
 Display::Display(){
-    gameName = new Button(-0.25,(1-0.075),0.5,0.15,"Picross",true);
-    subName = new Button(-0.25,(1-0.075-0.15),0.5,0.15/2,1,1,0,"subName",true);
-    helpBox = new Rect(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,(0.15 + 0.05/3)*3,1,0,0);
-    controls = new Button(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.25,0,0,1,"Controls",true);
-    instructions = new Button(-1 + (0.15 + 0.05/3)*0.5,(1 - (0.15 + 0.05/3)*1.5)*0.75, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.75,0,0,1,"instructions",true);
+
+    titleX = -0.25;
+    titleY = 0.925;
+    titleW = 0.5;
+    titleH = 0.1;
+
+
+
+    gameName = new Button(titleX,titleY,titleW,titleH,"Picross",true);
+    subName = new Button(titleX,titleY - gameName->h,titleW,titleH,1,1,0,"subName",true);
+    leftBar = new SideBar();
+   
 }
 
 void Display::draw() const{
+    
     gameName->draw();
     subName->draw();
-    helpBox->draw();
-    controls->draw();
-    instructions->draw();
+    
+    leftBar->draw();
+    
 
 }
 
 Display::~Display(){
-    delete controls;
-    delete instructions;
     delete gameName;
-    delete subName;
-    delete subTitle;
-    delete helpBox;
+    delete leftBar;
+
 
 }
 

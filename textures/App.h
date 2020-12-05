@@ -28,8 +28,6 @@ public:
     Display* display;
     TexRect* winScreen;
 
-    int interval;
-
     App(int argc, char** argv, int width, int height, const char* title);
     
     void draw() const;
@@ -41,8 +39,6 @@ public:
     void rightMouseDown(float mx, float my);
 
     void idle();
-
-    void timer(int id);
     
     ~App();
 };

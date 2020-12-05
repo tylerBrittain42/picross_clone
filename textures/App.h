@@ -12,6 +12,7 @@
 #include "Button.h"
 #include "Help.h"
 #include "Display.h"
+#include "WinState.h"
 
 class App: public GlutApp {
 
@@ -26,7 +27,7 @@ public:
     FbFboard* playerBoard;
     Help* hintBoard;
     Display* display;
-    TexRect* winScreen;
+    WinState* hasWon;
 
     App(int argc, char** argv, int width, int height, const char* title);
     

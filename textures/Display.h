@@ -1,6 +1,7 @@
 #pragma once
 #include "Button.h"
 #include "Rect.h"
+#include "SideBar.h"
 
 class Display {
 
@@ -10,20 +11,12 @@ private:
     float titleW;
     float titleH;
 
-    float helpBoxX;
-    float helpBoxY;
-    float helpBoxW;
-    float helpBoxH;
 
 
 
-
-    Button* controls;
-    Button* instructions;
+    SideBar* leftBar;
     Button* gameName;
     Button* subName;
-    Button* subTitle;
-    Rect* helpBox;
 
 public:
     Display();

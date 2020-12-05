@@ -14,7 +14,7 @@ private:
 
 
 
-   sideBar* leftBar;
+    SideBar* leftBar;
     Button* gameName;
     Button* subName;
 

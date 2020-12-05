@@ -129,5 +129,5 @@ void SideBar::renderCenterText(
 SideBar::~SideBar(){
     delete helpBox;
     delete divide;
-
+    delete instructions;
 }

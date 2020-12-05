@@ -35,6 +35,8 @@ public:
     void leftMouseDown(float mx, float my);
 
     void rightMouseDown(float mx, float my);
+
+    void idle();
     
     ~App();
 };

@@ -54,6 +54,11 @@ void App::rightMouseDown(float mx, float my) {
     redraw();
 }
 
+void App::idle(){
+    if(playerBoard->isWin())
+        std::cout << "winneeee " << std::endl;
+}
+
 
 App::~App(){   
 

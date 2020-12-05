@@ -28,10 +28,12 @@ Button::Button(){
 	h = 0.2;
     text = "";
 
+    isCentered = false;
+
 	
 }
 
-Button::Button(float x, float y, float w, float h){
+Button::Button(float x, float y, float w, float h, bool isCentered){
 	this->x = x;
 	this->y = y;
 
@@ -42,12 +44,13 @@ Button::Button(float x, float y, float w, float h){
 	this->w = w;
 	this->h = h;
     text = "";
+    this->isCentered = isCentered;
 
 
 }
 
 //Used for a text block with default black box, white text
-Button::Button(float x, float y, float w, float h, string text){
+Button::Button(float x, float y, float w, float h, string text, bool isCentered){
     this->x = x;
 	this->y = y;
 
@@ -59,12 +62,13 @@ Button::Button(float x, float y, float w, float h, string text){
 	this->h = h;
 
     this->text = text;
+    this->isCentered = isCentered;
 
 
 }
 
 
-Button::Button(float x, float y, float w, float h, float red, float green, float blue, string text){
+Button::Button(float x, float y, float w, float h, float red, float green, float blue, string text, bool isCentered){
 	this->x = x;
 	this->y = y;
 
@@ -75,6 +79,8 @@ Button::Button(float x, float y, float w, float h, float red, float green, float
 	this->w = w;
 	this->h = h;
     this->text = text;
+
+    this->isCentered = isCentered;
 
 
 
@@ -130,7 +136,6 @@ void Button::renderCenterText(
         offset2 += ((float)textWidth / widthh)*2;
     }
     buff = (w - offset2)/2;
-    std::cout << buff << std::endl;
 
 
     //glColor3f(r, g, b);
@@ -149,9 +154,6 @@ void Button::renderCenterText(
 void Button::draw(){
     
 
-    
-
-	
     //Black outline around each button 
     glColor3f(0,0,0);
     glLineWidth(2);
@@ -196,9 +198,11 @@ void Button::draw(){
     glVertex2f(x, y-h);
 
     glEnd();
-
-    renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
-
+    
+    if(isCentered)
+        renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
+    else if(!isCentered)
+        renderText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
 
 
 }

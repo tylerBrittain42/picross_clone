@@ -10,11 +10,11 @@ Button* subName;
 Button* subTitle;
 
 Display::Display(){
-    gameName = new Button(-0.25,(1-0.075),0.5,0.15,"Picross");
-    subName = new Button(-0.25,(1-0.075-0.15),0.5,0.15/2,1,1,0,"subName");
+    gameName = new Button(-0.25,(1-0.075),0.5,0.15,"Picross",true);
+    subName = new Button(-0.25,(1-0.075-0.15),0.5,0.15/2,1,1,0,"subName",true);
     helpBox = new Rect(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,(0.15 + 0.05/3)*3,1,0,0);
-    controls = new Button(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.25,0,0,1,"Controls");
-    instructions = new Button(-1 + (0.15 + 0.05/3)*0.5,(1 - (0.15 + 0.05/3)*1.5)*0.75, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.75,0,0,1,"instructions");
+    controls = new Button(-1 + (0.15 + 0.05/3)*0.5,1 - (0.15 + 0.05/3)*1.5, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.25,0,0,1,"Controls",true);
+    instructions = new Button(-1 + (0.15 + 0.05/3)*0.5,(1 - (0.15 + 0.05/3)*1.5)*0.75, (0.15 + 0.05/3)*3,((0.15 + 0.05/3)*3)*0.75,0,0,1,"instructions",true);
 }
 
 void Display::draw() const{

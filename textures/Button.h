@@ -15,16 +15,18 @@ struct Button {
 	float w;
 	float h;
 
+	bool isCentered;
+
 	std::string text;
 
 
 	Button(); // This is a default constructor (takes no parameters)
 
-	Button(float x, float y, float w, float h);
+	Button(float x, float y, float w, float h, bool);
 
-    Button(float x, float y, float w, float h, std::string text);
+    Button(float x, float y, float w, float h, std::string text, bool);
 
-	Button(float x, float y, float w, float h, float red, float green, float blue, std::string text);
+	Button(float x, float y, float w, float h, float red, float green, float blue, std::string text, bool);
 
 	void draw();
 

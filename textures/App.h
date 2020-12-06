@@ -4,11 +4,9 @@
 #include <vector>
 #include "GlutApp.h"
 #include "Rect.h"
-//#include "Circle.h"
 #include "TexRect.h"
 #include "Tile.h"
 #include "FbFboard.h"
-#include "Hint.h"
 #include "Button.h"
 #include "Help.h"
 #include "Display.h"

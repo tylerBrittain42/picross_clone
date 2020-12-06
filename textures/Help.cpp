@@ -1,50 +1,15 @@
 #include "Help.h"
-
 #include <iostream>
 #include <algorithm>
 
-
-
-
-
-//std::vector<Hint*> topHints;
-//std::vector<Hint*> leftHints;
-
-
-
-
 Help::Help(){
     
-
-    char key[5][5] = {{'e','c','e','c','c'},
-                      {'c','c','e','c','e'},
-                      {'e','b','e','e','e'},
-                      {'c','e','e','e','c'}, 
-                      {'e','c','c','c','e'}};
-
-    leftCountt = generateLeft(key);
-    topCountt = generateTop(key);
-
-    //PLACEHOLDER VALS
-    sideLength = 0.15;
-    x = 0;
-    y = 0;
-    
-    r = 0;
-    g = 0;
-    b = 1;
-
-    //topical-----------------------
-    curX = x + (4 *(sideLength+0.01));
-    curY = (y + sideLength) + 0.05/3;
-   
-    setTopHint();
-    setLeftHint();
+   std::cout << "WARNING: no puzzle given";
 
     
 };
 
-Help::Help(char key[5][5], float sideLength, float x, float y){
+Help::Help(char key[5][5], float x, float y, float sideLength){
     
     //sets the help key equal to the key passed in
     for(int i = 0; i < 5; i++){
@@ -69,12 +34,6 @@ Help::Help(char key[5][5], float sideLength, float x, float y){
     //Creates hint arrays for each
     leftCountt = generateLeft(key);
     topCountt = generateTop(key);
-
-    //topical-----------------------
-    
-    
-    //creates tiles for top hints
-
 
     setTopHint();
     setLeftHint();
@@ -114,10 +73,6 @@ std::vector<int> Help::generateLeft(char key[5][5]){
     int start = 0;
     int end = 0;
 
-
-
-
-
     return(gen);
 };
 
@@ -144,15 +99,9 @@ std::vector<int> Help::generateTop(char key[5][5]){
     }
     gen.pop_back();
 
-
-
-
     std::reverse(gen.begin(),gen.end());
 
-
-
     return(gen);
-
 };
 
 void Help::setTopHint(){

@@ -29,7 +29,7 @@ private:
 public:
 
     Help();
-    Help(char key[5][5], float sideLength, float x, float y);
+    Help(char key[5][5],float x, float y, float sideLength);
 
 
     std::vector<int> generateLeft(char key[5][5]); 

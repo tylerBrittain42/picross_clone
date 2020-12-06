@@ -17,49 +17,24 @@ using namespace std;
 int widthh = 640;
 
 
-Button::Button(){
-	x = 0;
-	y = 0;
-	red = 1;
-	green = 1;
-	blue = 0;
+Button::Button():Rect(){
 
-	w = 0.2;
-	h = 0.2;
     text = "";
-
     isCentered = false;
 
 	
 }
 
-Button::Button(float x, float y, float w, float h, bool isCentered){
-	this->x = x;
-	this->y = y;
+Button::Button(float x, float y, float w, float h, bool isCentered):Rect(x,y,w,h,0,0,0){
 
-	red = 1;
-	green = 0;
-	blue = 0;
-
-	this->w = w;
-	this->h = h;
     text = "";
     this->isCentered = isCentered;
 
 
 }
 
-//Used for a text block with default black box, white text
-Button::Button(float x, float y, float w, float h, string text, bool isCentered){
-    this->x = x;
-	this->y = y;
-
-	red = 1;
-	green = 1;
-	blue = 1;
-
-	this->w = w;
-	this->h = h;
+//Used for a text block with default white box
+Button::Button(float x, float y, float w, float h, string text, bool isCentered):Rect(x,y,w,h,1,1,1){
 
     this->text = text;
     this->isCentered = isCentered;
@@ -68,18 +43,9 @@ Button::Button(float x, float y, float w, float h, string text, bool isCentered)
 }
 
 
-Button::Button(float x, float y, float w, float h, float red, float green, float blue, string text, bool isCentered){
-	this->x = x;
-	this->y = y;
-
-	this->red = red;
-	this->green = green;
-	this->blue = blue;
-
-	this->w = w;
-	this->h = h;
+Button::Button(float x, float y, float w, float h, float r, float g, float b, string text, bool isCentered):Rect(x,y,w,h,r,g,b){
+	
     this->text = text;
-
     this->isCentered = isCentered;
 
 
@@ -155,6 +121,7 @@ void Button::draw(){
     
 
     //Black outline around each button 
+    //NOTE:Won't be seen when the background is black
     glColor3f(0,0,0);
     glLineWidth(2);
     glBegin(GL_LINES);
@@ -172,33 +139,11 @@ void Button::draw(){
     glVertex2f(x, y);
 
     glEnd();
-    
-    glColor3f(red, green, blue);
 
-    glBegin(GL_POLYGON);
+    //Draws actual button
+   Rect::draw();
 
-    glVertex2f(x, y);
-    glVertex2f(x+w, y);
-    glVertex2f(x+w, y-h);
-    glVertex2f(x, y-h);
-
-    glEnd();
-
-    
-    
-
-
-    glColor3f(red, green, blue);
-
-    glBegin(GL_POLYGON);
-
-    glVertex2f(x, y);
-    glVertex2f(x+w, y);
-    glVertex2f(x+w, y-h);
-    glVertex2f(x, y-h);
-
-    glEnd();
-    
+    //renders text inside of button
     if(isCentered)
         renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
     else if(!isCentered)

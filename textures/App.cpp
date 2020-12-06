@@ -52,7 +52,8 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
     
-    if(playerBoard->isClicked(mx,my) && playerBoard->isWin() != true){
+    //if(playerBoard->isClicked(mx,my) && playerBoard->isWin() != true){
+    if(!playerBoard->isWin()){  
         playerBoard->leftMouseDown(mx,my);
     }
 

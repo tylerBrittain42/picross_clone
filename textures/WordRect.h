@@ -19,7 +19,7 @@ public:
 
 	WordRect();
 	WordRect(float x, float y, float side, float r, float g, float b, std::string text, bool isCentered);
-
+    WordRect(float x, float y, float w, float h, float r, float g, float b, std::string text, bool isCentered);
 
 	void draw() const;
 

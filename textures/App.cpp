@@ -21,7 +21,7 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
     playerBoard = new FbFboard(answerKey,-0,0,0.15);
     hintBoard = new Help(answerKey,0.15,0,0);
-    display = new Display();
+    display = new Display(-0.25,0.925,0.5,0.1);
     hasWon = new WinState();
     
 

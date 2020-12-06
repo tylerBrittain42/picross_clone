@@ -20,6 +20,7 @@ private:
 
 public:
     Display();
+    Display(float titleX, float titleY, float titleW, float titleH);
 
     void draw() const;
 

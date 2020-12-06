@@ -14,17 +14,34 @@ Display::Display(){
 
 
 
-    gameName = new Button(titleX,titleY,titleW,titleH,"Picross",true);
+    gameName = new Button(titleX,titleY,titleW,titleH,1,1,1,"Picross",true);
     subName = new Button(titleX,titleY - titleH,titleW,titleH,1,1,0,"subName",true);
     leftBar = new SideBar();
    
 }
 
+//We always want the sidebar to spawn in the same position
+//But we can adjust the position of the title and subtitle
+Display::Display(float titleX, float titleY, float titleW, float titleH){
+    
+    this->titleX = titleX;
+    this->titleY = titleY;
+    this->titleW = titleW;
+    this->titleH = titleH;
+
+    gameName = new Button(titleX,titleY,titleW,titleH,1,1,1,"Picross",true);
+    subName = new Button(titleX,titleY - titleH,titleW,titleH,1,1,0,"subName",true);
+    leftBar = new SideBar();
+
+
+
+}
+
+
 void Display::draw() const{
     
     gameName->draw();
     subName->draw();
-    
     leftBar->draw();
     
 

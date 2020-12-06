@@ -1,44 +1,15 @@
 #include "Help.h"
-
 #include <iostream>
 #include <algorithm>
 
-
-
-
-
-std::vector<Hint*> topHints;
-std::vector<Hint*> leftHints;
-
-
 Help::Help(){
     
-
-    char key[5][5] = {{'e','c','e','c','c'},
-                      {'c','c','e','c','e'},
-                      {'e','b','e','e','e'},
-                      {'c','e','e','e','c'}, 
-                      {'e','c','c','c','e'}};
-
-    leftCountt = generateLeft(key);
-    topCountt = generateTop(key);
-
-    //PLACEHOLDER VALS
-    sideLength = 0.15;
-    x = 0;
-    y = 0;
-
-    //topical-----------------------
-    curX = x + (4 *(sideLength+0.01));
-    curY = (y + sideLength) + 0.05/3;
-   
-    setTopHint();
-    setLeftHint();
+   std::cout << "WARNING: no puzzle given";
 
     
 };
 
-Help::Help(char key[5][5], float sideLength, float x, float y){
+Help::Help(char key[5][5], float x, float y, float sideLength){
     
     //sets the help key equal to the key passed in
     for(int i = 0; i < 5; i++){
@@ -52,6 +23,10 @@ Help::Help(char key[5][5], float sideLength, float x, float y){
     this->x = x;
     this->y = y;
 
+    r = 0;
+    g = 0;
+    b = 1;
+
     curX = x + (4 *(sideLength+0.01));
     curY = (y + sideLength) + 0.05/3;
 
@@ -59,12 +34,6 @@ Help::Help(char key[5][5], float sideLength, float x, float y){
     //Creates hint arrays for each
     leftCountt = generateLeft(key);
     topCountt = generateTop(key);
-
-    //topical-----------------------
-    
-    
-    //creates tiles for top hints
-
 
     setTopHint();
     setLeftHint();
@@ -104,10 +73,6 @@ std::vector<int> Help::generateLeft(char key[5][5]){
     int start = 0;
     int end = 0;
 
-
-
-
-
     return(gen);
 };
 
@@ -134,22 +99,16 @@ std::vector<int> Help::generateTop(char key[5][5]){
     }
     gen.pop_back();
 
-
-
-
     std::reverse(gen.begin(),gen.end());
 
-
-
     return(gen);
-
 };
 
 void Help::setTopHint(){
 
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 5; j++){
-            topHints.push_back(new Hint(curX,curY,sideLength, ""));
+            topHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
             curX = curX - (sideLength + 0.01);
         }
         curX = x + (4 *(sideLength+0.01));
@@ -161,15 +120,13 @@ void Help::setTopHint(){
         for(int i = 0; i < 15; i++){
             if(i%5 == j){
                 if(topCountt[cur] != 9){
-                    topHints[i]->setHintText(std::to_string(topCountt[cur]));
+                    topHints[i]->setText(std::to_string(topCountt[cur]));
                     cur++;
                 }
                 else
                 {
-                    topHints[i]->setHintText("");
-                     topHints[i]->r = 0;
-                     topHints[i]->g = 0;
-                     topHints[i]->b = 0;
+                     topHints[i]->setText("");
+                     topHints[i]->setColors(0,0,0);
                 }
                 
             }
@@ -185,7 +142,7 @@ void Help::setLeftHint(){
 
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 3; j++){
-            leftHints.push_back(new Hint(curX,curY,sideLength, ""));
+            leftHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
             curX = curX + (sideLength + 0.01);
         }
         curY = curY - (sideLength + 0.01);
@@ -200,25 +157,23 @@ void Help::setLeftHint(){
 
        for(int j = 0; j < 3; j++){
            if(leftCountt[cur] != 9){
-               leftHints[i+j]->setHintText(std::to_string(leftCountt[cur]));
+               leftHints[i+j]->setText(std::to_string(leftCountt[cur]));
                cur++;
            }
        }
 
-        while(leftHints[i+2]->getHintText() == "" && (leftHints[i+1]->getHintText() != "" || leftHints[i]->getHintText() != "")){
-            leftHints[i+2]->setHintText(leftHints[i+1]->getHintText());
-            leftHints[i+1]->setHintText(leftHints[i]->getHintText());
-            leftHints[i]->setHintText("");
+        while(leftHints[i+2]->getText() == "" && (leftHints[i+1]->getText() != "" || leftHints[i]->getText() != "")){
+            leftHints[i+2]->setText(leftHints[i+1]->getText());
+            leftHints[i+1]->setText(leftHints[i]->getText());
+            leftHints[i]->setText("");
         }
 
        cur++;
     }
 
     for(auto i = leftHints.begin(); i != leftHints.end(); i++){
-        if( (*i)->getHintText() == ""){
-            (*i)->r = 0;
-            (*i)->g = 0;
-            (*i)->b = 0;
+        if( (*i)->getText() == ""){
+            (*i)->setColors(0,0,0);
         }
     }
 

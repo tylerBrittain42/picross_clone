@@ -1,13 +1,9 @@
 #include "FbFboard.h"
 #include <iostream>
-#include <string>
-
-
 
 
 FbFboard::FbFboard(){
 
-    
     sideLength = 0.25;
 
     x = 0;
@@ -15,9 +11,10 @@ FbFboard::FbFboard(){
     w = 0.79;
     h = 0.79;
 
-
     curX = -1;
     curY = 1;
+
+    std::cout << "WARNING: NO PUZZLE FOUND";
 
 
 
@@ -29,6 +26,7 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
     w = 0.79;
     h = 0.79;
 
+    //Copying answerkey
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
             this->answerKey[i][j] = answerKey[i][j];
@@ -41,20 +39,20 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
     curY = y;
     currHint = 0;
 
-    for(int i = 0; i < 5; i++){
 
+    //Creating playerboard
+    for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(curX,curY,sideLength));
+            fbf.push_back(new Tile(curX,curY,sideLength,1,0,0));
             curX = curX + (sideLength + 0.01);
         }
         curX = x;
         curY = curY - (sideLength + 0.01);
-        std::cout << "cury + side: " << (curY) <<std::endl;
-
     }
 
 }
 
+//resets the gameboard
 void FbFboard::reset(){
     
     for(auto i = fbf.begin(); i != fbf.end(); i++){
@@ -64,14 +62,7 @@ void FbFboard::reset(){
 }
 
 
-bool FbFboard::isWin() {
-
-    //printing both boards
-    char answerKey[5][5] = {{'e','c','e','c','c'},
-                            {'c','c','e','c','e'},
-                            {'e','b','e','e','e'},
-                            {'c','e','e','e','c'}, 
-                            {'e','c','c','c','e'}};
+bool FbFboard::isWin() const{
 
     int curTile = 0;
     for(int i = 0; i < 5; i++){
@@ -95,7 +86,7 @@ void FbFboard::draw() const{
 }
 
 
-bool FbFboard::isClicked(float x, float y){
+bool FbFboard::isClicked(float x, float y) const{
 	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
 }
 

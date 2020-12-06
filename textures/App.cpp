@@ -6,7 +6,6 @@
 
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
-    a = true;
 
     char answerKey[5][5] = {{'e','c','e','c','c'},
                             {'c','c','e','c','e'},
@@ -14,14 +13,11 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
                             {'c','e','e','e','c'}, 
                             {'e','c','c','c','e'}}; 
 
-                            
-
-
-    // Pushing different kinds of Shape in the collection
+    //Pushing different kinds of Shape in the collection
     //shapes.push_back(new TexRect("lion.png", -1, 1, 2, 2));
     playerBoard = new FbFboard(answerKey,-0,0,0.15);
-    hintBoard = new Help(answerKey,0.15,0,0);
-    display = new Display();
+    hintBoard = new Help(answerKey,0,0,0.15);
+    display = new Display(-0.25,0.925,0.5,0.1);
     hasWon = new WinState();
     
 
@@ -33,6 +29,7 @@ void App::draw() const {
 
     playerBoard->draw();
     hintBoard->draw();
+    
     //if(false){
     if(playerBoard->isWin() != true){
         display->draw();
@@ -52,7 +49,8 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
     
-    if(playerBoard->isClicked(mx,my) && playerBoard->isWin() != true){
+    //if(playerBoard->isClicked(mx,my) && playerBoard->isWin() != true){
+    if(!playerBoard->isWin()){  
         playerBoard->leftMouseDown(mx,my);
     }
 

@@ -29,8 +29,13 @@ public:
 	float getX() const;
 	void setX(float x);
 
+	void setR(float r);
+	void setG(float g);
+	void setB(float b);
 
 	bool contains(float, float) const;
+
+	~Rect();
 };
 
 #endif

@@ -1,6 +1,7 @@
 #pragma once
 #include "Button.h"
 #include "Rect.h"
+#include "WordRect.h"
 #include <string>
 
 
@@ -19,9 +20,9 @@ private:
     float tG;
     float tB;
 
-    Rect* helpBox;
+    WordRect* helpBox;
     Rect* divide;
-    Button* instructions;
+
 
 
 public:

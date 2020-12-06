@@ -1,13 +1,16 @@
 #pragma once
 
-#include "Hint.h"
-#include "vector"
-#include "Tile.h"
+#include "WordRect.h"
+#include <vector>
 
 class Help{
 
 private:
     
+    float r;
+    float g;
+    float b;
+
     char key[5][5];
 
     float sideLength;
@@ -17,15 +20,15 @@ private:
     float curX;
     float curY;
     
-    std::vector<Hint*> topHints;
-    std::vector<Hint*> leftHints;
+    std::vector<WordRect*> topHints;
+    std::vector<WordRect*> leftHints;
     std::vector<int> topCountt;
     std::vector<int> leftCountt;
 
 public:
 
     Help();
-    Help(char key[5][5], float sideLength, float x, float y);
+    Help(char key[5][5],float x, float y, float sideLength);
 
 
     std::vector<int> generateLeft(char key[5][5]); 

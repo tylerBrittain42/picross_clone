@@ -12,38 +12,21 @@
 */
 
 //Default contructor 
-Tile::Tile(){
-	x = 0;
-	y = 0;
-	l = 0.5;
-	r = 1;
-	g = 0;
-	b = 0;
+Tile::Tile():Rect(0,0,0.5,0.5,1,0,0){
+
 	claimedBy = 'e';
 }
 
-Tile::Tile(float x, float y, float l){
-	this->x = x;
-	this->y = y;
-	this->l = l;
-	r = 1;
-	g = 0;
-	b = 0;
+Tile::Tile(float x, float y, float l,float r,float g,float b):Rect(x,y,l,l,r,g,b){
 	claimedBy = 'e';
 }
+
+
 
 //Draws the tile as well as the claimed decision
 void Tile::draw(float z) const {
 	
-	glColor3f(r, g, b);
-
-	glBegin(GL_POLYGON);
-
-	glVertex2f(x, y);
-	glVertex2f(x+l, y);
-	glVertex2f(x+l, y-l);
-	glVertex2f(x, y-l);
-	glEnd();
+	Rect::draw();
 
 	if (claimedBy == 'c'){
 		drawC();
@@ -51,8 +34,6 @@ void Tile::draw(float z) const {
 	else if (claimedBy == 'x'){
 		drawX();
 	}
-	
-
 
 }
 
@@ -63,13 +44,13 @@ void Tile::drawX() const{
 	glPointSize(10);
 	glBegin(GL_LINES);
 	glVertex2f(x,y);
-	glVertex2f(x+l,y-l);
+	glVertex2f(x+w,y-w);
 	glEnd();
 
 	glPointSize(10);
 	glBegin(GL_LINES);
-	glVertex2f(x+l,y);
-	glVertex2f(x,y-l);
+	glVertex2f(x+w,y);
+	glVertex2f(x,y-w);
 	glEnd();
 
 }
@@ -81,43 +62,27 @@ void Tile::drawC() const{
 
 	glBegin(GL_POLYGON);
 
-	glVertex2f((x + std::abs(l*0.05)), (y - std::abs(l*0.05)));
-	glVertex2f((x+l - std::abs(l*0.05)), (y - std::abs(l*0.05)));
-	glVertex2f((x+l - std::abs(l*0.05)), ((y-l) + std::abs(l*0.05)));
-	glVertex2f((x + std::abs(l*0.05)), (y-l) + std::abs(l*0.05));
+	glVertex2f((x + std::abs(w*0.05)), (y - std::abs(w*0.05)));
+	glVertex2f((x+w - std::abs(w*0.05)), (y - std::abs(w*0.05)));
+	glVertex2f((x+w - std::abs(w*0.05)), ((y-w) + std::abs(w*0.05)));
+	glVertex2f((x + std::abs(w*0.05)), (y-w) + std::abs(w*0.05));
 	glEnd();
 	
 }
 
 
-void Tile::setY(float y){
-	this-> y = y;
-}
-
-float Tile::getY() const {
-	return y;
-}
-
-void Tile::setX(float x){
-	this-> x = x;
-}
-
-float Tile::getX() const {
-	return x;
-}
-
 
 char Tile::getClaimedBy() const {
 	return claimedBy;
-
 }
+
 void Tile::SetClaimedBy(char claimedBy){
 	this->claimedBy = claimedBy;
 }
 
-
+//Checks to see if the passed coordinates are within the tile
 bool Tile::contains(float x, float y) const{
-	return x >= this->x && x <= this->x + l && y <= this->y && y >= this->y - l;
+	return x >= this->x && x <= this->x + w && y <= this->y && y >= this->y - w;
 }
 
 Tile::~Tile(){

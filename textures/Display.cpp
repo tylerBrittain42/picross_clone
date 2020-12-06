@@ -33,6 +33,7 @@ void Display::draw() const{
 Display::~Display(){
     delete gameName;
     delete leftBar;
+    delete subName;
 
 
 }

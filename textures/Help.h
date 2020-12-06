@@ -2,7 +2,6 @@
 
 #include "WordRect.h"
 #include <vector>
-#include "Tile.h"
 
 class Help{
 

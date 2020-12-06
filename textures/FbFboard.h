@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 
+
 class FbFboard {
 private:
 

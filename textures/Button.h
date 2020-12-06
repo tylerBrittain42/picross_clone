@@ -45,6 +45,8 @@ public:
     float g, 
     float b);
 
+    ~Button();
+
 
 };
 

@@ -1,10 +1,5 @@
 #include "Display.h"
 
-
-
-
-
-
 Display::Display(){
 
     titleX = -0.25;
@@ -12,11 +7,9 @@ Display::Display(){
     titleW = 0.5;
     titleH = 0.1;
 
-
-
     gameName = new Button(titleX,titleY,titleW,titleH,1,1,1,"Picross",true);
     subName = new Button(titleX,titleY - titleH,titleW,titleH,1,1,0,"subName",true);
-    leftBar = new SideBar();
+    leftBar = new SideBar(0.916666667,0.75);
    
 }
 

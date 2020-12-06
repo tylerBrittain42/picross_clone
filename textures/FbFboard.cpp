@@ -1,8 +1,5 @@
 #include "FbFboard.h"
 #include <iostream>
-#include <string>
-
-
 
 
 FbFboard::FbFboard(){

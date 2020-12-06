@@ -6,7 +6,6 @@
 
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
-    a = true;
 
     char answerKey[5][5] = {{'e','c','e','c','c'},
                             {'c','c','e','c','e'},
@@ -30,6 +29,7 @@ void App::draw() const {
 
     playerBoard->draw();
     hintBoard->draw();
+    
     //if(false){
     if(playerBoard->isWin() != true){
         display->draw();

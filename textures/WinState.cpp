@@ -7,20 +7,46 @@ WinState::WinState(){
 
     x = -0.916666667;
     y = 0.25;
-
     s = 0.4;
 
+    r = 1;
+    g = 1;
+    b = 1;
+
+    createComponents(x,y,s,r,g,b);
+
+        
+}
+
+WinState::WinState(float x, float y, float s, float r, float g, float b){
+    
+    this->x = x;
+    this->y = y;
+    this->s = s;
+
+    this->r = r;
+    this->g = g;
+    this->b = b;
+
+    createComponents(x,y,s,r,g,b);
+    
+
+}
+
+
+
+void WinState::createComponents(float x, float y, float s, float r, float g, float b){
+
     //play again
-    buttons.push_back(new Button(x,y,s,s,1,1,1,"Play Again?",true));
+    buttons.push_back(new Button(x,y,s,s,r,g,b,"Play Again?",true));
 
     //exit
-    buttons.push_back(new Button(x,y - s - 0.04,s,s,1,1,1,"Exit",true));
+    buttons.push_back(new Button(x,y - s - 0.04,s,s,r,g,b,"Exit",true));
 
     winText = new TexRect("victoryText.png",-1,1.25,2,2);
-    
 
-    
 }
+
 
 void WinState::draw() const{
     
@@ -50,18 +76,7 @@ bool WinState::restartClicked(float mx, float my){
 
 
 
-void WinState::leftMouseDown(float mx, float my){
 
-    if(buttons.at(0)->isClicked(mx,my)){
-        std::cout << "play again clicked" << std::endl;
-        
-    }
-    
-    else if(buttons.at(1)->isClicked(mx,my)){
-        exit(0);
-    }
-
-}
 
 WinState::~WinState(){
     delete winText;

@@ -7,8 +7,10 @@
 
 
 
-std::vector<Hint*> topHints;
-std::vector<Hint*> leftHints;
+//std::vector<Hint*> topHints;
+//std::vector<Hint*> leftHints;
+
+
 
 
 Help::Help(){
@@ -27,6 +29,10 @@ Help::Help(){
     sideLength = 0.15;
     x = 0;
     y = 0;
+    
+    r = 0;
+    g = 0;
+    b = 1;
 
     //topical-----------------------
     curX = x + (4 *(sideLength+0.01));
@@ -51,6 +57,10 @@ Help::Help(char key[5][5], float sideLength, float x, float y){
     this->sideLength = sideLength;
     this->x = x;
     this->y = y;
+
+    r = 0;
+    g = 0;
+    b = 1;
 
     curX = x + (4 *(sideLength+0.01));
     curY = (y + sideLength) + 0.05/3;
@@ -149,7 +159,7 @@ void Help::setTopHint(){
 
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 5; j++){
-            topHints.push_back(new Hint(curX,curY,sideLength, ""));
+            topHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
             curX = curX - (sideLength + 0.01);
         }
         curX = x + (4 *(sideLength+0.01));
@@ -161,15 +171,13 @@ void Help::setTopHint(){
         for(int i = 0; i < 15; i++){
             if(i%5 == j){
                 if(topCountt[cur] != 9){
-                    topHints[i]->setHintText(std::to_string(topCountt[cur]));
+                    topHints[i]->setText(std::to_string(topCountt[cur]));
                     cur++;
                 }
                 else
                 {
-                    topHints[i]->setHintText("");
-                     topHints[i]->r = 0;
-                     topHints[i]->g = 0;
-                     topHints[i]->b = 0;
+                     topHints[i]->setText("");
+                     topHints[i]->setColors(0,0,0);
                 }
                 
             }
@@ -185,7 +193,7 @@ void Help::setLeftHint(){
 
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 3; j++){
-            leftHints.push_back(new Hint(curX,curY,sideLength, ""));
+            leftHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
             curX = curX + (sideLength + 0.01);
         }
         curY = curY - (sideLength + 0.01);
@@ -200,25 +208,23 @@ void Help::setLeftHint(){
 
        for(int j = 0; j < 3; j++){
            if(leftCountt[cur] != 9){
-               leftHints[i+j]->setHintText(std::to_string(leftCountt[cur]));
+               leftHints[i+j]->setText(std::to_string(leftCountt[cur]));
                cur++;
            }
        }
 
-        while(leftHints[i+2]->getHintText() == "" && (leftHints[i+1]->getHintText() != "" || leftHints[i]->getHintText() != "")){
-            leftHints[i+2]->setHintText(leftHints[i+1]->getHintText());
-            leftHints[i+1]->setHintText(leftHints[i]->getHintText());
-            leftHints[i]->setHintText("");
+        while(leftHints[i+2]->getText() == "" && (leftHints[i+1]->getText() != "" || leftHints[i]->getText() != "")){
+            leftHints[i+2]->setText(leftHints[i+1]->getText());
+            leftHints[i+1]->setText(leftHints[i]->getText());
+            leftHints[i]->setText("");
         }
 
        cur++;
     }
 
     for(auto i = leftHints.begin(); i != leftHints.end(); i++){
-        if( (*i)->getHintText() == ""){
-            (*i)->r = 0;
-            (*i)->g = 0;
-            (*i)->b = 0;
+        if( (*i)->getText() == ""){
+            (*i)->setColors(0,0,0);
         }
     }
 

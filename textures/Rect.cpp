@@ -62,7 +62,27 @@ float Rect::getX() const {
 	return x;
 }
 
+
+
+void Rect::setR(float r){
+	this->r = r;
+
+}
+
+void Rect::setG(float g){
+	this->g = g;
+}
+
+void Rect::setB(float b){
+	this->b = b;
+}
+
+
+
 bool Rect::contains(float x, float y) const{
 	return x >= this->x && x <= this->x + w && y <= this->y && y >= this->y - h;
 }
 
+Rect::~Rect(){
+	
+}

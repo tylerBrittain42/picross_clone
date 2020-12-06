@@ -1,13 +1,17 @@
 #pragma once
 
-#include "Hint.h"
-#include "vector"
+#include "WordRect.h"
+#include <vector>
 #include "Tile.h"
 
 class Help{
 
 private:
     
+    float r;
+    float g;
+    float b;
+
     char key[5][5];
 
     float sideLength;
@@ -17,8 +21,8 @@ private:
     float curX;
     float curY;
     
-    std::vector<Hint*> topHints;
-    std::vector<Hint*> leftHints;
+    std::vector<WordRect*> topHints;
+    std::vector<WordRect*> leftHints;
     std::vector<int> topCountt;
     std::vector<int> leftCountt;
 

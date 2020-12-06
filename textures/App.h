@@ -13,6 +13,7 @@
 #include "Help.h"
 #include "Display.h"
 #include "WinState.h"
+#include "WordRect.h"
 
 class App: public GlutApp {
 

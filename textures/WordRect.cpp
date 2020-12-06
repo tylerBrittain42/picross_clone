@@ -18,10 +18,11 @@ WordRect::WordRect(float x, float y, float side, float r, float g, float b, std:
 }
 
 
-void WordRect::draw(float z=0) const{
+void WordRect::draw() const{
     
     Rect::draw();
     
+    //Draws either centered or left justified text
     if(isCentered)
         renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
     else if(!isCentered)
@@ -89,6 +90,14 @@ std::string WordRect::getText() const{
 
 void WordRect::setText(std::string text){
     this->text = text;
+}
+
+void WordRect::setColors(float r, float g, float b){
+    
+    Rect::setR(r);
+    Rect::setG(g);
+    Rect::setB(b);
+
 }
 
 

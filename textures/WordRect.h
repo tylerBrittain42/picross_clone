@@ -1,5 +1,5 @@
-#ifndef TILE_H
-#define TILE_H
+#ifndef WORDRECT_H
+#define WORDRECT_H
 
 #include "Rect.h"
 #include <string>
@@ -21,7 +21,7 @@ public:
 	WordRect(float x, float y, float side, float r, float g, float b, std::string text, bool isCentered);
 
 
-	void draw(float z=0) const;
+	void draw() const;
 
     void renderText(std::string text, 
     float x, 
@@ -43,6 +43,8 @@ public:
     std::string getText() const;
 
     void setText(std::string text); 
+
+    void setColors(float r, float g, float b);
 
 
 	~WordRect();

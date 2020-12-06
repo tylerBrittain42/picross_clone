@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Tile.h"
-#include "Hint.h"
 #include <vector>
 #include <algorithm>
 
 class FbFboard {
-public:
+private:
 
+    //Coordinate information for entire board
     float x;
     float y; 
     float w;
@@ -22,17 +22,19 @@ public:
     std::vector<char*> keyVec;
     std::vector<Tile*> fbf;
 
+
+public:
     FbFboard();
 
     FbFboard(char answerKey[5][5],float x, float y, float sideLength);
 
     void reset();
 
-    bool isWin() ;
+    bool isWin() const;
 
     void draw() const;
 
-    bool isClicked(float x, float y);
+    bool isClicked(float x, float y) const;
 
     void leftMouseDown(float mx, float my);
 

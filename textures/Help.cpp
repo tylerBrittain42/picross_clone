@@ -49,6 +49,8 @@ Help::Help(char key[5][5], float x, float y, float sideLength){
 
 
 std::vector<int> Help::generateLeft(char key[5][5]){
+
+    
     
     std::vector<int> gen;
     int count = 0;
@@ -72,6 +74,56 @@ std::vector<int> Help::generateLeft(char key[5][5]){
 
     int start = 0;
     int end = 0;
+
+    
+
+     //example of how to do it
+    //testLeft.push_back(gen);
+    //std::cout << testLeft[0][1] << std::endl;
+
+    std::vector<int> curRow;
+    count = 0;
+
+    //row -- top to bottoms
+    for(int i = 0; i < 5; i++){
+        
+        //column -- right to left (BACKWARDS)
+        for(int j = 4; j >= 0; j--){
+
+            //counting the number of consecutive claimed spaces
+            if(key[i][j] == 'c'){
+                count++;
+            }
+            
+            //once a series of spaces ends
+            else{
+                //ensures an empty row is not stored
+                if(count != 0){
+                    curRow.push_back(count);
+                    std::cout << "count: " << count << std::endl;
+                    count = 0;
+                }
+            }
+    
+        }
+        if(count != 0)
+            curRow.push_back(count);
+        testLeft.push_back(curRow);
+        curRow.clear();
+        count = 0;
+    }
+
+    for(int i = 0; i < testLeft.size(); i++){
+        
+        //column -- right to left (BACKWARDS)
+        for(int j = 0; j < (testLeft[i]).size(); j++){
+            std::cout << testLeft[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+
+
 
     return(gen);
 };
@@ -100,6 +152,12 @@ std::vector<int> Help::generateTop(char key[5][5]){
     gen.pop_back();
 
     std::reverse(gen.begin(),gen.end());
+
+    //example of how to do it
+    //testLeft.push_back(gen);
+    //std::cout << testLeft[0][1] << std::endl;
+
+    
 
     return(gen);
 };

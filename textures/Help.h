@@ -6,6 +6,10 @@
 class Help{
 
 private:
+
+    //testing 2d vectors with left first
+    std::vector<std::vector<int>> testLeft;
+    std::vector<std::vector<WordRect*>> testLeftHints;
     
     float r;
     float g;

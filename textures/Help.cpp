@@ -1,6 +1,8 @@
 #include "Help.h"
 #include <iostream>
 #include <algorithm>
+#include <string>
+
 
 Help::Help(){
     
@@ -9,7 +11,7 @@ Help::Help(){
     
 };
 
-Help::Help(char key[5][5], float x, float y, float sideLength){
+Help::Help(char key[5][5], float x, float y, float sideLength,float r, float g, float b){
     
     //sets the help key equal to the key passed in
     for(int i = 0; i < 5; i++){
@@ -23,183 +25,196 @@ Help::Help(char key[5][5], float x, float y, float sideLength){
     this->x = x;
     this->y = y;
 
-    r = 0;
-    g = 0;
-    b = 1;
+    this->r = r;
+    this->g = g;
+    this->b = b;
 
-    curX = x + (4 *(sideLength+0.01));
-    curY = (y + sideLength) + 0.05/3;
-
-
-    //Creates hint arrays for each
-    leftCountt = generateLeft(key);
-    topCountt = generateTop(key);
-
-    setTopHint();
-    setLeftHint();
-
-//-----------------------------------------------------
    
 
 
+    //Creates hint arrays for each
+    generateLeftHints();
 
-
+    curX = x + (4 *(sideLength+0.01));
+    curY = (y + sideLength) + 0.05/3;
+    
+    generateTopHints();
     
 };
 
 
-std::vector<int> Help::generateLeft(char key[5][5]){
-    
-    std::vector<int> gen;
+//Calculates the numeric values needed for each hint tile
+void Help::calculateLeftValues(){
+
+
+    std::vector<int> curRow;
     int count = 0;
-    for(int j = 0; j < 5; j++) {
-        for(int i = 0; i < 5; i++){
-            if (key[j][i] == 'c')
-                count++;
-            else{
-                
-                if(count != 0)
-                    gen.push_back(count);
 
-                count = 0;
-            }   
-        }
-        if(count != 0)  
-            gen.push_back(count);
-        gen.push_back(9);
-        count = 0;
-    }
-
-    int start = 0;
-    int end = 0;
-
-    return(gen);
-};
-
-std::vector<int> Help::generateTop(char key[5][5]){
-    std::vector<int> gen;
-    gen.push_back(9);
-    int count = 0;
-    for(int j = 0; j < 5; j++) {
-        for(int i = 0; i < 5; i++){
-            if (key[i][j] == 'c')
-                count++;
-            else{
-                
-                if(count != 0)
-                    gen.push_back(count);
-
-                count = 0;
-            }   
-        }
-        if(count != 0)
-            gen.push_back(count);
-        gen.push_back(9);
-        count = 0;
-    }
-    gen.pop_back();
-
-    std::reverse(gen.begin(),gen.end());
-
-    return(gen);
-};
-
-void Help::setTopHint(){
-
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 5; j++){
-            topHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
-            curX = curX - (sideLength + 0.01);
-        }
-        curX = x + (4 *(sideLength+0.01));
-        curY = curY + (sideLength + 0.01);
-    }
-
-    int cur = 0;
-    for(int j = 0; j < 5; j ++){
-        for(int i = 0; i < 15; i++){
-            if(i%5 == j){
-                if(topCountt[cur] != 9){
-                    topHints[i]->setText(std::to_string(topCountt[cur]));
-                    cur++;
-                }
-                else
-                {
-                     topHints[i]->setText("");
-                     topHints[i]->setColors(0,0,0);
-                }
-                
-            }
-        }
-        cur++;
-    }
-}
-
-
-void Help::setLeftHint(){
-    curX = (x - sideLength*3) - 0.05;
-    curY = y;
-
+    //row -- top to bottoms
     for(int i = 0; i < 5; i++){
-        for(int j = 0; j < 3; j++){
-            leftHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
-            curX = curX + (sideLength + 0.01);
-        }
-        curY = curY - (sideLength + 0.01);
-        curX = (x - sideLength*3) - 0.05;;
-    }
+        
+        //column -- right to left (BACKWARDS)
+        for(int j = 4; j >= 0; j--){
 
-    //tracks current leftCountt tile
-    int cur = 0;
+            //counting the number of consecutive claimed spaces
+            if(key[i][j] == 'c'){
+                count++;
+            }
+            
+            //triggers once a series of spaces ends
+            else{
+                //ensures an empty row is not stored
+                if(count != 0){
+                    curRow.push_back(count);
+                    count = 0;
+                }
+            }
     
-    //adding in hint vals---------------------------
-    for(int i = 0; i < 14; i=i+3){
-
-       for(int j = 0; j < 3; j++){
-           if(leftCountt[cur] != 9){
-               leftHints[i+j]->setText(std::to_string(leftCountt[cur]));
-               cur++;
-           }
-       }
-
-        while(leftHints[i+2]->getText() == "" && (leftHints[i+1]->getText() != "" || leftHints[i]->getText() != "")){
-            leftHints[i+2]->setText(leftHints[i+1]->getText());
-            leftHints[i+1]->setText(leftHints[i]->getText());
-            leftHints[i]->setText("");
         }
-
-       cur++;
+        //makes sure the final count value is added if it is not zero
+        if(count != 0)
+            curRow.push_back(count);
+        
+        //Added the row to our left vector
+        leftVal.push_back(curRow);
+        curRow.clear();
+        count = 0;
     }
 
-    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
-        if( (*i)->getText() == ""){
-            (*i)->setColors(0,0,0);
+};
+
+//Creates the left side hint tiles
+void Help::generateLeftHints(){
+
+    calculateLeftValues();
+
+    //figure out how to reverse this formula
+    //curX = (x - sideLength*3) - 0.05;
+    curY = y;
+    curX = -0.18;
+
+
+    for(int i = 0; i < leftVal.size(); i++){
+
+        for(int j = 0; j < (leftVal[i]).size(); j++){
+
+            tempVec.push_back(new WordRect(curX,curY,sideLength,r,g,b,std::to_string(leftVal[i][j]),true));
+            curX = curX - sideLength - 0.01;
         }
+
+        curX = -0.18;
+        curY = curY - (sideLength + 0.01);
+
+        leftHints.push_back(tempVec);
+        tempVec.clear();
+
     }
+}
 
 
+
+void Help::calculateTopValues(){
+
+    int count = 0;
+    std::vector<int> curCol;
+
+    //we are still treating this as a 5x3 similar to calculateLeftValues
+    
+    //Iterating columns left to right
+    for(int j = 0; j < 5; j++){
+        
+        //Iterating rows bottom to top
+        for(int i = 4; i >= 0; i--){
+
+            //counting the number of consecutive claimed spaces
+            if(key[i][j] == 'c'){
+                count++;
+            }
+            
+            //triggers once a series of spaces ends
+            else{
+                //ensures an empty row is not stored
+                if(count != 0){
+                    curCol.push_back(count);
+                    count = 0;
+                }
+            }
+    
+        }
+        //makes sure the final count value is added if it is not zero
+        if(count != 0)
+            curCol.push_back(count);
+        
+        //Added the row to our left vector
+        topVal.push_back(curCol);
+        curCol.clear();
+        count = 0;
+    }
 
 
 }
+
+
+void Help::generateTopHints(){
+
+    calculateTopValues();
+
+    curY = 0.326667 - sideLength - 0.01;
+    curX = x;
+
+    for(int i = 0; i < topVal.size(); i++){
+
+        for(int j = 0; j < (topVal[i]).size(); j++){
+            tempVec.push_back(new WordRect(curX,curY,sideLength,r,g,b,std::to_string(topVal[i][j]),true));
+            curY = curY + (sideLength + 0.01);
+        }
+        
+        curY = 0.326667 - sideLength - 0.01;
+        curX = curX + sideLength + 0.01;
+        topHints.push_back(tempVec);
+        tempVec.clear();
+
+    }
+}
+
+
+
 
 
 void Help::draw() const{
-    for(auto i = topHints.begin(); i != topHints.end(); i++){
-        (*i)->draw();
+
+   for(int i = 0; i < leftHints.size(); i++){
+        for(int j = 0; j < (leftHints[i]).size(); j++){
+            leftHints[i][j]->draw();}
+    } 
+
+
+    for(int i = 0; i < topHints.size(); i++){
+        for(int j = 0; j < (topHints[i]).size(); j++){
+            topHints[i][j]->draw();}
     }
-    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
-        (*i)->draw();
-    }    
+
+
 }
 
 Help::~Help(){
     
-    for(auto i = topHints.begin(); i != topHints.end(); i++){
+    for(int i = 0; i < topHints.size(); i++){
+        for(int j = 0; j < (topHints[i]).size(); j++){
+            delete topHints[i][j];
+        }
+    }
+
+    for(int i = 0; i < leftHints.size(); i++){
+        for(int j = 0; j < (leftHints[i]).size(); j++){
+            delete leftHints[i][j];
+        }
+    }
+
+    for(auto i = tempVec.begin(); i != tempVec.end(); i++){
         delete *i;
     }
-    for(auto i = leftHints.begin(); i != leftHints.end(); i++){
-        delete *i;
-    }
+
 };
 
 

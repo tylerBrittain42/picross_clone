@@ -6,6 +6,15 @@
 class Help{
 
 private:
+
+    //testing 2d vectors with left first
+    std::vector<std::vector<int>> leftVal;
+    std::vector<std::vector<WordRect*>> leftHints;
+
+    std::vector<std::vector<int>> topVal;
+    std::vector<std::vector<WordRect*>> topHints;
+
+    std::vector<WordRect*> tempVec;
     
     float r;
     float g;
@@ -20,22 +29,20 @@ private:
     float curX;
     float curY;
     
-    std::vector<WordRect*> topHints;
-    std::vector<WordRect*> leftHints;
-    std::vector<int> topCountt;
-    std::vector<int> leftCountt;
+   
 
 public:
 
     Help();
-    Help(char key[5][5],float x, float y, float sideLength);
+    Help(char key[5][5],float x, float y, float sideLength,float r, float g, float b);
 
 
-    std::vector<int> generateLeft(char key[5][5]); 
-    std::vector<int> generateTop(char key[5][5]);
+    void calculateLeftValues();
+    void generateLeftHints(); 
 
-    void setTopHint();
-    void setLeftHint();
+    void calculateTopValues();
+    void generateTopHints();
+
 
     void draw()const;
 

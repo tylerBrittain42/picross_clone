@@ -11,8 +11,8 @@ private:
     std::vector<std::vector<int>> leftVal;
     std::vector<std::vector<WordRect*>> leftHints;
 
-    std::vector<std::vector<int>> TestTopVal;
-    std::vector<std::vector<WordRect*>> TestTopHints;
+    std::vector<std::vector<int>> topVal;
+    std::vector<std::vector<WordRect*>> topHints;
 
     std::vector<WordRect*> tempVec;
     
@@ -29,8 +29,7 @@ private:
     float curX;
     float curY;
     
-    std::vector<WordRect*> topHints;
-    std::vector<int> topCountt;
+   
 
 public:
 
@@ -41,11 +40,8 @@ public:
     void calculateLeftValues();
     void generateLeftHints(); 
 
-
-
-    std::vector<int> generateTop(char key[5][5]);
-
-    void setTopHint();
+    void calculateTopValues();
+    void generateTopHints();
 
 
     void draw()const;

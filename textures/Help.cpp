@@ -38,9 +38,7 @@ Help::Help(char key[5][5], float x, float y, float sideLength,float r, float g, 
     curX = x + (4 *(sideLength+0.01));
     curY = (y + sideLength) + 0.05/3;
     
-    topCountt = generateTop(key);
-
-    setTopHint();
+    generateTopHints();
     
 };
 
@@ -115,40 +113,12 @@ void Help::generateLeftHints(){
 
 
 
-std::vector<int> Help::generateTop(char key[5][5]){
-    std::vector<int> gen;
-    gen.push_back(9);
+void Help::calculateTopValues(){
+
     int count = 0;
-    for(int j = 0; j < 5; j++) {
-        for(int i = 0; i < 5; i++){
-            if (key[i][j] == 'c')
-                count++;
-            else{
-                
-                if(count != 0)
-                    gen.push_back(count);
-
-                count = 0;
-            }   
-        }
-        if(count != 0)
-            gen.push_back(count);
-        gen.push_back(9);
-        count = 0;
-    }
-    gen.pop_back();
-
-    std::reverse(gen.begin(),gen.end());
-
-    //example of how to do it
-    //testLeft.push_back(gen);
-    //std::cout << testLeft[0][1] << std::endl;
-
-
     std::vector<int> curCol;
 
-
-    //we are still freating this as a 5x3 similar to calculateLeftValues
+    //we are still treating this as a 5x3 similar to calculateLeftValues
     
     //Iterating columns left to right
     for(int j = 0; j < 5; j++){
@@ -176,83 +146,35 @@ std::vector<int> Help::generateTop(char key[5][5]){
             curCol.push_back(count);
         
         //Added the row to our left vector
-        TestTopVal.push_back(curCol);
+        topVal.push_back(curCol);
         curCol.clear();
         count = 0;
     }
 
 
-    for(int i = 0; i < TestTopVal.size(); i++){
-        
-        //column -- right to left (BACKWARDS)
-        for(int j = 0; j < (TestTopVal[i]).size(); j++){
-            std::cout << TestTopVal[i][j] << " " ;
-        }
-        std::cout<<std::endl;
-    }
-
-    return(gen);
 }
 
-void Help::setTopHint(){
 
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 5; j++){
-            topHints.push_back(new WordRect(curX,curY,sideLength,r,g,b, "",true));
-            curX = curX - (sideLength + 0.01);
-                        std::cout << "X: " << curX << std::endl;
+void Help::generateTopHints(){
 
-        }
-        curX = x + (4 *(sideLength+0.01));
-        curY = curY + (sideLength + 0.01);
-        std::cout << curY << std::endl;
-    }
-
-    int cur = 0;
-    for(int j = 0; j < 5; j ++){
-        for(int i = 0; i < 15; i++){
-            if(i%5 == j){
-                if(topCountt[cur] != 9){
-                    topHints[i]->setText(std::to_string(topCountt[cur]));
-                    cur++;
-                }
-                else
-                {
-                     topHints[i]->setText("");
-                     topHints[i]->setColors(0,0,0);
-                }
-                
-            }
-        }
-        cur++;
-    }
-
+    calculateTopValues();
 
     curY = 0.326667 - sideLength - 0.01;
     curX = x;
 
-    for(int i = 0; i < TestTopVal.size(); i++){
+    for(int i = 0; i < topVal.size(); i++){
 
-        for(int j = 0; j < (TestTopVal[i]).size(); j++){
-            std::cout << TestTopVal[i][j] << " ";
-            tempVec.push_back(new WordRect(curX,curY,sideLength,r,g,b,std::to_string(TestTopVal[i][j]),true));
+        for(int j = 0; j < (topVal[i]).size(); j++){
+            tempVec.push_back(new WordRect(curX,curY,sideLength,r,g,b,std::to_string(topVal[i][j]),true));
             curY = curY + (sideLength + 0.01);
         }
-        std::cout << std::endl;
-
         
         curY = 0.326667 - sideLength - 0.01;
         curX = curX + sideLength + 0.01;
-        TestTopHints.push_back(tempVec);
+        topHints.push_back(tempVec);
         tempVec.clear();
 
     }
-
-
-
-
-
-
 }
 
 
@@ -260,19 +182,16 @@ void Help::setTopHint(){
 
 
 void Help::draw() const{
-  /*   for(auto i = topHints.begin(); i != topHints.end(); i++){
-        (*i)->draw();
-    }
 
    for(int i = 0; i < leftHints.size(); i++){
         for(int j = 0; j < (leftHints[i]).size(); j++){
             leftHints[i][j]->draw();}
     } 
 
-*/
-    for(int i = 0; i < TestTopHints.size(); i++){
-        for(int j = 0; j < (TestTopHints[i]).size(); j++){
-            TestTopHints[i][j]->draw();}
+
+    for(int i = 0; i < topHints.size(); i++){
+        for(int j = 0; j < (topHints[i]).size(); j++){
+            topHints[i][j]->draw();}
     }
 
 
@@ -280,8 +199,10 @@ void Help::draw() const{
 
 Help::~Help(){
     
-    for(auto i = topHints.begin(); i != topHints.end(); i++){
-        delete *i;
+    for(int i = 0; i < topHints.size(); i++){
+        for(int j = 0; j < (topHints[i]).size(); j++){
+            delete topHints[i][j];
+        }
     }
 
     for(int i = 0; i < leftHints.size(); i++){

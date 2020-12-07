@@ -11,8 +11,8 @@ private:
     std::vector<std::vector<int>> leftVal;
     std::vector<std::vector<WordRect*>> leftHints;
 
-    std::vector<std::vector<int>> topVal;
-    std::vector<std::vector<WordRect*>> topHints;
+    std::vector<std::vector<int>> TestTopVal;
+    std::vector<std::vector<WordRect*>> TestTopHints;
 
     std::vector<WordRect*> tempVec;
     

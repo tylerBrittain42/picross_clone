@@ -44,10 +44,10 @@ void Display::draw() const{
 }
 
 Display::~Display(){
+
     delete leftBar;
     delete subName;
     delete titleCard;
-
 
 }
 

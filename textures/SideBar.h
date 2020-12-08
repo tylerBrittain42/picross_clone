@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Button.h"
 #include "Rect.h"
 #include "WordRect.h"
@@ -16,10 +17,12 @@ private:
     float w;
     float h;
 
+    //text colors
     float tR;
     float tG;
     float tB;
 
+    //text coordinates
     float tX;
     float tY;
 
@@ -44,13 +47,6 @@ public:
     float b) const;
 
 
-	void renderCenterText(std::string text, 
-    float x, 
-    float y, 
-    void* font, 
-    float r, 
-    float g, 
-    float b) const;
 
 
     ~SideBar();

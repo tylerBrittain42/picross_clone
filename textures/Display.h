@@ -7,6 +7,7 @@
 class Display {
 
 private:
+
     float titleX;
     float titleY;
     float titleW;
@@ -19,6 +20,7 @@ private:
     TexRect* subName;
 
 public:
+
     Display();
     Display(float titleX, float titleY, float titleW, float titleH);
 

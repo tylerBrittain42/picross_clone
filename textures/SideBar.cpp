@@ -19,7 +19,7 @@ SideBar::SideBar(){
     w = 0.5;
     h = 0.5; 
 
-    //textColor
+
     tR = 1;
     tG = 1;
     tB = 1;
@@ -42,7 +42,6 @@ SideBar::SideBar(float x, float y){
     w = 0.5;
     h = 0.5; 
 
-    //textColor
     tR = 0.51;
     tG = 0.44;
     tB = 0.43;
@@ -51,9 +50,11 @@ SideBar::SideBar(float x, float y){
     tY = y*0.75+0.02;
 
     helpBox = new WordRect(x,y+0.075, w,h,0.26,0.22,0.21,tR,tG,tB,"Controls",true);
+    
+    //box divider between the word controls and the actual controls
     divide = new Rect(x,y*0.875+0.075,w,h*0.125,0.51,0.44,0.43);
 
-  //   ,tR,tG,tB
+
 }
 
 
@@ -89,39 +90,6 @@ void SideBar::renderText(
     }
 }
 
-void SideBar::renderCenterText(
-    std::string text, 
-    float x, 
-    float y, 
-    void* font = GLUT_BITMAP_HELVETICA_18, 
-    float r = 0, 
-    float g = 1, 
-    float b = 1
-) const{
-    
-    glColor3f(r, g, b);
-    float offset2 = 0;
-    int textWidth;
-    float buff = 0;
-
-    for (int i = 0; i < text.length(); i++) {
-        int textWidth = glutBitmapWidth(font, text[i]);
-        offset2 += ((float)textWidth / widthh)*2;
-    }
-    buff = (w - offset2)/2;
-
-
-    //glColor3f(r, g, b);
-    float offset = 0;
-    offset = buff+offset;
-
-    for (int i = 0; i < text.length(); i++) {
-        glRasterPos2f(x+offset, y);
-        glutBitmapCharacter(font, text[i]);
-        int w = glutBitmapWidth(font, text[i]);
-        offset += ((float)w / widthh)*2;
-    }
-}
 
 
 

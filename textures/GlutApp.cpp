@@ -152,6 +152,9 @@ void GlutApp::glutDisplayCB(){
     // Set background color to black
     glClearColor(0.0, 0.0, 0.0, 1.0);
 
+    //color is gray
+    glClearColor(0.18,0.157,0.152, 1.0);
+
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     

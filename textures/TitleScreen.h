@@ -7,7 +7,12 @@ class TitleScreen{
 
 private:
 
+    bool curX;
+
     Button* start;
+
+    TexRect* titleCard;
+
     bool startGame;
 
     float velX;

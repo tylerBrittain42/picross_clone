@@ -22,7 +22,7 @@ Game::Game(){
 
     playerBoard = new FbFboard(answerKey,-0,0,0.15);
     hintBoard = new Help(answerKey,0,0,0.15,0,0,1);
-    display = new Display(-0.25,0.925,0.5,0.1);
+    display = new Display(-0.25,0.975,0.5,0.14269535673839184);
     hasWon = new WinState();
 
 

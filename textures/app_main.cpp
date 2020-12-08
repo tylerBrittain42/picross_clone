@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv) {
 
-    GlutApp* app = new App(argc, argv, 600, 600, "OpenGL Demo");
+    GlutApp* app = new App(argc, argv, 600, 600, "Picross");
 
     app->run();
 

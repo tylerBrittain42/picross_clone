@@ -62,6 +62,7 @@ void App::idle(){
 App::~App(){   
 
     delete game;
+    delete titleScreen;
 
 
     std::cout << "Exiting..." << std::endl;

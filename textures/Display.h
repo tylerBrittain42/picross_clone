@@ -2,6 +2,7 @@
 #include "Button.h"
 #include "Rect.h"
 #include "SideBar.h"
+#include "TexRect.h"
 
 class Display {
 
@@ -13,7 +14,7 @@ private:
 
 
 
-
+    TexRect* titleCard;
     SideBar* leftBar;
     Button* gameName;
     Button* subName;

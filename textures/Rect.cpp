@@ -62,6 +62,25 @@ float Rect::getX() const {
 	return x;
 }
 
+void Rect::incX(float x){
+
+	this->x = this->x + x;
+
+}
+
+void Rect::incY(float y){
+
+	this->y = this->y + y;
+
+}
+
+float Rect::getH(){
+	return(h);
+}
+
+float Rect::getW(){
+	return(w);
+}
 
 
 void Rect::setR(float r){

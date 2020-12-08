@@ -3,19 +3,16 @@
 
 #include <vector>
 #include "GlutApp.h"
-#include "FbFboard.h"
-#include "Help.h"
-#include "Display.h"
-#include "WinState.h"
+#include "Game.h"
+#include "TitleScreen.h"
 
 class App: public GlutApp {
 
 private:
 
-    FbFboard* playerBoard;
-    Help* hintBoard;
-    Display* display;
-    WinState* hasWon;
+    Game* game;
+    TitleScreen* titleScreen;
+
 
 public:
 

@@ -3,6 +3,8 @@
 #include "Tile.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
+
 
 
 class FbFboard {
@@ -32,8 +34,6 @@ public:
     FbFboard();
 
     FbFboard(char answerKey[5][5],float x, float y, float sideLength, float tR, float tG, float tB);
-
-    //void reset();
 
     bool isWin() const;
 

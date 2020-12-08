@@ -1,5 +1,5 @@
 #include "FbFboard.h"
-#include <iostream>
+
 
 
 FbFboard::FbFboard(){
@@ -55,19 +55,9 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength, floa
 
 }
 
-/*
-//PRETTY SURE EVERYTHING WORKS IF THIS IS
-//resets the gameboard
-void FbFboard::reset(){
-    
-    for(auto i = fbf.begin(); i != fbf.end(); i++){
-        (*i)->SetClaimedBy('e');
-    }
-    
-}
-*/
 
 
+//Checks to see if the answerKey 'c' values are the same as the player c values
 bool FbFboard::isWin() const{
 
     int curTile = 0;
@@ -80,9 +70,8 @@ bool FbFboard::isWin() const{
         }
     }
     return true;
-
-
 }
+
 
 
 void FbFboard::draw() const{
@@ -92,12 +81,14 @@ void FbFboard::draw() const{
 }
 
 
+
 bool FbFboard::isClicked(float x, float y) const{
 	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
 }
 
 
 
+//Left click claims a space
 void FbFboard::leftMouseDown(float mx, float my){
 
     for(auto i = fbf.begin(); i != fbf.end(); i++){
@@ -106,9 +97,12 @@ void FbFboard::leftMouseDown(float mx, float my){
         else if ((*i)->contains(mx,my))
             (*i)->SetClaimedBy('c');
     }
-
 }
 
+
+
+//Right click marks a space as 'x'
+//Note: has no impace on game, solely used as a note for the player
 void FbFboard::rightMouseDown(float mx, float my){
 
     for(auto i = fbf.begin(); i != fbf.end(); i++){
@@ -119,6 +113,11 @@ void FbFboard::rightMouseDown(float mx, float my){
     }
 }
 
+
+
+//Once the player has accurately completed a board
+//We want the board to display only the correct answers
+//and not the x's
 void FbFboard::finalBoard(){
 
     for(auto i = fbf.begin(); i != fbf.end(); i++){
@@ -132,7 +131,12 @@ void FbFboard::finalBoard(){
 
 
 FbFboard::~FbFboard(){
+
     for(auto i = fbf.begin(); i != fbf.end(); i++){
+        delete *i;
+    }
+
+    for(auto i = keyVec.begin(); i != keyVec.end(); i++){
         delete *i;
     }
 }

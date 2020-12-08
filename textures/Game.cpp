@@ -84,7 +84,6 @@ void Game::leftMouseDown(float mx, float my){
     //Since resetting the board impacts both the TitleScreen and Game, 
     //We use a variable that will be checked in App
     else if(hasWon->restartClicked(mx,my)){
-        //playerBoard->reset();
         wantsReset = true;    
     }
 

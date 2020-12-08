@@ -44,8 +44,8 @@ SideBar::SideBar(float x, float y){
     tG = 1;
     tB = 1;
 
-    helpBox = new WordRect(x,y, w,h,1,0,0,"Controls",true);
-    divide = new Rect(x,y, w,h,1,0,0);
+    helpBox = new WordRect(x,y+0.075, w,h,1,0,0,"Controls",true);
+    divide = new Rect(x,y*0.875+0.075,w,h*0.125,0,0,1);
      
 }
 

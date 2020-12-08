@@ -10,7 +10,7 @@ Display::Display(){
 
     titleCard = new TexRect("titleCard.png",-0.5,titleY,1,titleH);
     subName = new TexRect("byTyler.png",-0.5,titleY-titleH,1,titleH);
-    leftBar = new SideBar(0.916666667,0.75);
+    leftBar = new SideBar();
 
 
    
@@ -27,7 +27,7 @@ Display::Display(float titleX, float titleY, float titleW, float titleH){
 
     titleCard = new TexRect("titleCard.png",-0.5,titleY,1,titleH);
     subName = new TexRect("byTyler.png",-0.25,titleY-titleH-0.01,0.5,titleH*0.5);
-    leftBar = new SideBar();
+    leftBar = new SideBar(-0.916666667,0.65);
 
 
 

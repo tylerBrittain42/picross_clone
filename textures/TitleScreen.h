@@ -15,7 +15,7 @@ private:
     float g;
     float b;
 
-
+    //text Colors
     float tR;
     float tG;
     float tB;

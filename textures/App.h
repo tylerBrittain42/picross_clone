@@ -1,7 +1,6 @@
 #ifndef App_h
 #define App_h
 
-#include <vector>
 #include "GlutApp.h"
 #include "Game.h"
 #include "TitleScreen.h"
@@ -13,7 +12,7 @@ private:
     Game* game;
     TitleScreen* titleScreen;
 
-    //A part of app because it is needed by both game and titlescreen
+    //A part of App because it is needed by both game and titlescreen
     int currLvl;
 
 

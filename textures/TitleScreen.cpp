@@ -82,24 +82,26 @@ int TitleScreen::getLevel(){
 }
 
 
+//ADD IN IF I NEED ANIMATIONS
+//REMOVE IF I DO NOT 
 
-void TitleScreen::idle(){
+// void TitleScreen::idle(){
     
-    // if(hasHitBounds(start)){
+//     // if(hasHitBounds(start)){
 
-    //    // if(curX){
-    //         velX *= -1;
-    //    // else
-    //         velY *= -1;
-    //     curX = !curX;
+//     //    // if(curX){
+//     //         velX *= -1;
+//     //    // else
+//     //         velY *= -1;
+//     //     curX = !curX;
 
-    // }
+//     // }
 
-    // start->incX(velX);
-    // start->incY(velX);
+//     // start->incX(velX);
+//     // start->incY(velX);
 
 
-}
+// }
 
 void TitleScreen::setStartGame(bool startGame){
     this->startGame = startGame;

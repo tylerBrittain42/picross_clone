@@ -40,6 +40,7 @@ void Game::draw() const{
         display->draw();
     }
     else{
+        playerBoard->finalBoard();
         hasWon->draw();   
     }
 }

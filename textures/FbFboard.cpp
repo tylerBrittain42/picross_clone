@@ -113,6 +113,18 @@ void FbFboard::rightMouseDown(float mx, float my){
     }
 }
 
+void FbFboard::finalBoard(){
+
+    for(auto i = fbf.begin(); i != fbf.end(); i++){
+        if ((*i)->getClaimedBy() == 'x'){
+            (*i)->SetClaimedBy('e');
+        }
+    }
+
+}
+
+
+
 FbFboard::~FbFboard(){
     for(auto i = fbf.begin(); i != fbf.end(); i++){
         delete *i;

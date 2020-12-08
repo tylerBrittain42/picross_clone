@@ -42,5 +42,7 @@ public:
 
     void rightMouseDown(float mx, float my);
 
+    void finalBoard();
+
     ~FbFboard();
 };

@@ -1,14 +1,11 @@
 #include "Help.h"
-#include <iostream>
-#include <algorithm>
-#include <string>
+
 
 
 Help::Help(){
-    
-   std::cout << "WARNING: no puzzle given";
 
-    
+   std::cout << "WARNING: no puzzle given" << std::endl;;    
+
 };
 
 Help::Help(char key[5][5], float x, float y, float sideLength,float r, float g, float b){
@@ -21,6 +18,7 @@ Help::Help(char key[5][5], float x, float y, float sideLength,float r, float g, 
     }
 
 
+
     this->sideLength = sideLength;
     this->x = x;
     this->y = y;
@@ -29,12 +27,13 @@ Help::Help(char key[5][5], float x, float y, float sideLength,float r, float g, 
     this->g = g;
     this->b = b;
 
-   
 
 
     //Creates hint arrays for each
     generateLeftHints();
 
+    //resets the values of curX and curY before generating 
+    //top hints
     curX = x + (4 *(sideLength+0.01));
     curY = (y + sideLength) + 0.05/3;
     
@@ -43,9 +42,9 @@ Help::Help(char key[5][5], float x, float y, float sideLength,float r, float g, 
 };
 
 
-//Calculates the numeric values needed for each hint tile
-void Help::calculateLeftValues(){
 
+//Calculates the numeric values needed for each left hint tile
+void Help::calculateLeftValues(){
 
     std::vector<int> curRow;
     int count = 0;
@@ -88,8 +87,6 @@ void Help::generateLeftHints(){
 
     calculateLeftValues();
 
-    //figure out how to reverse this formula
-    //curX = (x - sideLength*3) - 0.05;
     curY = y;
     curX = -0.18;
 
@@ -111,8 +108,9 @@ void Help::generateLeftHints(){
     }
 }
 
-
-
+//Top methods are similar to Left methods
+//Only slight modifications because we are working
+//With a 3x5 rather than a 5x3
 void Help::calculateTopValues(){
 
     int count = 0;
@@ -150,10 +148,7 @@ void Help::calculateTopValues(){
         curCol.clear();
         count = 0;
     }
-
-
 }
-
 
 void Help::generateTopHints(){
 
@@ -179,8 +174,6 @@ void Help::generateTopHints(){
 
 
 
-
-
 void Help::draw() const{
 
    for(int i = 0; i < leftHints.size(); i++){
@@ -196,6 +189,8 @@ void Help::draw() const{
 
 
 }
+
+
 
 Help::~Help(){
     
@@ -216,9 +211,3 @@ Help::~Help(){
     }
 
 };
-
-
-
-
-
-

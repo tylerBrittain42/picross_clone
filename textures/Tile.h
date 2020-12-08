@@ -2,9 +2,14 @@
 #define TILE_H
 
 #include "Rect.h"
+#include "GlutApp.h"
+
+
 
 class Tile:Rect{
+
 private:
+
 	char claimedBy;
 	
 

@@ -3,13 +3,16 @@
 Display::Display(){
 
     titleX = -0.25;
-    titleY = 0.925;
+    titleY = 0.975;
     titleW = 0.5;
-    titleH = 0.1;
+    titleH = 0.14269535673839184;
 
-    gameName = new Button(titleX,titleY,titleW,titleH,1,1,1,"Picross",true);
-    subName = new Button(titleX,titleY - titleH,titleW,titleH,1,1,0,"subName",true);
-    leftBar = new SideBar(0.916666667,0.75);
+
+    titleCard = new TexRect("titleCard.png",-0.5,titleY,1,titleH);
+    subName = new TexRect("byTyler.png",-0.5,titleY-titleH,1,titleH);
+    leftBar = new SideBar();
+
+
    
 }
 
@@ -22,9 +25,9 @@ Display::Display(float titleX, float titleY, float titleW, float titleH){
     this->titleW = titleW;
     this->titleH = titleH;
 
-    gameName = new Button(titleX,titleY,titleW,titleH,1,1,1,"Picross",true);
-    subName = new Button(titleX,titleY - titleH,titleW,titleH,1,1,0,"subName",true);
-    leftBar = new SideBar();
+    titleCard = new TexRect("titleCard.png",-0.5,titleY,1,titleH);
+    subName = new TexRect("byTyler.png",-0.25,titleY-titleH-0.01,0.5,titleH*0.5);
+    leftBar = new SideBar(-0.916666667,0.65);
 
 
 
@@ -33,7 +36,7 @@ Display::Display(float titleX, float titleY, float titleW, float titleH){
 
 void Display::draw() const{
     
-    gameName->draw();
+    titleCard->draw();
     subName->draw();
     leftBar->draw();
     
@@ -41,10 +44,10 @@ void Display::draw() const{
 }
 
 Display::~Display(){
-    delete gameName;
+
     delete leftBar;
     delete subName;
-
+    delete titleCard;
 
 }
 

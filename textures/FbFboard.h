@@ -3,6 +3,8 @@
 #include "Tile.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
+
 
 
 class FbFboard {
@@ -20,6 +22,10 @@ private:
     float curY;
     int currHint;
 
+    float tR;
+    float tG;
+    float tB;
+
     std::vector<char*> keyVec;
     std::vector<Tile*> fbf;
 
@@ -27,9 +33,7 @@ private:
 public:
     FbFboard();
 
-    FbFboard(char answerKey[5][5],float x, float y, float sideLength);
-
-    void reset();
+    FbFboard(char answerKey[5][5],float x, float y, float sideLength, float tR, float tG, float tB);
 
     bool isWin() const;
 
@@ -41,6 +45,8 @@ public:
 
 
     void rightMouseDown(float mx, float my);
+
+    void finalBoard();
 
     ~FbFboard();
 };

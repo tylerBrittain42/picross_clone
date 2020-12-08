@@ -1,6 +1,5 @@
 #include "Tile.h"
-#include "GlutApp.h"
-#include <cmath> 
+
 
 /*Tile represents a single picross tile.
  *claimedBY values indicate the choice that the user has made regarding the tile
@@ -11,9 +10,7 @@
  *Since tiles are squares, height and width are both represensented by a single length value called l
 */
 
-//Default contructor 
 Tile::Tile():Rect(0,0,0.5,0.5,1,0,0){
-
 	claimedBy = 'e';
 }
 
@@ -62,10 +59,10 @@ void Tile::drawC() const{
 
 	glBegin(GL_POLYGON);
 
-	glVertex2f((x + std::abs(w*0.05)), (y - std::abs(w*0.05)));
-	glVertex2f((x+w - std::abs(w*0.05)), (y - std::abs(w*0.05)));
-	glVertex2f((x+w - std::abs(w*0.05)), ((y-w) + std::abs(w*0.05)));
-	glVertex2f((x + std::abs(w*0.05)), (y-w) + std::abs(w*0.05));
+	glVertex2f((x + (w*0.05)), (y - (w*0.05)));
+	glVertex2f((x+w - (w*0.05)), (y - (w*0.05)));
+	glVertex2f((x+w - (w*0.05)), ((y-w) + (w*0.05)));
+	glVertex2f((x + (w*0.05)), (y-w) + (w*0.05));
 	glEnd();
 	
 }

@@ -26,8 +26,15 @@ public:
 
 	void setY(float y);
 	float getY() const;
+
 	float getX() const;
 	void setX(float x);
+
+	void incX(float x);
+	void incY(float y);
+
+	float getH();
+	float getW();
 
 	void setR(float r);
 	void setG(float g);

@@ -2,12 +2,16 @@
 
 #include "WordRect.h"
 #include <vector>
+#include <iostream>
+#include <algorithm>
+#include <string>
+
 
 class Help{
 
 private:
 
-    //testing 2d vectors with left first
+    //We are using vectors of vectors to better represent the 2d grids
     std::vector<std::vector<int>> leftVal;
     std::vector<std::vector<WordRect*>> leftHints;
 

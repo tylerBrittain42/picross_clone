@@ -3,6 +3,7 @@
 
 #include "Rect.h"
 #include <string>
+#include <iostream>
 
 class WordRect:Rect{
 
@@ -10,6 +11,10 @@ private:
 
     int widthh = 640;
 	std::string text;
+
+    float tR;
+    float tG;
+    float tB;
 
 protected:
 
@@ -20,6 +25,7 @@ public:
 	WordRect();
 	WordRect(float x, float y, float side, float r, float g, float b, std::string text, bool isCentered);
     WordRect(float x, float y, float w, float h, float r, float g, float b, std::string text, bool isCentered);
+    WordRect(float x, float y, float w, float h, float r, float g, float b, float tR, float tG, float tB, std::string text, bool isCentered);
 
 	void draw() const;
 

@@ -23,11 +23,11 @@ TitleScreen::TitleScreen(){
     bW = 0.25;
     bH = 0.25;
 
-    levels.push_back(new Button(bX,bY,bW,bH,r,g,b,tR,tB,tG,"One", true));
-    levels.push_back(new Button(bX + (bW*2),bY,bW,bH,r,g,b,tR,tB,tG,"Two", true));
+    levels.push_back(new Button(bX,bY,bW,bH,r,g,b,tR,tB,tG,"One"));
+    levels.push_back(new Button(bX + (bW*2),bY,bW,bH,r,g,b,tR,tB,tG,"Two"));
     
-    levels.push_back(new Button(bX,bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Three", true));
-    levels.push_back(new Button(bX + (bW*2),bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Four", true));
+    levels.push_back(new Button(bX,bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Three"));
+    levels.push_back(new Button(bX + (bW*2),bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Four"));
 
     titleCard = new TexRect("titleCard.png",-0.5,0.25,1,0.14269535673839184);
 
@@ -58,11 +58,11 @@ TitleScreen::TitleScreen(float r, float g, float b, float tR, float tG, float tB
     bW = 0.25;
     bH = 0.25;
 
-    levels.push_back(new Button(bX,bY,bW,bH,r,g,b,tR,tB,tG,"One", true));
-    levels.push_back(new Button(bX + (bW*2),bY,bW,bH,r,g,b,tR,tB,tG,"Two", true));
+    levels.push_back(new Button(bX,bY,bW,bH,r,g,b,tR,tB,tG,"One"));
+    levels.push_back(new Button(bX + (bW*2),bY,bW,bH,r,g,b,tR,tB,tG,"Two"));
     
-    levels.push_back(new Button(bX,bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Three", true));
-    levels.push_back(new Button(bX + (bW*2),bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Four", true));
+    levels.push_back(new Button(bX,bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Three"));
+    levels.push_back(new Button(bX + (bW*2),bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Four"));
 
     titleCard = new TexRect("titleCard.png",-0.5,0.25,1,0.14269535673839184);
 

@@ -42,10 +42,10 @@ WinState::WinState(float x, float y, float s, float r, float g, float b){
 void WinState::createComponents(float x, float y, float s, float r, float g, float b,float tR, float tG, float tB){
 
     //play again
-    buttons.push_back(new Button(x,y,s,s,r,g,b,tR,tG,tB,"Play Again?",true));
+    buttons.push_back(new Button(x,y,s,s,r,g,b,tR,tG,tB,"Play Again?"));
 
     //exit
-    buttons.push_back(new Button(x,y - s - 0.04,s,s,r,g,b,tR,tG,tB,"Exit",true));
+    buttons.push_back(new Button(x,y - s - 0.04,s,s,r,g,b,tR,tG,tB,"Exit"));
 
     winText = new TexRect("victoryText.png",-1,1.25,2,2);
 

@@ -9,10 +9,12 @@
 
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
-    titleScreen = new TitleScreen();
+    titleScreen = new TitleScreen(0.26,0.22,0.21,0.51,0.44,0.43);
     game = new Game();
 
 } 
+
+
 
 //We will draw the title screen until the user has selected a level
 //(Note: selecting a level will set startGame to true)
@@ -26,6 +28,8 @@ void App::draw() const {
         game->draw();
     }
 }
+
+
 
 //We want to be able to exit the application regardless of the current state
 void App::keyDown(unsigned char key, float x, float y){
@@ -64,7 +68,8 @@ void App::rightMouseDown(float mx, float my) {
     redraw();
 }
 
-//
+
+
 void App::idle(){
     //ONLY ADD THIS LINE BACK IN IF I NEED PROOF OF ANIMATION
     //titleScreen->idle();
@@ -77,6 +82,7 @@ void App::idle(){
     }
     redraw();
 }
+
 
 
 App::~App(){   

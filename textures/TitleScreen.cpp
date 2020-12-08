@@ -1,5 +1,5 @@
 #include "TitleScreen.h"
-#include <iostream>
+
 
 
 TitleScreen::TitleScreen(){
@@ -23,7 +23,6 @@ TitleScreen::TitleScreen(){
     bW = 0.25;
     bH = 0.25;
 
-    //start = new Button(0,0,0.25,0.25,r,g,b,tR,tB,tG,"Start", true);
     levels.push_back(new Button(bX,bY,bW,bH,r,g,b,tR,tB,tG,"One", true));
     levels.push_back(new Button(bX + (bW*2),bY,bW,bH,r,g,b,tR,tB,tG,"Two", true));
     
@@ -34,24 +33,60 @@ TitleScreen::TitleScreen(){
 
     startGame = false;
 
+}
+
+//We are only passing in colors because the titleScreen should always remain in the same position,
+//but we may want to alter the color scheme
+TitleScreen::TitleScreen(float r, float g, float b, float tR, float tG, float tB){
+
+    curX = false;
+
+    this->r = r;
+    this->g = g;
+    this->b = b;
 
 
+    this->tR = tR;
+    this->tG = tG;
+    this->tB = tB;
+
+    velX = 0.02;
+    velY = -0.065;
+
+    bX = -0.35;
+    bY = 0;
+    bW = 0.25;
+    bH = 0.25;
+
+    levels.push_back(new Button(bX,bY,bW,bH,r,g,b,tR,tB,tG,"One", true));
+    levels.push_back(new Button(bX + (bW*2),bY,bW,bH,r,g,b,tR,tB,tG,"Two", true));
+    
+    levels.push_back(new Button(bX,bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Three", true));
+    levels.push_back(new Button(bX + (bW*2),bY-(bH*1.5),bW,bH,r,g,b,tR,tB,tG,"Four", true));
+
+    titleCard = new TexRect("titleCard.png",-0.5,0.25,1,0.14269535673839184);
+
+    startGame = false;
 
 }
+
+
 
 void TitleScreen::draw() const{
 
     titleCard->draw();
+
     for(auto i = levels.begin(); i != levels.end(); i++){
         (*i)->draw();
     }
 
 }
 
+//Once a level is clicked we set curLvl equal to that level 
+//as well as trigger the start of the level
+//NOTE: we use i + 1 rather than i because our levels are labeled
+//from 1 through 4 rather than 0 through 3
 void TitleScreen::leftMouseDown(float mx, float my){
-    // if(start->isClicked(mx,my)){
-    //     startGame = true;
-    // }
 
     for(int i = 0; i < levels.size(); i++){
         if ((levels.at(i))->isClicked(mx,my)){
@@ -62,9 +97,20 @@ void TitleScreen::leftMouseDown(float mx, float my){
 
 }
 
+
+
 bool TitleScreen::getStartGame(){
     return(startGame);
 }
+
+void TitleScreen::setStartGame(bool startGame){
+    this->startGame = startGame;
+}
+
+int TitleScreen::getLevel(){
+    return(curLvl);
+}
+
 
 
 bool TitleScreen::hasHitBounds(Button* checkee){
@@ -77,9 +123,6 @@ bool TitleScreen::hasHitBounds(Button* checkee){
 
 }
 
-int TitleScreen::getLevel(){
-    return(curLvl);
-}
 
 
 //ADD IN IF I NEED ANIMATIONS
@@ -103,9 +146,6 @@ int TitleScreen::getLevel(){
 
 // }
 
-void TitleScreen::setStartGame(bool startGame){
-    this->startGame = startGame;
-}
 
 
 TitleScreen::~TitleScreen(){

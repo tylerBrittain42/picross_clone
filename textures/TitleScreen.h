@@ -3,6 +3,7 @@
 #include "Button.h"
 #include "TexRect.h"
 #include <vector>
+#include <iostream>
 
 class TitleScreen{
 
@@ -15,7 +16,7 @@ private:
     float g;
     float b;
 
-    //text Colors
+    //text colors
     float tR;
     float tG;
     float tB;
@@ -40,6 +41,7 @@ private:
 public:
     TitleScreen();
 
+    TitleScreen(float r, float g, float b, float tR, float tG, float tB);
     void draw() const;
 
     void leftMouseDown(float mx, float my);
@@ -48,11 +50,11 @@ public:
 
     void setStartGame(bool startGame);
 
+    int getLevel();
+
     bool hasHitBounds(Button* checkee);
 
     void idle();
-
-    int getLevel();
 
     ~TitleScreen();
 

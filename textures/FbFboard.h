@@ -20,6 +20,10 @@ private:
     float curY;
     int currHint;
 
+    float tR;
+    float tG;
+    float tB;
+
     std::vector<char*> keyVec;
     std::vector<Tile*> fbf;
 
@@ -27,9 +31,9 @@ private:
 public:
     FbFboard();
 
-    FbFboard(char answerKey[5][5],float x, float y, float sideLength);
+    FbFboard(char answerKey[5][5],float x, float y, float sideLength, float tR, float tG, float tB);
 
-    void reset();
+    //void reset();
 
     bool isWin() const;
 

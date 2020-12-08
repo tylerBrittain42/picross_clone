@@ -14,7 +14,7 @@ Game::Game(){
     key = new Keys(); 
     genKey();
 
-    playerBoard = new FbFboard(answerKey,-0,0,0.15);
+    playerBoard = new FbFboard(answerKey,-0,0,0.15,0.51,0.44,0.43);
     hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     display = new Display(-0.25,0.975,0.5,0.14269535673839184);
     hasWon = new WinState();
@@ -36,7 +36,7 @@ void Game::UpdateKey(int currKey){
 
     genKey();
 
-    playerBoard = new FbFboard(answerKey,-0,0,0.15);
+    playerBoard = new FbFboard(answerKey,-0,0,0.15,0.51,0.44,0.43);
     hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     
 }
@@ -84,7 +84,7 @@ void Game::leftMouseDown(float mx, float my){
     //Since resetting the board impacts both the TitleScreen and Game, 
     //We use a variable that will be checked in App
     else if(hasWon->restartClicked(mx,my)){
-        playerBoard->reset();
+        //playerBoard->reset();
         wantsReset = true;    
     }
 

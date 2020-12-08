@@ -21,10 +21,7 @@ FbFboard::FbFboard(){
 
 }
 
-FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
-
-    w = 0.79;
-    h = 0.79;
+FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength, float tR, float tG, float tB){
 
     //Copying answerkey
     for(int i = 0; i < 5; i++){
@@ -33,7 +30,13 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
         }
     }
 
-    
+    w = 0.79;
+    h = 0.79;
+
+    this->tR = tR;
+    this->tG = tG;
+    this->tB = tB;
+
     this->sideLength = sideLength;
     curX = x;
     curY = y;
@@ -43,7 +46,7 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
     //Creating playerboard
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(curX,curY,sideLength,0.51,0.44,0.43));
+            fbf.push_back(new Tile(curX,curY,sideLength,tR,tG,tB));
             curX = curX + (sideLength + 0.01);
         }
         curX = x;
@@ -52,6 +55,8 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
 
 }
 
+/*
+//PRETTY SURE EVERYTHING WORKS IF THIS IS
 //resets the gameboard
 void FbFboard::reset(){
     
@@ -60,6 +65,7 @@ void FbFboard::reset(){
     }
     
 }
+*/
 
 
 bool FbFboard::isWin() const{

@@ -9,11 +9,15 @@ WinState::WinState(){
     y = 0.25;
     s = 0.4;
 
-    r = 1;
-    g = 1;
-    b = 1;
+    r = 0.51;
+    g = 0.44;
+    b = 0.43;
 
-    createComponents(x,y,s,r,g,b);
+    tR = 1;
+    tG = 1;
+    tB = 1;
+
+    createComponents(x,y,s,r,g,b,tR,tG,tB);
 
         
 }
@@ -28,20 +32,20 @@ WinState::WinState(float x, float y, float s, float r, float g, float b){
     this->g = g;
     this->b = b;
 
-    createComponents(x,y,s,r,g,b);
+    createComponents(x,y,s,r,g,b,tR,tG,tB);
     
 
 }
 
 
 
-void WinState::createComponents(float x, float y, float s, float r, float g, float b){
+void WinState::createComponents(float x, float y, float s, float r, float g, float b,float tR, float tG, float tB){
 
     //play again
-    buttons.push_back(new Button(x,y,s,s,r,g,b,"Play Again?",true));
+    buttons.push_back(new Button(x,y,s,s,r,g,b,tR,tG,tB,"Play Again?",true));
 
     //exit
-    buttons.push_back(new Button(x,y - s - 0.04,s,s,r,g,b,"Exit",true));
+    buttons.push_back(new Button(x,y - s - 0.04,s,s,r,g,b,tR,tG,tB,"Exit",true));
 
     winText = new TexRect("victoryText.png",-1,1.25,2,2);
 

@@ -43,7 +43,7 @@ FbFboard::FbFboard(char answerKey[5][5],float x, float y, float sideLength){
     //Creating playerboard
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
-            fbf.push_back(new Tile(curX,curY,sideLength,1,0,0));
+            fbf.push_back(new Tile(curX,curY,sideLength,0.51,0.44,0.43));
             curX = curX + (sideLength + 0.01);
         }
         curX = x;

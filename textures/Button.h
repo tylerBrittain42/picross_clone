@@ -11,6 +11,10 @@ private:
 	bool isCentered;
 	std::string text;
 
+    float tR;
+    float tG;
+    float tB;
+
 
 public:
 
@@ -21,6 +25,8 @@ public:
     Button(float x, float y, float w, float h, std::string text, bool);
 
 	Button(float x, float y, float w, float h, float r, float g, float b, std::string text, bool);
+
+    Button(float x, float y, float w, float h, float r, float g, float b, float tR, float tG, float tB, std::string text, bool);
 
 	void draw();
 

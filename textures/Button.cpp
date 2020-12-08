@@ -28,6 +28,10 @@ Button::Button(float x, float y, float w, float h, bool isCentered):Rect(x,y,w,h
     text = "";
     this->isCentered = isCentered;
 
+    tR = 1;
+    tG = 1;
+    tB = 1;
+
 
 }
 
@@ -36,6 +40,10 @@ Button::Button(float x, float y, float w, float h, std::string text, bool isCent
 
     this->text = text;
     this->isCentered = isCentered;
+
+    tR = 1;
+    tG = 1;
+    tB = 1;
 
 
 }
@@ -46,9 +54,27 @@ Button::Button(float x, float y, float w, float h, float r, float g, float b, st
     this->text = text;
     this->isCentered = isCentered;
 
+    tR = 1;
+    tG = 1;
+    tB = 1;
+
 
 
 }
+
+
+Button::Button(float x, float y, float w, float h, float r, float g, float b, float tR, float tG, float tB, std::string text, bool):Rect(x,y,w,h,r,g,b){
+
+    this->text = text;
+    this->isCentered = isCentered;
+
+    this->tR = tR;
+    this->tG = tG;
+    this->tB = tB;
+
+}
+
+
 
 bool Button::isClicked(float x, float y){
 	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
@@ -142,9 +168,9 @@ void Button::draw(){
 
     //renders text inside of button
     if(isCentered)
-        renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
+        renderCenterText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, tR,tG,tB);
     else if(!isCentered)
-        renderText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, 1,0,0);
+        renderText(text,x ,y-0.075, GLUT_BITMAP_TIMES_ROMAN_24, tR,tG,tB);
 
 
 }

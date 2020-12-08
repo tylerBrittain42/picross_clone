@@ -20,6 +20,10 @@ private:
     float g;
     float b;
 
+    float tR;
+    float tG;
+    float tB;
+
     
 
 public:
@@ -28,7 +32,7 @@ public:
 
     WinState(float x, float y, float s, float r, float g, float b);
 
-    void createComponents(float x, float y, float s, float r, float g, float b);
+    void createComponents(float x, float y, float s, float r, float g, float b,float tR, float tG, float tB);
 
     void draw() const;
 

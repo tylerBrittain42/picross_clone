@@ -21,7 +21,7 @@ Game::Game(){
                             {'e','c','c','c','e'}}; 
 
     playerBoard = new FbFboard(answerKey,-0,0,0.15);
-    hintBoard = new Help(answerKey,0,0,0.15,0,0,1);
+    hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     display = new Display(-0.25,0.975,0.5,0.14269535673839184);
     hasWon = new WinState();
 

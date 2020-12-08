@@ -31,14 +31,6 @@ public:
 
     Game();
 
-    void draw() const;
-    
-    void leftMouseDown(float mx, float my);
-
-    void rightMouseDown(float mx, float my);
-
-    void idle();
-
     void genKey();
 
     void UpdateKey(int currKey);
@@ -46,6 +38,12 @@ public:
     bool getWantsReset();
 
     void setWantsReset(bool wantsReset);
+
+    void draw() const;
+    
+    void leftMouseDown(float mx, float my);
+
+    void rightMouseDown(float mx, float my);
     
     ~Game();
 

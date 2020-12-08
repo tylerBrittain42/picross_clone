@@ -16,8 +16,7 @@ private:
 
     TexRect* titleCard;
     SideBar* leftBar;
-    Button* gameName;
-    Button* subName;
+    TexRect* subName;
 
 public:
     Display();

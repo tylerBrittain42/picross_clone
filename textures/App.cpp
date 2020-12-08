@@ -34,6 +34,8 @@ void App::leftMouseDown(float mx, float my) {
     
     if(!titleScreen->getStartGame()){
         titleScreen->leftMouseDown(mx,my);
+        currLvl = titleScreen->getLevel();
+        game->UpdateKey(currLvl);
     }
 
     else{

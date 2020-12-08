@@ -2,16 +2,35 @@
 
 #include "Button.h"
 #include "TexRect.h"
+#include <vector>
 
 class TitleScreen{
 
 private:
 
     bool curX;
+    int curLvl;
 
-    Button* start;
+    float r;
+    float g;
+    float b;
+
+
+    float tR;
+    float tG;
+    float tB;
+
+    //button coordinates
+    float bX;
+    float bY;
+    float bW;
+    float bH;
+
+    //Button* start;
 
     TexRect* titleCard;
+
+    std::vector<Button*> levels;
 
     bool startGame;
 
@@ -30,6 +49,8 @@ public:
     bool hasHitBounds(Button* checkee);
 
     void idle();
+
+    int getLevel();
 
     ~TitleScreen();
 

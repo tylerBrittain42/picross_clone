@@ -92,9 +92,40 @@ void Game::genKey(){
                 }
             }
             break;
+
+        case 3:
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++){
+                    answerKey[i][j] = key->keyThree[i][j];
+                }
+            }
+            break;
+
+        case 4:
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++){
+                    answerKey[i][j] = key->keyFour[i][j];
+                }
+            }
+            break;
     }
 
 }
+
+void Game::UpdateKey(int currKey){
+    this->currKey = currKey;
+
+
+    delete playerBoard;
+    delete hintBoard;
+
+    genKey();
+
+    playerBoard = new FbFboard(answerKey,-0,0,0.15);
+    hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
+    
+}
+
 
 
 

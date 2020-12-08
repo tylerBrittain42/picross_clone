@@ -13,6 +13,9 @@ private:
     Game* game;
     TitleScreen* titleScreen;
 
+    //A part of app because it is needed by both game and titlescreen
+    int currLvl;
+
 
 public:
 

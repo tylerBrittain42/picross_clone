@@ -39,6 +39,8 @@ public:
     void idle();
 
     void genKey();
+
+    void UpdateKey(int currKey);
     
     ~Game();
 

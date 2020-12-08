@@ -22,6 +22,7 @@ private:
     int currKey;
     char answerKey[5][5];
 
+    bool wantsReset;
 
 
 
@@ -41,6 +42,10 @@ public:
     void genKey();
 
     void UpdateKey(int currKey);
+
+    bool getWantsReset();
+
+    void setWantsReset(bool wantsReset);
     
     ~Game();
 

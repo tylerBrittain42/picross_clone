@@ -46,6 +46,8 @@ public:
 
     bool getStartGame();
 
+    void setStartGame(bool startGame);
+
     bool hasHitBounds(Button* checkee);
 
     void idle();

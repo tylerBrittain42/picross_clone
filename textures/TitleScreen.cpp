@@ -101,6 +101,11 @@ void TitleScreen::idle(){
 
 }
 
+void TitleScreen::setStartGame(bool startGame){
+    this->startGame = startGame;
+}
+
+
 TitleScreen::~TitleScreen(){
 
     for(auto i = levels.begin(); i != levels.end(); i++){

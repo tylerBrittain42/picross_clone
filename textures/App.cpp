@@ -31,13 +31,11 @@ void App::keyDown(unsigned char key, float x, float y){
 
 void App::leftMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
-    
     if(!titleScreen->getStartGame()){
         titleScreen->leftMouseDown(mx,my);
         currLvl = titleScreen->getLevel();
         game->UpdateKey(currLvl);
     }
-
     else{
         game->leftMouseDown(mx,my);
     }
@@ -47,7 +45,6 @@ void App::leftMouseDown(float mx, float my) {
 
 void App::rightMouseDown(float mx, float my) {
 	// Convert from Window to Scene coordinates
-    std::cout<<titleScreen->getStartGame()<<std::endl;
     if(titleScreen->getStartGame()){
         game->rightMouseDown(mx,my);
     }
@@ -57,6 +54,10 @@ void App::rightMouseDown(float mx, float my) {
 
 void App::idle(){
     titleScreen->idle();
+    if(game->getWantsReset()){
+        titleScreen->setStartGame(false);
+        game->setWantsReset(false);
+    }
     redraw();
 }
 

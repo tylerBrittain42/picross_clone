@@ -26,6 +26,8 @@ Game::Game(){
     display = new Display(-0.25,0.975,0.5,0.14269535673839184);
     hasWon = new WinState();
 
+    wantsReset = false;
+
 }
 
 void Game::draw() const{
@@ -55,8 +57,10 @@ void Game::leftMouseDown(float mx, float my){
     else if(hasWon->exitClicked(mx,my))
         exit(0);
     
-    else if(hasWon->restartClicked(mx,my))
+    else if(hasWon->restartClicked(mx,my)){
         playerBoard->reset();
+        wantsReset = true;    
+    }
 
     
 
@@ -126,6 +130,15 @@ void Game::UpdateKey(int currKey){
     
 }
 
+bool Game::getWantsReset(){
+    return(wantsReset);
+}
+
+void Game::setWantsReset(bool wantsReset){
+    
+    this->wantsReset = wantsReset;
+
+}
 
 
 

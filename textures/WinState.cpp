@@ -1,5 +1,4 @@
 #include "WinState.h"
-#include <iostream>
 
 
 
@@ -34,7 +33,6 @@ WinState::WinState(float x, float y, float s, float r, float g, float b){
 
     createComponents(x,y,s,r,g,b,tR,tG,tB);
     
-
 }
 
 
@@ -52,6 +50,7 @@ void WinState::createComponents(float x, float y, float s, float r, float g, flo
 }
 
 
+
 void WinState::draw() const{
     
     winText->draw();
@@ -62,6 +61,7 @@ void WinState::draw() const{
 }
 
 
+
 bool WinState::exitClicked(float mx, float my){
 
     if(buttons.at(1)->isClicked(mx,my))
@@ -70,6 +70,8 @@ bool WinState::exitClicked(float mx, float my){
 
 }
 
+
+
 bool WinState::restartClicked(float mx, float my){
 
     if(buttons.at(0)->isClicked(mx,my))
@@ -77,8 +79,6 @@ bool WinState::restartClicked(float mx, float my){
     return(false);
 
 }
-
-
 
 
 

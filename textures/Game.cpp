@@ -2,29 +2,29 @@
 
 #pragma once
 
-#include <vector>
-#include "FbFboard.h"
-#include "Help.h"
-#include "Display.h"
-#include "WinState.h"
+
+
+
+
+
+
+#include <iostream>
+
 
 
 
 Game::Game(){
 
+    currKey = 1;
 
-    Rect* Test = new Rect (0.1,0.1,0.1,0.1,1,1);
-    char answerKey[5][5] = {{'e','c','e','c','c'},
-                            {'c','c','e','c','e'},
-                            {'e','b','e','e','e'},
-                            {'c','e','e','e','c'}, 
-                            {'e','c','c','c','e'}}; 
+    key = new Keys(); 
+
+    genKey();
 
     playerBoard = new FbFboard(answerKey,-0,0,0.15);
     hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     display = new Display(-0.25,0.975,0.5,0.14269535673839184);
     hasWon = new WinState();
-
 
 }
 
@@ -72,6 +72,32 @@ void Game::idle(){
 
 }
 
+
+void Game::genKey(){
+
+
+    switch (currKey) {
+
+        case 1:
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++){
+                    answerKey[i][j] = key->keyOne[i][j];
+                }
+            }
+            break;
+        case 2:
+            for(int i = 0; i < 5; i++){
+                for(int j = 0; j < 5; j++){
+                    answerKey[i][j] = key->keyTwo[i][j];
+                }
+            }
+            break;
+    }
+
+}
+
+
+
 Game::~Game(){
     
     
@@ -79,6 +105,7 @@ Game::~Game(){
     delete playerBoard;
     delete hintBoard;
     delete display;
+    delete key;
 
 }
 

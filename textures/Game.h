@@ -5,6 +5,7 @@
 #include "Help.h"
 #include "Display.h"
 #include "WinState.h"
+#include "Keys.cpp"
 
 class Game{
 
@@ -15,6 +16,13 @@ private:
     Help* hintBoard;
     Display* display;
     WinState* hasWon;
+    Keys* key;
+
+
+    int currKey;
+    char answerKey[5][5];
+
+
 
 
 
@@ -29,6 +37,8 @@ public:
     void rightMouseDown(float mx, float my);
 
     void idle();
+
+    void genKey();
     
     ~Game();
 

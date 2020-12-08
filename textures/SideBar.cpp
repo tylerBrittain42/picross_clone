@@ -22,10 +22,13 @@ SideBar::SideBar(){
     //textColor
     tR = 1;
     tG = 1;
-    tB = 0;
+    tB = 1;
+
+    tX = x+0.01;
+    tY = y*0.75+0.02;
 
     helpBox = new WordRect(x,y+0.075, w,h,1,0,0,"Controls",true);
-    divide = new Rect(x,y*0.875+0.075,w,h*0.125,0,0,1);
+    divide = new Rect(x,y*0.875+0.075,w,h*0.125,0.51,0.44,0.43);
 
 }
 
@@ -40,13 +43,17 @@ SideBar::SideBar(float x, float y){
     h = 0.5; 
 
     //textColor
-    tR = 1;
-    tG = 1;
-    tB = 1;
+    tR = 0.51;
+    tG = 0.44;
+    tB = 0.43;
 
-    helpBox = new WordRect(x,y+0.075, w,h,1,0,0,"Controls",true);
-    divide = new Rect(x,y*0.875+0.075,w,h*0.125,0,0,1);
-     
+    tX = x+0.01;
+    tY = y*0.75+0.02;
+
+    helpBox = new WordRect(x,y+0.075, w,h,0.26,0.22,0.21,tR,tG,tB,"Controls",true);
+    divide = new Rect(x,y*0.875+0.075,w,h*0.125,0.51,0.44,0.43);
+
+  //   ,tR,tG,tB
 }
 
 
@@ -55,8 +62,8 @@ void SideBar::draw() const{
     
     helpBox->draw();
     divide->draw();
-    renderText("mark-right click",x+0.01 ,y*0.75+0.05, GLUT_BITMAP_HELVETICA_18, tR,tG,tB);
-    renderText("flag-left click",x+0.01 ,y*0.75-0.1+0.05, GLUT_BITMAP_HELVETICA_18, tR,tG,tB);
+    renderText("mark-right click",tX,tY, GLUT_BITMAP_HELVETICA_18, tR,tG,tB);
+    renderText("flag-left click",tX,tY-0.1, GLUT_BITMAP_HELVETICA_18, tR,tG,tB);
     
 }
 

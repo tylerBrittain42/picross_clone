@@ -20,6 +20,9 @@ private:
     float tG;
     float tB;
 
+    float tX;
+    float tY;
+
     WordRect* helpBox;
     Rect* divide;
 

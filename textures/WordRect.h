@@ -3,6 +3,7 @@
 
 #include "Rect.h"
 #include <string>
+#include <iostream>
 
 class WordRect:Rect{
 

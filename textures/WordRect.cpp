@@ -1,6 +1,6 @@
 #include "WordRect.h"
 #include "GlutApp.h"
-#include <iostream>
+
 
 WordRect::WordRect():Rect(){
     

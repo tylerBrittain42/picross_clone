@@ -6,8 +6,10 @@
 #include "Display.h"
 #include "WinState.h"
 #include "Keys.cpp"
+#include "WinState.h"
+#include "State.h"
 
-class Game{
+class Game:public State{
 
 
 private:

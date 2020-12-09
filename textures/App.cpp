@@ -10,7 +10,10 @@
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
     titleScreen = new TitleScreen(0.26,0.22,0.21,0.51,0.44,0.43);
+    //only instantianting when needed
     game = new Game();
+
+
 
 } 
 
@@ -53,6 +56,9 @@ void App::leftMouseDown(float mx, float my) {
     else{
         game->leftMouseDown(mx,my);
     }
+
+    if(game->isEndState())
+        std::cout << "yes" << std::endl;
 
     redraw();
 }

@@ -7,7 +7,7 @@
 
 //We only use the default constructor because we only ever want
 //a game object constructed in this manner
-Game::Game(){
+Game::Game():State(){
 
     //Uses a default value for the initial keys to be passed to each
     currKey = 1;
@@ -86,6 +86,9 @@ void Game::leftMouseDown(float mx, float my){
     else if(hasWon->restartClicked(mx,my)){
         wantsReset = true;    
     }
+
+    if(playerBoard->isWin())
+        State::TriggerEndState();
 
     
 

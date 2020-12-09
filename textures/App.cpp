@@ -1,6 +1,8 @@
 #include <iostream>
 #include "App.h"
 
+#include <vector>
+
 
 
 //This application is made up of two states, the first state is the title screen and the second screen is the actual game. 
@@ -10,6 +12,11 @@
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
     titleScreen = new TitleScreen(0.26,0.22,0.21,0.51,0.44,0.43);
+    game = new Game();
+    game->changeState(false);
+
+    std::vector<State*> stateVec;
+    stateVec.push_back(new TitleScreen(0.26,0.22,0.21,0.51,0.44,0.43));
 
 } 
 
@@ -28,8 +35,8 @@ void App::draw() const {
         game->draw();
     }
 
-    else if(winTest->isCurrState()){
-        winTest->draw();
+    else if(winState->isCurrState()){
+        winState->draw();
     }
 
 }
@@ -47,21 +54,19 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 // Convert from Window to Scene coordinates
 
-//While the user is on the title screen, we will set the App currLvl 
-//equal to the level that the user has selected as well as update the answer key
-//for the game state. This process will repeat until the user has made avalid level selection
-    
-    
-    
-    
+
+
     if(titleScreen->isCurrState()){
 
         titleScreen->leftMouseDown(mx,my);
         
         //If the state changes to false, we know that a level has been selected
         if(!titleScreen->isCurrState()){
-            
+
             currLvl = titleScreen->getLevel();
+         
+            delete game;
+            
             game = new Game(currLvl);
 
         }
@@ -73,9 +78,11 @@ void App::leftMouseDown(float mx, float my) {
     }
 
 
-    else if(winTest->isCurrState()){
-        winTest->leftMouseDown(mx,my);
-        if(!winTest->isCurrState()){
+    else if(winState->isCurrState()){
+        
+        winState->leftMouseDown(mx,my);
+        
+        if(!winState->isCurrState()){
             titleScreen->changeState(true);
         }
     }
@@ -85,7 +92,8 @@ void App::leftMouseDown(float mx, float my) {
 
     if(game->hasWon()){
         game->changeState(false);
-        winTest = new Win(currLvl);
+        delete winState;
+        winState = new Win(currLvl);
     }
 
 
@@ -93,7 +101,7 @@ void App::leftMouseDown(float mx, float my) {
 }
 
 //Since right clicking is only a valid action during the game state
-//we do not bother passing it to titleScreen
+//we do not bother passing the other states
 void App::rightMouseDown(float mx, float my){
 	// Convert from Window to Scene coordinates
  
@@ -113,6 +121,7 @@ App::~App(){
 
     delete game;
     delete titleScreen;
+
 
     std::cout << "Exiting..." << std::endl;
 }

@@ -13,7 +13,7 @@ private:
 
     Game* game;
     TitleScreen* titleScreen;
-    Win* winTest;
+    Win* winState;
 
     //A part of App because it is used by all three states
     int currLvl;

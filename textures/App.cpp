@@ -1,7 +1,13 @@
 #include <iostream>
 #include "App.h"
 
-
+//picross_clone
+//Author: Tyler Brittain 
+//Last updated 12/08/2020
+//Description: Recreation of the game picross in openGL.
+//Game generates hints based off of puzzles stored in key struct
+//meaning that if a key is modified, the game will adjust the hints
+//and winState accordingly
 
 //We are diving the applicaiton into three states:
 //TitleScreen, Game, and WinState

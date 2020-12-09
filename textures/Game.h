@@ -17,7 +17,6 @@ private:
     FbFboard* playerBoard;
     Help* hintBoard;
     Display* display;
-    WinState* hasWon;
     Keys* key;
 
 
@@ -33,6 +32,8 @@ public:
 
     Game();
 
+    Game(int currKey);
+
     void genKey();
 
     void UpdateKey(int currKey);
@@ -46,6 +47,8 @@ public:
     void leftMouseDown(float mx, float my);
 
     void rightMouseDown(float mx, float my);
+    
+    bool hasWon();
     
     ~Game();
 

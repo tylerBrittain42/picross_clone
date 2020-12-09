@@ -4,15 +4,15 @@ class State{
 
 private:
     
-    bool endState;
+    bool currState;
 
 public:
     
     State();
 
-    virtual void TriggerEndState();
+    virtual void changeState(bool currState);
 
-    virtual bool isEndState() const;
+    virtual bool isCurrState() const;
 
     ~State();
 

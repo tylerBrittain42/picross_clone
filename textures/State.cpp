@@ -3,27 +3,25 @@
 
 
 
-bool endState;
 
 
 
 State::State(){
 
-    endState = false;
-    std::cout << endState << std::endl;
+    currState = true;
+
 
 }
 
-void State::TriggerEndState(){
+void State::changeState(bool currState){
     //std::cout << "triggered" << std::endl;
-    endState = true;
-
+    this->currState = currState;
 }
 
 
-bool State::isEndState() const{
+bool State::isCurrState() const{
 
-    return(endState);
+    return(currState);
 
 }
 

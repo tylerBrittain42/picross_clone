@@ -92,7 +92,7 @@ void TitleScreen::leftMouseDown(float mx, float my){
         if ((levels.at(i))->isClicked(mx,my)){
             startGame = true;
             curLvl = i+1;    
-            State::TriggerEndState();
+            State::changeState(false);
         }
     }
 

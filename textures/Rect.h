@@ -9,15 +9,13 @@ protected:
 	float y;
 	float w;
 	float h;
-	//FIX
-	// float r;
-	// float g;
-	// float b;
-
-public:
 	float r;
 	float g;
 	float b;
+
+
+public:
+
 	Rect();
 	Rect(float, float, float, float, float r=1, float g=0, float b=0);
 	Rect(float x, float y, float side);
@@ -33,8 +31,8 @@ public:
 	void incX(float x);
 	void incY(float y);
 
-	float getH();
-	float getW();
+	float getH() const;
+	float getW() const;
 
 	void setR(float r);
 	void setG(float g);

@@ -18,8 +18,6 @@ Game::Game():State(){
     hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     display = new Display(-0.25,0.975,0.5,0.14269535673839184);
 
-    wantsReset = false;
-
 }
 
 Game::Game(int currKey):State(){
@@ -32,8 +30,6 @@ Game::Game(int currKey):State(){
     playerBoard = new FbFboard(answerKey,-0,0,0.15,0.51,0.44,0.43);
     hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     display = new Display(-0.25,0.975,0.5,0.14269535673839184);
-
-    wantsReset = false;
 
 }
 
@@ -54,16 +50,6 @@ void Game::UpdateKey(int currKey){
     playerBoard = new FbFboard(answerKey,-0,0,0.15,0.51,0.44,0.43);
     hintBoard = new Help(answerKey,0,0,0.15,0.26,0.22,0.21);
     
-}
-
-
-
-bool Game::getWantsReset(){
-    return(wantsReset);
-}
-
-void Game::setWantsReset(bool wantsReset){
-    this->wantsReset = wantsReset;
 }
 
 
@@ -93,13 +79,8 @@ void Game::leftMouseDown(float mx, float my){
     }
 
     
-    //Since resetting the board impacts both the TitleScreen and Game, 
-    //We use a variable that will be checked in App
-
-
     if(playerBoard->isWin()){
         State::changeState(false);
-        std::cout << "hasWon" << std::endl;
     }
     
 
@@ -151,7 +132,7 @@ void Game::genKey(){
 }
 
 
-bool Game::hasWon(){
+bool Game::hasWon() const{
     return(playerBoard->isWin());
 }
 

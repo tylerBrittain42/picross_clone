@@ -1,13 +1,13 @@
 #include <iostream>
 #include "App.h"
 
-#include <vector>
 
 
+//We are diving the applicaiton into three states:
+//TitleScreen, Game, and WinState
 
-//This application is made up of two states, the first state is the title screen and the second screen is the actual game. 
-//However, since certain aspects of these two states interact with each other, I have decided to leave them as part of app
-//Rather than abstract them further
+//We will use the current state to decide what action the 
+//application will take 
 
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
@@ -15,19 +15,15 @@ App::App(int argc, char** argv, int width, int height, const char* title): GlutA
     game = new Game();
     game->changeState(false);
 
-    std::vector<State*> stateVec;
-    stateVec.push_back(new TitleScreen(0.26,0.22,0.21,0.51,0.44,0.43));
-
+    
 } 
 
 
 
-//We will draw the title screen until the user has selected a level
-//(Note: selecting a level will set startGame to true)
+
 void App::draw() const {
 
-    if(titleScreen->isCurrState())
-    {
+    if(titleScreen->isCurrState()){
         titleScreen->draw();
     }
 
@@ -54,8 +50,7 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 // Convert from Window to Scene coordinates
 
-
-
+    //Actions for TitleScreen state
     if(titleScreen->isCurrState()){
 
         titleScreen->leftMouseDown(mx,my);
@@ -66,18 +61,17 @@ void App::leftMouseDown(float mx, float my) {
             currLvl = titleScreen->getLevel();
          
             delete game;
-            
             game = new Game(currLvl);
 
         }
-    
     }
 
+    //Actions for Game state
     else if(game->isCurrState()){
         game->leftMouseDown(mx,my);
     }
 
-
+    //Actions for Win state
     else if(winState->isCurrState()){
         
         winState->leftMouseDown(mx,my);
@@ -88,14 +82,12 @@ void App::leftMouseDown(float mx, float my) {
     }
 
 
-
-
+    //We check to see if the player has won anytime they left click
     if(game->hasWon()){
         game->changeState(false);
         delete winState;
         winState = new Win(currLvl);
     }
-
 
     redraw();
 }
@@ -114,14 +106,11 @@ void App::rightMouseDown(float mx, float my){
 
 
 
-
-
-
 App::~App(){   
 
+    delete winState;
     delete game;
     delete titleScreen;
-
 
     std::cout << "Exiting..." << std::endl;
 }

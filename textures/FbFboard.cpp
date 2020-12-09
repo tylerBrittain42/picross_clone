@@ -82,12 +82,6 @@ void FbFboard::draw() const{
 
 
 
-bool FbFboard::isClicked(float x, float y) const{
-	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
-}
-
-
-
 //Left click claims a space
 void FbFboard::leftMouseDown(float mx, float my){
 

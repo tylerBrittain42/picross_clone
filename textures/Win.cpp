@@ -186,7 +186,12 @@ void Win::leftMouseDown(float mx, float my){
 
 
 Win::~Win(){
+
     delete winText;
+    delete playerBoard;
+    delete hintBoard;
+    delete key;
+
 
     for(auto i = buttons.begin(); i != buttons.end(); i++){
         delete *i;

@@ -39,10 +39,7 @@ public:
 
     void draw() const;
 
-    bool isClicked(float x, float y) const;
-
     void leftMouseDown(float mx, float my);
-
 
     void rightMouseDown(float mx, float my);
 

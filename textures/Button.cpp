@@ -72,7 +72,7 @@ Button::Button(float x, float y, float w, float h, float r, float g, float b, fl
 
 
 
-bool Button::isClicked(float x, float y){
+bool Button::isClicked(float x, float y) const{
 	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
 }
 

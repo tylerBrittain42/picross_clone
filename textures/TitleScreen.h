@@ -4,8 +4,10 @@
 #include "TexRect.h"
 #include <vector>
 #include <iostream>
+#include "State.h"
 
-class TitleScreen{
+//Add color scheme eventually
+class TitleScreen: public State{
 
 private:
 
@@ -51,10 +53,6 @@ public:
     void setStartGame(bool startGame);
 
     int getLevel();
-
-    bool hasHitBounds(Button* checkee);
-
-    void idle();
 
     ~TitleScreen();
 

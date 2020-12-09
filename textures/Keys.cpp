@@ -1,4 +1,4 @@
-
+#pragma once
 //Keys is just to store the possible puzzle combinations
 struct Keys
 {

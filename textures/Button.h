@@ -30,7 +30,7 @@ public:
 
 	void draw();
 
-	bool isClicked(float x, float y);
+	bool isClicked(float x, float y) const;
 
 
 

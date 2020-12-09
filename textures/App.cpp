@@ -3,30 +3,38 @@
 
 
 
-//This application is made up of two states, the first state is the title screen and the second screen is the actual game. 
-//However, since certain aspects of these two states interact with each other, I have decided to leave them as part of app
-//Rather than abstract them further
+//We are diving the applicaiton into three states:
+//TitleScreen, Game, and WinState
+
+//We will use the current state to decide what action the 
+//application will take 
 
 App::App(int argc, char** argv, int width, int height, const char* title): GlutApp(argc, argv, width, height, title){
 
     titleScreen = new TitleScreen(0.26,0.22,0.21,0.51,0.44,0.43);
     game = new Game();
+    game->changeState(false);
 
+    
 } 
 
 
 
-//We will draw the title screen until the user has selected a level
-//(Note: selecting a level will set startGame to true)
+
 void App::draw() const {
 
-    if(!titleScreen->getStartGame())
-    {
+    if(titleScreen->isCurrState()){
         titleScreen->draw();
     }
-    else{
+
+    else if(game->isCurrState()){
         game->draw();
     }
+
+    else if(winState->isCurrState()){
+        winState->draw();
+    }
+
 }
 
 
@@ -42,26 +50,54 @@ void App::keyDown(unsigned char key, float x, float y){
 void App::leftMouseDown(float mx, float my) {
 // Convert from Window to Scene coordinates
 
-//While the user is on the title screen, we will set the App currLvl 
-//equal to the level that the user has selected as well as update the answer key
-//for the game state. This process will repeat until the user has made avalid level selection
-    if(!titleScreen->getStartGame()){
+    //Actions for TitleScreen state
+    if(titleScreen->isCurrState()){
+
         titleScreen->leftMouseDown(mx,my);
-        currLvl = titleScreen->getLevel();
-        game->UpdateKey(currLvl);
+        
+        //If the state changes to false, we know that a level has been selected
+        if(!titleScreen->isCurrState()){
+
+            currLvl = titleScreen->getLevel();
+         
+            delete game;
+            game = new Game(currLvl);
+
+        }
     }
-    else{
+
+    //Actions for Game state
+    else if(game->isCurrState()){
         game->leftMouseDown(mx,my);
+    }
+
+    //Actions for Win state
+    else if(winState->isCurrState()){
+        
+        winState->leftMouseDown(mx,my);
+        
+        if(!winState->isCurrState()){
+            titleScreen->changeState(true);
+        }
+    }
+
+
+    //We check to see if the player has won anytime they left click
+    if(game->hasWon()){
+        game->changeState(false);
+        delete winState;
+        winState = new Win(currLvl);
     }
 
     redraw();
 }
 
 //Since right clicking is only a valid action during the game state
-//we do not bother passing it to titleScreen
-void App::rightMouseDown(float mx, float my) {
+//we do not bother passing the other states
+void App::rightMouseDown(float mx, float my){
 	// Convert from Window to Scene coordinates
-    if(titleScreen->getStartGame()){
+ 
+    if(game->isCurrState()){
         game->rightMouseDown(mx,my);
     }
     
@@ -70,23 +106,9 @@ void App::rightMouseDown(float mx, float my) {
 
 
 
-void App::idle(){
-    //ONLY ADD THIS LINE BACK IN IF I NEED PROOF OF ANIMATION
-    //titleScreen->idle();
-
-    //If WantsReset is true then we will trigger the titleScreen again
-    //And set game WantsReset to false again
-    if(game->getWantsReset()){
-        titleScreen->setStartGame(false);
-        game->setWantsReset(false);
-    }
-    redraw();
-}
-
-
-
 App::~App(){   
 
+    delete winState;
     delete game;
     delete titleScreen;
 

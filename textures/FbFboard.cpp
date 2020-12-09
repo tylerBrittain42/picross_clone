@@ -82,12 +82,6 @@ void FbFboard::draw() const{
 
 
 
-bool FbFboard::isClicked(float x, float y) const{
-	return (x > this->x) && (x < this->x + this->w) && (y < this->y) && (y > this->y - this->h);
-}
-
-
-
 //Left click claims a space
 void FbFboard::leftMouseDown(float mx, float my){
 
@@ -104,7 +98,8 @@ void FbFboard::leftMouseDown(float mx, float my){
 //Right click marks a space as 'x'
 //Note: has no impace on game, solely used as a note for the player
 void FbFboard::rightMouseDown(float mx, float my){
-
+    
+    
     for(auto i = fbf.begin(); i != fbf.end(); i++){
         if ((*i)->contains(mx,my) && (*i)->getClaimedBy() == 'x')
             (*i)->SetClaimedBy('e');
@@ -120,9 +115,17 @@ void FbFboard::rightMouseDown(float mx, float my){
 //and not the x's
 void FbFboard::finalBoard(){
 
-    for(auto i = fbf.begin(); i != fbf.end(); i++){
-        if ((*i)->getClaimedBy() == 'x'){
-            (*i)->SetClaimedBy('e');
+    int curTile = 0;
+    
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            if(answerKey[i][j] == 'c'){
+                fbf[curTile]->SetClaimedBy('c');
+            }
+            if(answerKey[i][j] == 'e'){
+                fbf[curTile]->SetClaimedBy('e');
+            }
+            curTile++;
         }
     }
 

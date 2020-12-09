@@ -2,7 +2,7 @@
 
 
 
-TitleScreen::TitleScreen(){
+TitleScreen::TitleScreen():State(){
 
     curX = false;
 
@@ -37,7 +37,7 @@ TitleScreen::TitleScreen(){
 
 //We are only passing in colors because the titleScreen should always remain in the same position,
 //but we may want to alter the color scheme
-TitleScreen::TitleScreen(float r, float g, float b, float tR, float tG, float tB){
+TitleScreen::TitleScreen(float r, float g, float b, float tR, float tG, float tB):State(){
 
     curX = false;
 
@@ -92,6 +92,7 @@ void TitleScreen::leftMouseDown(float mx, float my){
         if ((levels.at(i))->isClicked(mx,my)){
             startGame = true;
             curLvl = i+1;    
+            State::changeState(false);
         }
     }
 
@@ -110,41 +111,6 @@ void TitleScreen::setStartGame(bool startGame){
 int TitleScreen::getLevel(){
     return(curLvl);
 }
-
-
-
-bool TitleScreen::hasHitBounds(Button* checkee){
-
-    if(checkee->getX() < -1 || (checkee->getX() + checkee->getW()) > 1 || checkee->getY() > 1 || (checkee->getY() - checkee->getH()) < -1){
-        return(true);
-    }
-    return(false);
-
-
-}
-
-
-
-//ADD IN IF I NEED ANIMATIONS
-//REMOVE IF I DO NOT 
-
-// void TitleScreen::idle(){
-    
-//     // if(hasHitBounds(start)){
-
-//     //    // if(curX){
-//     //         velX *= -1;
-//     //    // else
-//     //         velY *= -1;
-//     //     curX = !curX;
-
-//     // }
-
-//     // start->incX(velX);
-//     // start->incY(velX);
-
-
-// }
 
 
 

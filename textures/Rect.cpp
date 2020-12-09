@@ -74,11 +74,11 @@ void Rect::incY(float y){
 
 }
 
-float Rect::getH(){
+float Rect::getH() const{
 	return(h);
 }
 
-float Rect::getW(){
+float Rect::getW() const{
 	return(w);
 }
 
